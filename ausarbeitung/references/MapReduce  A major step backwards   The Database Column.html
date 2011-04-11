@@ -1,0 +1,1112 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MapReduce: A major step backwards | The Database Column</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+<meta name="generator" content="WordPress 2.9.2" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://databasecolumn.vertica.com/feed/" />
+<link rel="pingback" href="http://databasecolumn.vertica.com/xmlrpc.php" />
+<link rel="shortcut icon" href="http://databasecolumn.vertica.com/wp-content/themes/database-column/images/favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="http://databasecolumn.vertica.com/wp-content/themes/database-column/css/1/style.css" />
+<link rel="stylesheet" type="text/css" href="http://databasecolumn.vertica.com/wp-content/themes/database-column/css/1/reset.css" />
+<link rel="stylesheet" type="text/css" href="http://databasecolumn.vertica.com/wp-content/themes/database-column/css/prettyPhoto.css" media="screen" />
+
+<link rel='stylesheet' id='NextGEN-css'  href='http://66.147.244.160/~databat3/wp-content/plugins/nextgen-gallery/css/nggallery.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='shutter-css'  href='http://66.147.244.160/~databat3/wp-content/plugins/nextgen-gallery/shutter/shutter-reloaded.css' type='text/css' media='screen' />
+
+<script type="text/javascript" src="http://databasecolumn.vertica.com/wp-content/themes/database-column/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="http://databasecolumn.vertica.com/wp-content/themes/database-column/js/jquery.cycle.all.min.js"></script>
+<script type="text/javascript" src="http://databasecolumn.vertica.com/wp-content/themes/database-column/js/jquery.easing.1.1.1.js"></script>
+<script type="text/javascript" src="http://databasecolumn.vertica.com/wp-content/themes/database-column/js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="http://databasecolumn.vertica.com/wp-content/themes/database-column/js/jquery.validate.js"></script>
+<script type="text/javascript" src="http://databasecolumn.vertica.com/wp-content/themes/database-column/js/jqueryslidemenu.js"></script>
+
+
+<!--[if IE 6]>
+<link rel="stylesheet" href="http://databasecolumn.vertica.com/wp-content/themes/database-column/css/1/ie6.css" type="text/css" media="screen" />
+<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-content/themes/database-column/js/dd_belated_png.js'></script>
+<script>
+DD_belatedPNG.fix('#con0,#main_slider_con,.png,#nav,#slider_in,#header,#slider_top,.box_top,.box_content,.box_content_sub,.box_bottom,.button,.footer_top,.footer_content,.footer_bottom,#numbers li,#pages_top,#pages_in,.left_top,.left_content,.left_bottom,#nav_left,#nav_right,#search_links,#nav ul');
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#slider_area').cycle({ 
+					fx:     'scrollHorz',
+				easing: 'backout', 
+					timeout: 5110, 
+							pager:  '#numbers'
+			});
+});
+
+</script>
+
+<style type="text/css">
+
+#header {
+	position: relative;
+}
+
+#socialLinks {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#socialLinks ul li {
+	float: left;
+}
+
+</style>
+
+<meta name='robots' content='noindex,nofollow' />
+<link rel="alternate" type="application/rss+xml" title="The Database Column &raquo; MapReduce: A major step backwards Comments Feed" href="http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/feed/" />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://databasecolumn.vertica.com/wp-content/plugins/contact-form-7/stylesheet.css?ver=2.0.6' type='text/css' media='all' />
+<link rel='stylesheet' id='NextGEN-css'  href='http://databasecolumn.vertica.com/wp-content/plugins/nextgen-gallery/css/nggallery.css?ver=1.0.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='shutter-css'  href='http://databasecolumn.vertica.com/wp-content/plugins/nextgen-gallery/shutter/shutter-reloaded.css?ver=1.3.0' type='text/css' media='screen' />
+<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-includes/js/jquery/jquery.js?ver=1.3.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var shutterSettings = {
+	msgLoading: "L O A D I N G",
+	msgClose: "Click to Close",
+	imageCount: "1"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-content/plugins/nextgen-gallery/shutter/shutter-reloaded.js?ver=1.3.0'></script>
+<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-includes/js/swfobject.js?ver=2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ngg_ajax = {
+	path: "http://databasecolumn.vertica.com/wp-content/plugins/nextgen-gallery/",
+	loading: "loading"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-content/plugins/nextgen-gallery/js/ngg.js?ver=2.9.2'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://databasecolumn.vertica.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://databasecolumn.vertica.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='The Database Column' href='http://databasecolumn.vertica.com' />
+<link rel='start' title='Database Column contributor: Mitch Cherniack' href='http://databasecolumn.vertica.com/about-database-column/database-column-contributor-mitch-cherniack/' />
+<link rel='prev' title='Relational databases for storing and querying RDF' href='http://databasecolumn.vertica.com/database-miscellaneous/relational-databases-for-storing-and-querying-rdf/' />
+<link rel='next' title='MapReduce II' href='http://databasecolumn.vertica.com/database-innovation/mapreduce-ii/' />
+<meta name="generator" content="WordPress 2.9.2" />
+<link rel='canonical' href='http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/' />
+<style type="text/css">
+	.addtoany_share_save_container{margin:16px 0;}
+	ul.addtoany_list{
+		display:inline;
+		list-style-type:none;
+		margin:0 !important;
+		padding:0 !important;
+		text-indent:0 !important;
+	}
+	ul.addtoany_list li{
+		background:none !important;
+		border:0;
+		display:inline !important;
+		line-height:32px;		list-style-type:none;
+		margin:0 !important;
+		padding:0 !important;
+	}
+	ul.addtoany_list li:before{content:"";}
+	ul.addtoany_list li a{padding:0 9px;}
+	ul.addtoany_list img{
+		float:none;
+		border:0;
+		margin:0;
+		padding:0;
+		vertical-align:middle;
+	}
+	ul.addtoany_list a img{
+		opacity:.6;
+		-moz-opacity:.6;
+		filter:alpha(opacity=60);
+	}
+	ul.addtoany_list a:hover img, ul.addtoany_list a.addtoany_share_save img{
+		opacity:1;
+		-moz-opacity:1;
+		filter:alpha(opacity=100);
+	}
+	a.addtoany_share_save img{border:0;width:auto;height:auto;}    </style>
+
+<!-- All in One SEO Pack 1.6.7 by Michael Torbert of Semper Fi Web Design[178,252] -->
+<meta name="description" content="In this post, David DeWitt and Michael Stonebraker discuss MapReduce. While it may be a good idea for writing certain types of general-purpose computations, they believe it is a giant step backward in the programming paradigm for large-scale data intensive applications; a sub-optimal implementation, in that it uses brute force instead of indexing; not novel, as it represents a specific implementation of well known techniques developed nearly 25 years ago; missing most of the features that are routinely included in current DBMS; and incompatible with all of the tools DBMS users have come to depend on." />
+<link rel="canonical" href="http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/" />
+<!-- /all in one seo pack -->
+<link id='MediaRSS' rel='alternate' type='application/rss+xml' title='NextGEN Gallery RSS Feed' href='http://databasecolumn.vertica.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php' />
+
+<meta name='NextGEN' content='1.3.6' />
+  
+</head>
+
+<body>
+
+<div id="con0"  align="center">
+<div id="con1">
+
+<div id="header">
+		<!-- logo -->
+		<div id="logo" style="position: relative; top: -20px;"><a href="http://databasecolumn.vertica.com" title=""><img src="http://66.147.244.160/~databat3/wp-content/themes/database-column/images/logo.gif" width="244" height="120" alt="" border="0"></a></div>
+		<!-- /logo -->
+		
+		<div id="socialLinks">
+			<ul>
+				<li>    <form id="searchform" method="get" action="/index.php">
+      <div>
+         <input type="text" name="s" id="s" size="15" /> <input type="submit" value="Search" />
+      </div>
+     </form>
+</li>
+				<li><a href="http://www.vertica.com/" onclick="window.open(this.href); return false;" title="This link will pop open a new window"><img src="http://66.147.244.160/~databat3/wp-content/themes/database-column/images/logo-vertica.gif" width="79" height="46" alt="" border="0"></a></li>
+				<li><a href="http://www.linkedin.com/groups?gid=1900818&trk=anetsrch_name&goback=%2Egdr_1255905396227_1 " onclick="window.open(this.href); return false;" title="This link will pop open a new window"><img src="http://66.147.244.160/~databat3/wp-content/themes/database-column/images/icon-linkedin.gif" width="35" height="46" alt="" border="0"></a></li>
+				<li><a href="http://www.facebook.com/pages/Vertica/92274364194" onclick="window.open(this.href); return false;" title="This link will pop open a new window"><img src="http://66.147.244.160/~databat3/wp-content/themes/database-column/images/icon-fb.gif" width="35" height="46" alt="" border="0"></a></li>
+				<li><a href="/rss/" onclick="window.open(this.href); return false;" title="This link will pop open a new window"><img src="http://66.147.244.160/~databat3/wp-content/themes/database-column/images/icon-rss.gif" width="35" height="46" alt="" border="0"></a></li>
+				<li><a href="http://twitter.com/vertica" onclick="window.open(this.href); return false;" title="This link will pop open a new window"><img src="http://66.147.244.160/~databat3/wp-content/themes/database-column/images/icon-twitter.gif" width="36" height="46" alt="" border="0"></a></li>
+			</ul>
+		</div>
+
+		<!-- header area -->
+		<div id="header_area">
+		</div>
+		<!-- /header area -->
+
+		<!-- navigation -->
+		<div id="search_links">
+			
+			<div id="nav_left"></div>
+			<div id="nav" class="jqueryslidemenu">
+			<ul>
+
+
+					<li class="page_item page-item-314"><a href="http://databasecolumn.vertica.com/listings/">All Listings</a></li>
+<li class="page_item page-item-5"><a href="http://databasecolumn.vertica.com/image-gallery/">Image Gallery</a></li>
+<li class="page_item page-item-7"><a href="http://databasecolumn.vertica.com/recommended-links/">Recommended Links</a></li>
+<li class="page_item page-item-9"><a href="http://databasecolumn.vertica.com/about-us/">About Us</a></li>
+<li class="page_item page-item-11"><a href="http://databasecolumn.vertica.com/contact-us/">Contact Us</a></li>
+
+
+
+
+			</ul>
+			</div>
+			<div id="nav_right"></div>
+		</div>
+		<!-- / navigation  -->
+</div>
+
+
+<!-- pages Title -->
+<div id="pages_top"><img src="http://databasecolumn.vertica.com/wp-content/themes/database-column/images/1/pixel.gif" alt="" /></div>
+<div id="pages_in">
+<h1>
+   MapReduce: A major step backwards / <span></span></h1>
+
+
+</h1>
+</div>
+<!-- / pages title -->
+<div class="box_in"></div>
+
+
+<!-- content area-->
+<div id="content_con">
+<div id="page_left">
+
+
+
+
+
+
+			<!-- left side-->
+			<div class="left_top"></div>
+			<div class="left_content">
+			<!-- left content -->
+			<div class="content">
+
+					
+					<h1><a href="http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/" title="MapReduce: A major step backwards">MapReduce: A major step backwards</a></h1>
+					<small>on Jan 17 in <a href="http://databasecolumn.vertica.com/category/database-architecture/" title="View all posts in Database architecture" rel="category tag">Database architecture</a>,  <a href="http://databasecolumn.vertica.com/category/database-history/" title="View all posts in Database history" rel="category tag">Database history</a>,  <a href="http://databasecolumn.vertica.com/category/database-innovation/" title="View all posts in Database innovation" rel="category tag">Database innovation</a> posted  by <a href="http://databasecolumn.vertica.com/author/dewitt/" title="Posts by DeWitt">DeWitt</a></small><br />
+
+					<p style="margin:0px;padding:20px 0px 0px 0px;">
+
+						
+
+						
+						<p><i>[Note: Although the system attributes this post to a single author, it was written by David J. DeWitt and Michael Stonebraker]</i></p>
+<p>On January 8, a Database Column reader asked for our views on new distributed database research efforts, and we&#8217;ll begin here with our views on <a href="http://en.wikipedia.org/wiki/MapReduce">MapReduce</a>. This is a good time to discuss it, since the recent trade press has been filled with news of the revolution of so-called &#8220;cloud computing.&#8221; This paradigm entails harnessing large numbers of (low-end) processors working in parallel to solve a computing problem. In effect, this suggests constructing a data center by lining up a large number of &#8220;jelly beans&#8221; rather than utilizing a much smaller number of high-end servers.</p>
+<p>For example, IBM and Google have announced plans to make a 1,000 processor cluster available to a few select universities to teach students how to program such clusters using a software tool called MapReduce [1]. Berkeley has gone so far as to plan on teaching their freshman how to program using the MapReduce framework.</p>
+<p>As both educators and researchers, we are amazed at the hype that the MapReduce proponents have spread about how it represents a paradigm shift in the development of scalable, data-intensive applications. MapReduce may be a good idea for writing certain types of general-purpose computations, but to the database community, it is:</p>
+<ol>
+<li>A giant step backward in the programming paradigm for large-scale data intensive applications</p>
+</li>
+<li>A sub-optimal implementation, in that it uses brute force instead of indexing
+</li>
+<li>Not novel at all &#8212; it represents a specific implementation of well known techniques developed nearly 25 years ago
+</li>
+<li>Missing most of the features that are routinely included in current DBMS
+</li>
+<li>Incompatible with all of the tools DBMS users have come to depend on</li>
+</ol>
+<p>First, we will briefly discuss what MapReduce is; then we will go into more detail about our five reactions listed above.</p>
+<p><b>What is MapReduce?</b></p>
+<p>The basic idea of MapReduce is straightforward. It consists of two programs that the user writes called <i>map</i> and <i>reduce</i> plus a framework for executing a possibly large number of instances of each program on a compute cluster.&nbsp;&nbsp; </p>
+<p>The map program reads a set of &#8220;records&#8221; from an input file, does any desired filtering and/or transformations, and then outputs a set of records of the form (key, data). As the map program produces output records, a &#8220;split&#8221; function partitions the records into <i>M</i> disjoint buckets by applying a function to the key of each output record.&nbsp;&nbsp; This split function is typically a hash function, though any deterministic function will suffice. When a bucket fills, it is written to disk. The map program terminates with <i>M</i> output files, one for each bucket.</p>
+<p>In general, there are multiple instances of the map program running on different nodes of a compute cluster. Each map instance is given a distinct portion of the input file by the MapReduce scheduler to process. If <i>N</i> nodes participate in the map phase, then there are <i>M</i> files on disk storage at each of <i>N</i> nodes, for a total of <i>N</i> * <i>M</i> files; <i>F<sub>i,j</sub></i>,&nbsp; 1 ≤ <i>i</i> ≤ <i>N</i>,&nbsp; 1 ≤ <i>j</i> ≤ <i>M</i>.</p>
+<p>The key thing to observe is that all map instances use the same hash function. Hence, all output records with the same hash value will be in corresponding output files.&nbsp; </p>
+<p>The second phase of a MapReduce job executes <i>M</i> instances of the reduce program, <i>R<sub>j</sub></i>, 1 ≤ <i>j</i> ≤ <i>M</i>.&nbsp; The input for each reduce instance <i>R<sub>j</sub></i> consists of the files <i>F<sub>i,j</sub></i>,&nbsp; 1 ≤ <i>i</i> ≤ <i>N</i>.&nbsp; Again notice that all output records from the map phase with the same hash value will be consumed by the same reduce instance &#8212; no matter which map instance produced them. After being collected by the map-reduce framework, the input records to a reduce instance are grouped on their keys (by sorting or hashing) and feed to the reduce program. Like the map program, the reduce program is an arbitrary computation in a general-purpose language. Hence, it can do anything it wants with its records. For example, it might compute some additional function over other data fields in the record. Each reduce instance can write records to an output file, which forms part of the &#8220;answer&#8221; to a MapReduce computation.</p>
+<p>To draw an analogy to SQL, map is like the <i>group-by</i> clause of an aggregate query. Reduce is analogous to the <i>aggregate</i> function (e.g., average) that is computed over all the rows with the same group-by attribute.</p>
+<p>We now turn to the five concerns we have with this computing paradigm.</p>
+<p><b>1. MapReduce is a step backwards in database access</b></p>
+<p>As a data processing paradigm, MapReduce represents a giant step backwards. The database community has learned the following three lessons from the 40 years that have unfolded since IBM first released IMS in 1968.</p>
+<ul>
+<li>Schemas are good.</p>
+</li>
+<li>Separation of the schema from the application is good.
+</li>
+<li>High-level access languages are good.</li>
+</ul>
+<p>MapReduce has learned none of these lessons and represents a throw back to the 1960s, before modern DBMSs were invented.</p>
+<p>The DBMS community learned the importance of schemas, whereby the fields and their data types are recorded in storage. More importantly, the run-time system of the DBMS can ensure that input records obey this schema. This is the best way to keep an application from adding &#8220;garbage&#8221; to a data set. MapReduce has no such functionality, and there are no controls to keep garbage out of its data sets. A corrupted MapReduce dataset can actually silently break all the MapReduce applications that use that dataset.</p>
+<p>It is also crucial to separate the schema from the application program. If a programmer wants to write a new application against a data set, he or she must discover the record structure. In modern DBMSs, the schema is stored in a collection of system catalogs and can be queried (in SQL) by any user to uncover such structure. In contrast, when the schema does not exist or is buried in an application program, the programmer must discover the structure by an examination of the code. Not only is this a very tedious exercise, but also the programmer must find the source code for the application. This latter tedium is forced onto every MapReduce programmer, since there are no system catalogs recording the structure of records &#8212; if any such structure exists.</p>
+<p>During the 1970s the DBMS community engaged in a &#8220;great debate&#8221; between the relational advocates and the Codasyl advocates. One of the key issues was whether a DBMS access program should be written:</p>
+<ul>
+<li>By stating what you want &#8211; rather than presenting an algorithm for how to get it (relational view)</p>
+</li>
+<li>By presenting an algorithm for data access (Codasyl view)</li>
+</ul>
+<p>The result is now ancient history, but the entire world saw the value of high-level languages and relational systems prevailed. Programs in high-level languages are easier to write, easier to modify, and easier for a new person to understand. Codasyl was rightly criticized for being &#8220;the assembly language of DBMS access.&#8221; A MapReduce programmer is analogous to a Codasyl programmer &#8212; he or she is writing in a low-level language performing low-level record manipulation. Nobody advocates returning to assembly language; similarly nobody should be forced to program in MapReduce.</p>
+<p>MapReduce advocates might counter this argument by claiming that the datasets they are targeting have no schema. We dismiss this assertion. In extracting a key from the input data set, the map function is relying on the existence of at least one data fi<br />
+eld in each input record. The same holds for a reduce function that computes some value from the records it receives to process.&nbsp;&nbsp; </p>
+<p>Writing MapReduce applications on top of Google&#8217;s BigTable (or Hadoop&#8217;s HBase) does not really change the situation significantly. By using a self-describing tuple format (row key, column name, {values}) different tuples within the same table can actually have different schemas. In addition, BigTable and HBase do not provide logical independence, for example with a view mechanism. Views significantly simplify keeping applications running when the logical schema changes.</p>
+<p><b><br />2. MapReduce is a poor implementation</b></p>
+<p>All modern DBMSs use hash or B-tree indexes to accelerate access to data. If one is looking for a subset of the records (e.g., those employees with a salary of 10,000 or those in the shoe department), then one can often use an index to advantage to cut down the scope of the search by one to two orders of magnitude. In addition, there is a query optimizer to decide whether to use an index or perform a brute-force sequential search.</p>
+<p>MapReduce has no indexes and therefore has only brute force as a processing option. It will be creamed whenever an index is the better access mechanism.</p>
+<p>One could argue that value of MapReduce is automatically providing parallel execution on a grid of computers. This feature was explored by the DBMS research community in the 1980s, and multiple prototypes were built including Gamma [2,3],&nbsp; Bubba [4], and Grace [5]. Commercialization of these ideas occurred in the late 1980s with systems such as Teradata.&nbsp; </p>
+<p>In summary to this first point, there have been high-performance, commercial, grid-oriented SQL engines (with schemas and indexing) for the past 20 years. MapReduce does not fare well when compared with such systems.&nbsp; </p>
+<p>There are also some lower-level implementation issues with MapReduce, specifically skew and data interchange.</p>
+<p>One factor that MapReduce advocates seem to have overlooked is the issue of skew. As described in &#8220;Parallel Database System: The Future of High Performance Database Systems,&#8221; [6] skew is a huge impediment to achieving successful scale-up in parallel query systems. The problem occurs in the map phase when there is wide variance in the distribution of records with the same key. This variance, in turn, causes some reduce instances to take much longer to run than others, resulting in the execution time for the computation being the running time of the slowest reduce instance. The parallel database community has studied this problem extensively and has developed solutions that the MapReduce community might want to adopt.</p>
+<p>There is a second serious performance problem that gets glossed over by the MapReduce proponents. Recall that each of the <i>N</i> map instances produces <i>M</i> output files &#8212; each destined for a different reduce instance. These files are written to a disk local to the computer used to run the map instance. If <i>N</i> is 1,000 and <i>M</i> is 500, the map phase produces 500,000 local files. When the reduce phase starts, each of the 500 reduce instances needs to read its 1,000 input files and must use a protocol like FTP to &#8220;pull&#8221; each of its input files from the nodes on which the map instances were run. With 100s of reduce instances running simultaneously, it is inevitable that two or more reduce instances will attempt to read their input files from the same map node simultaneously &#8212; inducing large numbers of disk seeks and slowing the effective disk transfer rate by more than a factor of 20. This is why parallel database systems do not materialize their split files and use push (to sockets) instead of pull. Since much of the excellent fault-tolerance that MapReduce obtains depends on materializing its split files, it is not clear whether the MapReduce framework could be successfully modified to use the push paradigm instead.</p>
+<p>Given the experimental evaluations to date, we have serious doubts about how well MapReduce applications can scale. Moreover, the MapReduce implementers would do well to study the last 25 years of parallel DBMS research literature.</p>
+<p><b>3. MapReduce is not novel</b></p>
+<p>The MapReduce community seems to feel that they have discovered an entirely new paradigm for processing large data sets. In actuality, the techniques employed by MapReduce are more than 20 years old. The idea of partitioning a large data set into smaller partitions was first proposed <span>in &#8220;Application of Hash to Data Base Machine and Its Architecture&#8221; [11]</span> as the basis for a new type of join algorithm. In &#8220;Multiprocessor Hash-Based Join Algorithms,&#8221; [7], Gerber demonstrated how Kitsuregawa&#8217;s techniques could be extended to execute joins in parallel on a shared-nothing [8] cluster using a combination of partitioned tables, partitioned execution, and hash based splitting. DeWitt [2] showed how these techniques could be adopted to execute aggregates with and without group by clauses in parallel. DeWitt and Gray [6] described parallel database systems and how they process queries. Shatdal and Naughton [9] explored alternative strategies for executing aggregates in parallel.&nbsp;&nbsp; </p>
+<p>Teradata has been selling a commercial DBMS utilizing all of these techniques for more than 20 years; exactly the techniques that the MapReduce crowd claims to have invented.&nbsp;&nbsp; </p>
+<p>While MapReduce advocates will undoubtedly assert that being able to write MapReduce functions is what differentiates their software from a parallel SQL implementation, we would remind them that POSTGRES supported user-defined functions and user-defined aggregates in the mid 1980s. Essentially, all modern database systems have provided such functionality for quite a while, starting with the Illustra engine around 1995.&nbsp; </p>
+<p><b>4.&nbsp; MapReduce is missing features</b></p>
+<p>All of the following features are routinely provided by modern DBMSs, and all are missing from MapReduce:</p>
+<ul>
+<li><b>Bulk loader</b> &#8212; to transform input data in files into a desired format and load it into a DBMS</p>
+</li>
+<li><b>Indexing</b> &#8212; as noted above
+</li>
+<li><b>Updates</b> &#8212; to change the data in the data base
+</li>
+<li><b>Transactions</b> &#8212; to support parallel update and recovery from failures during update
+</li>
+<li><b>Integrity constraints</b> &#8212; to help keep garbage out of the data base
+</li>
+<li><b>Referential integrity</b> &#8212; again, to help keep garbage out of the data base
+</li>
+<li><b>Views</b> &#8212; so the schema can change without having to rewrite the application program</li>
+</ul>
+<p>In summary, MapReduce provides only a sliver of the functionality found in modern DBMSs.</p>
+<p><b><br />5.&nbsp; MapReduce is incompatible with the DBMS tools</b> </p>
+<p>A modern SQL DBMS has available all of the following classes of tools:</p>
+<ul>
+<li><b>Report writers</b> (e.g., Crystal reports) to prepare reports for human visualization</p>
+</li>
+<li><b>Business intelligence tools</b> (e.g., Business Objects or Cognos) to enable ad-hoc querying of large data warehouses
+</li>
+<li><b>Data mining tools</b> (e.g., Oracle Data Mining or IBM DB2 Intelligent Miner) to allow a user to discover structure in large data sets
+</li>
+<li><b>Replication tools</b> (e.g., Golden Gate) to allow a user to replicate data from on DBMS to another
+</li>
+<li><b>Database design tools</b> (e.g., Embarcadero) to assist the user in constructing a data base.</li>
+</ul>
+<p>MapReduce cannot use these tools and has none of its own. Until it becomes SQL-compatible or until someone writes all of these tools, MapReduce will remain very difficult to use in an end-to-end task.</p>
+<p><b>In Summary</b></p>
+<p>It is exciting to see a much larger community engaged in the design and implementation of scalable query processing techniques. We, however, assert that they should not o<br />
+verlook the lessons of more than 40 years of database technology &#8212; in particular the many advantages that a data model, physical and logical data independence, and a declarative query language, such as SQL, bring to the design, implementation, and maintenance of application programs. Moreover, computer science communities tend to be insular and do not read the literature of other communities. We would encourage the wider community to examine the parallel DBMS literature of the last 25 years. Last, before MapReduce can measure up to modern DBMSs, there is a large collection of unmet features and required tools that must be added.</p>
+<p>We fully understand that database systems are not without their problems. The database community recognizes that database systems are too &#8220;hard&#8221; to use and is working to solve this problem. The database community can also learn something valuable from the excellent fault-tolerance that MapReduce provides its applications. Finally we note that some database researchers are beginning to explore using the MapReduce framework as the basis for building scalable database systems. The Pig[10] project at Yahoo! Research is one such effort.</p>
+<p><b><br />References</b> </p>
+<p>[1] &#8220;MapReduce:&nbsp; Simplified Data Processing on Large Clusters,&#8221; Jeff Dean and Sanjay Ghemawat, Proceedings of the 2004 OSDI Conference, 2004.</p>
+<p>[2] &#8220;The Gamma Database Machine Project,&#8221; DeWitt, et. al., IEEE Transactions on Knowledge and Data Engineering, Vol. 2, No. 1, March 1990.</p>
+<p>[4] &#8220;Gamma &#8211; A High Performance Dataflow Database Machine,&#8221;&nbsp; DeWitt, D, R. Gerber, G. Graefe,&nbsp; M. Heytens, K. Kumar, and M. Muralikrishna,&nbsp; Proceedings of the 1986 VLDB Conference,&nbsp; 1986.</p>
+<p>[5] &#8220;Prototyping Bubba, A Highly Parallel Database System,&#8221; Boral, et. al., IEEE Transactions on Knowledge and Data Engineering,Vol. 2, No. 1, March 1990.</p>
+<p>[6] &#8220;Parallel Database System: The Future of High Performance Database Systems,&#8221; David J. DeWitt and Jim Gray,&nbsp; CACM,&nbsp; Vol. 35, No. 6,&nbsp; June 1992.</p>
+<p>[7] &#8220;Multiprocessor Hash-Based Join Algorithms,&#8221; David J. DeWitt and&nbsp; Robert H. Gerber,&nbsp; Proceedings of the 1985 VLDB Conference, 1985.</p>
+<p>[8] &#8220;The Case for Shared-Nothing,&#8221; Michael Stonebraker,&nbsp; Data Engineering Bulletin, Vol. 9, No. 1, 1986.</p>
+<p>[9] &#8220;Adaptive Parallel Aggregation Algorithms,&#8221; Ambuj Shatdal and Jeffrey F. Naughton,&nbsp;&nbsp; Proceedings of the 1995 SIGMOD Conference,&nbsp; 1995.</p>
+<p>[10] &#8220;Pig&#8221;, Chris Olston, http://research.yahoo.com/project/90</p>
+<p><span>[11] &#8220;Application of Hash to Data Base Machine and Its<br />
+Architecture,&#8221; Masaru Kitsuregawa, Hidehiko Tanaka, Tohru Moto-Oka,<br />
+New Generation Comput. 1(1): 63-74 (1983)</span><br /><span></span></p>
+<div class="addtoany_share_save_container"><ul class="addtoany_list"><li><a class="a2a_dd addtoany_share_save" href="http://www.addtoany.com/share_save?linkurl=http%3A%2F%2Fdatabasecolumn.vertica.com%2Fdatabase-innovation%2Fmapreduce-a-major-step-backwards%2F&amp;linkname=MapReduce%3A%20A%20major%20step%20backwards"><img src="http://databasecolumn.vertica.com/wp-content/plugins/add-to-any/share_save_171_16.png" width="171" height="16" alt="Share/Bookmark"/></a></li></ul></div>
+					</p>
+
+			</div>
+			<!-- /left content -->
+
+
+
+			</div>
+			<div class="left_bottom"></div>				
+			<div class="box_in"></div>
+			<!-- / left side -->
+
+
+
+
+				<div id="comments_template">
+					<!-- left side-->
+<div class="left_top"></div>
+<div class="left_content">
+<!-- left content -->
+<div class="content">
+	
+			
+			
+
+
+
+			<h2 id="comments">47 Comments							<a href="#postcomment" title="Leave a comment" class="leaveacomment">Leave a comment</a>
+						</h2>
+
+						<ol id="commentlist">
+
+							<li class="comment even thread-even depth-1" id="comment-70">
+				<img alt='' src='http://www.gravatar.com/avatar/221e757e9e5338550efd8c32eafab2e3?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>As an MR advocate, I can agree with several of the above points. Certainly, MR development shouldn&#8217;t ignore previous research, nor should it be constrained by it. MR is directed at a different problem from the modern DBMS.<br />
+For example, using MR to rapidly identify small subsets of data is a bad idea. However MR is a good large-data manipulation tool &#8211; something for which DBs are notoriously bad.  A grid DB&#8217;s indexing offers no advantage when computing page rank of the internet for example. Indices are pure overhead in that situation.<br />
+I am concerned the authors are suggesting that introducing MR into academia is a bad idea since <em>that is where most of the previous literature is well understood.</em> Some of the best improvements to MR lately have been based on distributing reductions ala Monet&#8217;s continuous near-neighbor load distribution. To say MR doesn&#8217;t have high level languages/tools/optimizations is short-sighted. Pig, Sawzall, and others functional languages are in development. Additional tools, research, and optimization will follow. Presenting MR as a research topic will enable that growth.<br />
+For engineers, the underlying issue is picking the right tool for the job. RDB versus Flat Files versus MQL versus MR smacks of the same &#8220;religious&#8221; debates between Java versus C++ versus Ruby versus assembly and is generally a waste of effort. A good engineer understands the specific problem space, examines the potential solutions, and picks the right tool for the job.</p>
+	
+
+				<p><cite>Comment by Ronn Brashear &#8212; January 17, 2008 @ <a href="#comment-70">6:52 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-71">
+				<img alt='' src='http://www.gravatar.com/avatar/fa3afb9c3589ea91c866030babaeee64?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>You seem to be under the impression that MapReduce is a database. It&#8217;s merely a mechanism for using lots of machines to process very large data sets. You seem to be arguing that MapReduce would be better (for some value of better) if it were a data warehouse product along the lines of TeraData. Unfortunately the resulting tool would be less effective as a general purpose mechanism for processing very large data sets.<br />
+You seem to have made a category error in this article: <a href="http://en.wikipedia.org/wiki/Category_mistake" rel="nofollow">http://en.wikipedia.org/wiki/Category_mistake</a></p>
+	
+
+				<p><cite>Comment by <a href='http://www.oshineye.com' rel='external nofollow' class='url'>ade</a> &#8212; January 17, 2008 @ <a href="#comment-71">7:37 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-72">
+				<img alt='' src='http://www.gravatar.com/avatar/893729486f1eb230165d761492e95451?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>As a wise philosopher once said, <i>Be a lover, not a fighter!</i><br />
+Technically, I agree with much of this article, especially the history lesson on parallel data processing.  (I&#8217;d even go one further on you w.r.t.the fault-tolerance aspects of MapReduce, where I wish they had acknowledged <a href="http://www.hpl.hp.com/personal/Mehul_Shah/index.html" rel="nofollow">Mehul Shah&#8217;s</a> work on <a href="http://www.hpl.hp.com/personal/Mehul_Shah/papers/shah-phd-thesis-ucb.pdf" rel="nofollow">FLuX</a>, which provides fault-tolerance, load balancing <i>and</i> pipelined processing.)<br />
+But none of that matters.  It&#8217;s all about hearts and minds, and if the DB industry adopts the attitude in this article, it&#8217;s back to what I said at HPTS back in 2001: <a href="http://db.cs.berkeley.edu/jmh/talks/hpts2001-we-lose.pdf" rel="nofollow">We Lose</a>.  See especially slides 5-10.</p>
+	
+
+				<p><cite>Comment by <a href='http://db.cs.berkeley.edu/jmh' rel='external nofollow' class='url'>Joe Hellerstein</a> &#8212; January 17, 2008 @ <a href="#comment-72">8:19 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-73">
+				<img alt='' src='http://www.gravatar.com/avatar/159cd33667611645164e8623de42f67e?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I would point out that Google created MapReduce because some (most?) of the inputs into the GFS to be used with MapReduce were already &#8220;garbage&#8221;, in that they are semi-structured data (e.g. the Web). As such, a schema would have been too restrictive for them to have made the progress in data mining that they have. (this ignores their entry into the column-oriented database space, BigTable) Also, the &#8220;key&#8221; you speak of in Web data turns out to be the URL of the document, something not inherent to the data at all.<br />
+For Google and others like them, a custom solution is sometimes preferable to what the industry standard practice is doing. Recall the time during which Google created this model: the storage on commodity PCs was much smaller than it was today, especially in relation to the size of the Web, and they needed considerably more horsepower to perform the machinations of a search engine than was available on even the largest machines of the day. Thus, they were forced them to create a system that managed large numbers of machines to work effectively in concert. No such system existed at that time in the database world. Oracle was limited to 32 nodes at that time.<br />
+Also, MapReduce is an extremely simple programming model and allows even interns to produce useful programs for data mining and reporting. But, those same interns are likely *not* working on the inputs to said system. This works for them because the data MapReduce is working on is read-only.<br />
+GFS + MapReduce is missing a lot of the features you mention on purpose but some are available in BigTable (views, in particular, just like your Vertica database). The entire point of the GFS/MapReduce system from its original design was to build the inverted index of the Web, so I&#8217;d hardly say that it lacks indexing. Google itself is the index. As well, you can update data in GFS after writing, although this is discouraged. (its right there in the GFS paper)<br />
+As to your &#8220;doubts&#8221; as to how well MapReduce can scale, I&#8217;m having trouble believing that you could honestly have such doubts. Google has dozens of clusters in the tens of thousands of machines, all of which crawl and index the Web  independently of each other at regular intervals with GFS, MapReduce and BigTable. MapReduce was designed with horizontal scalability in mind, first and foremost. You can complain legitimately about the performance (of Hadoop, anyway) but the scalability is there in spades.<br />
+Finally, Google has a high-level language to access this data called Sawzall and the Hadoop community is forging its own language for this purpose called Pig. (<a href="http://incubator.apache.org/pig/" rel="nofollow">http://incubator.apache.org/pig/</a>)<br />
+I feel as if this post has misrepresented the MapReduce model and the problems it was designed to solve. No one at Google or working on Hadoop would tell you that MapReduce is a replacement for a generic RDBMS but is rather designed for a specific set of issues and constraints. This is a valid method of doing work and does not deserve to be criticized out of context.</p>
+	
+
+				<p><cite>Comment by <a href='http://blog.cbcg.net/' rel='external nofollow' class='url'>Toby DiPasquale</a> &#8212; January 17, 2008 @ <a href="#comment-73">11:11 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-74">
+				<img alt='' src='http://www.gravatar.com/avatar/623d30c5a7a6e3554b8eec9a0c73cc41?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>While I don&#8217;t want to sound critical, how can you make such an absurd claim as: &#8220;Given the experimental evaluations to date, we have serious doubts about how well MapReduce applications can scale.&#8221;  The most recent information from Google is that they&#8217;re running MapReduce on 20 petabytes of data a day(1).  That&#8217;s larger than any other data sets I&#8217;m aware of.  MapReduce is also designed to deal with heterogeneous data sets, something not compatible with the relational data model where uniformity of records is expected.<br />
+(1) &#8220;MapReduce: simplified data processing on large clusters&#8221; in Communications of the ACM Volume 51 ,  Issue 1  (January 2008)</p>
+	
+
+				<p><cite>Comment by JS &#8212; January 17, 2008 @ <a href="#comment-74">11:18 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-75">
+				<img alt='' src='http://www.gravatar.com/avatar/cb584f3bec91ff87f4cf9ae60a58f57e?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>So what do YOU propose as a valid schema and index system, using Teradata or a similar DBMS, for what is essentially a full-text indexing system? And how much would such a system cost ( including yearly support contracts ) Google?<br />
+They&#8217;re looking through unstructured data for specific words that match a query, and they&#8217;re doing it under pretty strict OLTP constraints. Nevermind that mapReduce is run all the time to update the pagerank.<br />
+So what do you propose, other than hand waving? This is a entirely different problem domain than DBs solve. Page searching doesn&#8217;t even require most of ACID or worry about constraints or foreign keys.</p>
+	
+
+				<p><cite>Comment by Daniel &#8212; January 17, 2008 @ <a href="#comment-75">11:35 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-114">
+				<img alt='' src='http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=32' class='avatar avatar-32 photo avatar-default' height='32' width='32' />				<p><strong>This is one of the web&#8217;s most interesting stories on Fri 18th Jan 2008</strong></p>
+<p>These are the web&#8217;s most talked about URLs on Fri 18th Jan 2008. The current winner is ..</p>
+	
+
+				<p><cite>Comment by <a href='http://purrl.net/fri-18th-jan-2008' rel='external nofollow' class='url'>purrl.net |** urls that purr **|</a> &#8212; January 18, 2008 @ <a href="#comment-114">12:09 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-76">
+				<img alt='' src='http://www.gravatar.com/avatar/f65f19140499bdce208f0bf23b0dcc8c?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>When I finished reading the article I was thinking that the authors did not understand MapReduce or the idea of data in the cloud &#8230; if you change &#8220;MapReduce&#8221; to &#8220;SimpleDB&#8221; the original article almost makes sense.<br />
+More at <a href="http://typicalprogrammer.com/programming/mapreduce/" rel="nofollow">Relational Database Experts Jump The MapReduce Shark</a>.</p>
+	
+
+				<p><cite>Comment by <a href='http://typicalprogrammer.com/' rel='external nofollow' class='url'>Greg Jorgensen</a> &#8212; January 18, 2008 @ <a href="#comment-76">12:10 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-77">
+				<img alt='' src='http://www.gravatar.com/avatar/2b2edaa7c29e9cb84abe78e7d0254284?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>> Missing most of the features that are routinely included in current DBMS<br />
+> Incompatible with all of the tools DBMS users have come to depend on<br />
+With really large datasets and distributed sytems the RDBMS paradigms stop working, and that&#8217;s where a system like Mapreduce is needed.<br />
+Distributed systems *interfaces* are dumb and simple-minded on purpose: there is no way to index data arbitrarily as in DBMS, and do arbirary joins on data like in SQL.<br />
+With really large and open data, one has to shift their paradigm away from DBMS and SQL and arbirary indexes: these simply don&#8217;t work in distributed systems.</p>
+	
+
+				<p><cite>Comment by Sorin Gherman &#8212; January 18, 2008 @ <a href="#comment-77">12:16 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-78">
+				<img alt='' src='http://www.gravatar.com/avatar/b2dafef1f79f0e90c5a6204970d441df?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Hmmmm &#8230; although I appreciate you guys addressing this topic (I was the one who suggested it), frankly this column left me scratching my head a bit.  It looks to me like there&#8217;s some incorrect information here about some key aspects of these distributed DB&#8217;s.<br />
+First off, from everything I&#8217;ve read, it appears that they are a completely separate technology from map/reduce.  (For example, if you read the Google BigTable paper at <a href="http://labs.google.com/papers/bigtable-osdi06.pdf," rel="nofollow"></a><a href="http://labs.google.com/papers/bigtable-osdi06.pdf" rel="nofollow">http://labs.google.com/papers/bigtable-osdi06.pdf</a>, the only place they even seem to mention map/reduce is where they state that a BigTable database can be used as a data source for an external map/reduce job.)<br />
+Second, BigTable *does* have indexes (&#8220;The map is indexed by a row key, column key, and a timestamp&#8221;) and therefore *doesn&#8217;t* require brute force.<br />
+So although some of your criticisms might be valid here (e.g., lack of schemas, lack of high level language, lack of advanced features and tool support, etc.) several others seem somewhat off-base.<br />
+I have no axe to grind here.  (I don&#8217;t work for Google or anything.)  I&#8217;m just a developer who finds this stuff interesting and wants to learn more about it.  But it just feels to me like these DB&#8217;s didn&#8217;t really get a fair comparison here.</p>
+	
+
+				<p><cite>Comment by DAR &#8212; January 18, 2008 @ <a href="#comment-78">12:43 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-79">
+				<img alt='' src='http://www.gravatar.com/avatar/15b6785fd6dd0489f63c1cb909abadf1?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>MapReduce is not a DBMS.  It is a framework for developing distributed systems.  I can&#8217;t quite imagine why such a framework would have indexes, or why the concepts of updates, integrity, transactions, views, or bulk loaders would even be meaningful.  God forbid, one could even write a MapReduce to read from a DBMS.  Some of these criticisms may be valid with Bigtable, but then Bigtable is probably the only DBMS designed to handle petabytes of data.</p>
+	
+
+				<p><cite>Comment by Robert Weisman &#8212; January 18, 2008 @ <a href="#comment-79">1:25 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-80">
+				<img alt='' src='http://www.gravatar.com/avatar/badb47566647d012b9b48e2759f0ede7?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I think your arguments are solid in that MapReduce represents a step backwards compared to a traditional DBMS.  However, I believe that your overall point is severely off the mark, since I believe that your comparison is not entirely fair.<br />
+MapReduce is not a database framework.  Instead, it&#8217;s a computational framework.  Unlike a database, it does not offer storage of data, or transactions, or indeed any sort of a query language.  To see MapReduce as a database system is to seriously miscategorize its use.<br />
+Additionally, you write that there&#8217;s a question of MapReduce&#8217;s ability to scale.  I think that Google&#8217;s track record here is a great testament to the system&#8217;s abilities: with hundreds of thousands of nodes, the system seems to be battle-tested.<br />
+Instead of looking at MapReduce you may want to look at <a href="http://en.wikipedia.org/wiki/BigTable" rel="nofollow">BigTable</a> &#8212; Google&#8217;s database technology.  I think that it&#8217;s a more fair comparison and probably deserves a thorough review.</p>
+	
+
+				<p><cite>Comment by <a href='http://ilya.us' rel='external nofollow' class='url'>Ilya Haykinson</a> &#8212; January 18, 2008 @ <a href="#comment-80">2:33 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-81">
+				<img alt='' src='http://www.gravatar.com/avatar/01131d668618c7b6d2027875910e8466?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Mapreduce&#8217;s charm is, I gather, a combination of<br />
+excellent fault tolerance and utter<br />
+simplicity.  There isn&#8217;t a whiff of database<br />
+about it, it&#8217;s more like a simple pipe.<br />
+And sometimes a pipe is all you need.</p>
+	
+
+				<p><cite>Comment by Joe Developer &#8212; January 18, 2008 @ <a href="#comment-81">3:57 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-82">
+				<img alt='' src='http://www.gravatar.com/avatar/88af6d1a983eb4423dbb8343857b8079?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Hi,<br />
+MapReduce isn&#8217;t meant to replace a RDB; it doesn&#8217;t need indices, ordering, grouping and practically everything you wrote in items 4 and 5. MapReduce is design to work by iterating over data in the given order and producing an output. Also, you can have a schema and data validation just as well, so again it doesn&#8217;t fall short.<br />
+As for item 3, MapReduce not being novel is hardly an argument against it, is it?<br />
+Basically, what you&#8217;re saying is, you should use MapReduce because:<br />
+- it doesn&#8217;t have features it doesn&#8217;t need,<br />
+- it isn&#8217;t a new concept,<br />
+- some databases (not many, though) can do what it does,<br />
+- requires a lower level view of the application and data (this one being the only solid argument).<br />
+Not being an advocate for MapReduce, but your argumentation fails on many levels.<br />
+Best regards,<br />
+Gasper</p>
+	
+
+				<p><cite>Comment by <a href='http://fatg.sopca.com' rel='external nofollow' class='url'>gasper_k</a> &#8212; January 18, 2008 @ <a href="#comment-82">4:14 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-83">
+				<img alt='' src='http://www.gravatar.com/avatar/2f994f446a5cb6f77c50a40844e45a58?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p><i>By stating what you want &#8211; rather than presenting an algorithm for how to get it (relational view)</i><br />
+We use mapreduce to obtain results and perform computation that RDBMS cannot perform.  For example, what relational command would you use to extract all urls from four billion documents then collect into separate lists all urls matching certain patterns (movie-like urls, image-like urls, html-like urls) by site?  The site should be determined by host-level chunking the rules of which are a combination of data and programming logic.<br />
+This hypothetical task (no mapreduce in Google that I know of performs it, although there are ones like it but much more complex) is simple for a mapreduce, would be impossible to write in a relational query-language.  What would be more impossible for an RDBMS is performing this calculation on 30 TB of input data in under three hours for less than $5 million capital invested.<br />
+<i>[Section on skew]</i><br />
+As if we don&#8217;t have devices that solve this problem.  Simply selecting a uniformly distributed key scheme is enough to get around it.<br />
+<i>Given the experimental evaluations to date, we have serious doubts about how well MapReduce applications can scale.</i><br />
+Have you experimentally evaluated mapreduce at all?  If so, how?<br />
+<i>The MapReduce community seems to feel that they have discovered an entirely new paradigm for processing large data sets.</i><br />
+This would be a wonderful thing to have a citation for.  Mostly the sense I get is that MapReduce allows complex processing on large datasets without the programming difficulty required in other mediums.  Novelty is not on the feature list.<br />
+<i>MapReduce is missing features</i><br />
+You seem to not have noticed that mapreduce is not a DBMS.  Same goes for section five.<br />
+Overall this article represents a profound and surprising misunderstanding of what MapReduce is.  Perhaps next time they evaluate a product the authors could be bothered to learn what that product is?</p>
+	
+
+				<p><cite>Comment by James A. &#8212; January 18, 2008 @ <a href="#comment-83">5:36 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-84">
+				<img alt='' src='http://www.gravatar.com/avatar/7c240723b0d15ddea31a929067a4c3b3?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Perhaps you guys should read this&#8230;<br />
+<a href="http://typicalprogrammer.com/programming/mapreduce/" rel="nofollow">Relational Database Experts Jump The MapReduce Shark</a><br />
+At least <i>somebody</i> know what they&#8217;re talking about when it comes to MapReduce.</p>
+	
+
+				<p><cite>Comment by steppres &#8212; January 18, 2008 @ <a href="#comment-84">6:09 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-85">
+				<img alt='' src='http://www.gravatar.com/avatar/e3ca69382186f5bce8b43ff5f0cb2287?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Our friend the Typical Programmer points out why this article shows a complete mis-understanding of what MapReduce is or is for. Amongst other things, that it&#8217;s not intended, in any way, to be a system for storing and managing structured data, and thus <b>not a database.<br />
+<a href="http://typicalprogrammer.com/programming/mapreduce/" rel="nofollow">http://typicalprogrammer.com/programming/mapreduce/</a></b></p>
+	
+
+				<p><cite>Comment by <a href='http://weblog.masukomi.org' rel='external nofollow' class='url'>masukomi</a> &#8212; January 18, 2008 @ <a href="#comment-85">8:02 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-86">
+				<img alt='' src='http://www.gravatar.com/avatar/753ef975f85896eabdb64d9aa6ad4cbe?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I respectfully disagree. I use MapReduce every day and *for what it does* it&#8217;s the best.<br />
+There are two advantages that you missed.<br />
+1. If you set it up properly, the records get sorted and appear in the reducer in sorted order, for free!<br />
+but even more important:<br />
+2. MapReduce is extremely light.<br />
+It doesn&#8217;t mean that a MapReduce won&#8217;t use a lot of machines &#8212; it means that you can run a MapReduce you already have on brand-new data in a few minutes, and you can write a brand-new one, run it and get good output in an afternoon &#8212; because you don&#8217;t have to load up a database.</p>
+	
+
+				<p><cite>Comment by Tom Ritchford &#8212; January 18, 2008 @ <a href="#comment-86">11:13 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-87">
+				<img alt='' src='http://www.gravatar.com/avatar/936ef27dc33712931fca39aca258fadf?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>It is unfortunate that so many people are focusing on superficial distinctions between map-reduce and databases. The point here is that if you examine the underlying techniques, there are very strong similarities (although there are some key differences as well).<br />
+If we can focus on the areas of overlap, we can foster a much more productive relationship. There&#8217;s no need to be adversarial on this, as Joe Hellerstein points out. Both communities bring ideas and experiences that can benefit the other.</p>
+	
+
+				<p><cite>Comment by Chris Olston &#8212; January 18, 2008 @ <a href="#comment-87">12:21 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-88">
+				<img alt='' src='http://www.gravatar.com/avatar/dca6f7b817cf545e73620c962f6f9315?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>This is the basic problem with database people. They view everything<br />
+as a database, and that everything must be done in/with a database.<br />
+MapReduce is for a different class of problems. eg if you were<br />
+using MR to process large quantities of small image tiles, how<br />
+would you forumulate that in teradata, what advantage does an<br />
+RDBMS bring?<br />
+Relational databases are as much an inhibitor to modern application<br />
+development as they are an asset. Hence the massive use of<br />
+complex object relational mappers to work around their problems.<br />
+All technologies have strengths and weaknesses, MR and databases<br />
+included. These are two different things, don&#8217;t confuse them.</p>
+	
+
+				<p><cite>Comment by NAC &#8212; January 18, 2008 @ <a href="#comment-88">4:32 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-89">
+				<img alt='' src='http://www.gravatar.com/avatar/00c9531e383fcadb0c8f4396ab6d032a?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I think you could write an equivalent article:<br />
+&#8220;Airplanes: A major step backward&#8221;<br />
+You could say something like, &#8220;roads are good, everyone knows that, why would you throw them away?&#8221;<br />
+You could talk about fuel consumption, possible crashes, etc.<br />
+For the knock out punch, give an example why cars are definitely better. Describe taking your kids to school in a plane would be ridiculous; a car is so much better.<br />
+I don&#8217;t think anyone seriously suggests replacing all databases with MR. It&#8217;d be a terrible solution for a small database. Seems your trying to sell it for something it&#8217;s not. I do mean &#8220;selling&#8221; too. I see that Vertica Systems is behind the page. When Vertica is running Google, let me know. I&#8217;ll get in line for the product.</p>
+	
+
+				<p><cite>Comment by Chris G &#8212; January 18, 2008 @ <a href="#comment-89">5:05 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-90">
+				<img alt='' src='http://www.gravatar.com/avatar/47f9e84529b1455eae68a85dabdf8eb6?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Interesting opinion and set of comments thus far; thanks to everyone who has provided input.  Interesting reading to say the least.</p>
+	
+
+				<p><cite>Comment by Greg Grasmehr &#8212; January 18, 2008 @ <a href="#comment-90">5:19 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-91">
+				<img alt='' src='http://www.gravatar.com/avatar/72ea925c0ca3d19fdd2f12fa76681624?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Could one of the bonus points of MapReduce be that &#8220;It works&#8221; or  &#8220;It doesn&#8217;t cost much&#8221;?<br />
+Stephan</p>
+	
+
+				<p><cite>Comment by <a href='http://stephansmap.org' rel='external nofollow' class='url'>Stephan Wehner</a> &#8212; January 18, 2008 @ <a href="#comment-91">6:24 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-92">
+				<img alt='' src='http://www.gravatar.com/avatar/a226c09f3cf65516ebc516b087f80992?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Some interesting quotes from the article that show what I think is a fundamental misunderstanding of the subject matter:<br />
+&#8220;To draw an analogy to SQL, map is like the group-by clause of an aggregate *query*.&#8221;<br />
+&#8220;[Relational databases have] a *query* optimizer to decide whether to use an index or perform a brute-force sequential search&#8230;  MapReduce has no indexes and therefore has only brute force as a processing option.&#8221;<br />
+&#8220;&#8230;skew is a huge impediment to achieving successful scale-up in parallel *query* systems&#8221;<br />
+&#8220;It is exciting to see a much larger community engaged in the design and implementation of scalable *query processing* techniques.&#8221;<br />
+Apparently, the authors of this article believe that MapReduce is a process for *querying* unstructured data.  It is not, or at least, I&#8217;ve never heard it being touted as such.  It is a process for categorizing (Map) and aggregating (Reduce) the records in an unindexed data stream.  In common use, the MapReduce process is run exactly *once* on a set of data.  Really, the Google paper on the subject is quite clear on this.</p>
+	
+
+				<p><cite>Comment by mypalmike &#8212; January 18, 2008 @ <a href="#comment-92">7:17 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-93">
+				<img alt='' src='http://www.gravatar.com/avatar/0528d8c96ddcb20210701fcac5d5f3dc?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Even google does not claim that the idea of map/reduce is novel. If you read the paper and watch the videos they have for interns it is clear that is grounded in functional programming. Map/reduce is simply an elegant implementation of those concepts that accomplish something very useful.<br />
+I agree with about all the other criticisms so I will not opine.<br />
+Steve</p>
+	
+
+				<p><cite>Comment by <a href='http://www.steveseverance.com' rel='external nofollow' class='url'>Steve Severance</a> &#8212; January 18, 2008 @ <a href="#comment-93">7:30 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-94">
+				<img alt='' src='http://www.gravatar.com/avatar/26ca5736c79690eaabc9d4dcbdf1947f?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Your statement that the MapReduce community claims to have invented this stuff is obviously wrong: anyone with a decent computer science background knows that Map and Reduce are ancient funtional programming primitives for operating on lists.  The MR people are simply taking advantage of the trivial parallelization these primitives offer&#8211;which has been well known for decades.</p>
+	
+
+				<p><cite>Comment by <a href='http://fabbrication.net/blog/' rel='external nofollow' class='url'>ajfabb</a> &#8212; January 18, 2008 @ <a href="#comment-94">7:38 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-95">
+				<img alt='' src='http://www.gravatar.com/avatar/1189a111d0a6e88f305d089e90ea735b?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>As one of the authors of Berkeley&#8217;s MR-based curriculum, let me say that the choice of MapReduce as a framework was primarily motivated by its simplicity and its public exposure (OK, and the fact that Google was sponsoring it, but that&#8217;s beside the point). We wanted to introduce students to the general idea of parallelism in a way that would get their attention &#8211; saying &#8220;Google uses this&#8221; definitely gets their attention.<br />
+We have implemented a glue layer between Berkeley&#8217;s Scheme interpreter and Hadoop that allows students to express mapreductions in Scheme, a language with which they become familiar during the course. Just as we use Scheme as a tool for teaching students about the power of recursion, we use MapReduce as a tool for teaching students who don&#8217;t know a whole ton about computer science yet about the power of parallelism. We don&#8217;t present MapReduce as anything shockingly innovative &#8211; far from it. We show that MapReduce represents an application of operations with which students are already familiar (map and reduce) over a bunch of data in parallel, which makes both what they learned and what they&#8217;re learning seem a lot more relevant.</p>
+	
+
+				<p><cite>Comment by <a href='http://cs.ucsd.edu/~arasmuss/' rel='external nofollow' class='url'>Alex Rasmussen</a> &#8212; January 19, 2008 @ <a href="#comment-95">12:03 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-96">
+				<img alt='' src='http://www.gravatar.com/avatar/55af591be72fe2261cef68ce5a0063e5?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>This article, coming as it does from such eminent folks from academia, just goes on to show how dogmatic some of the academic community has become. Or is it just that the earlier world / status-quo has been shattered so much that you can&#8217;t bear the success of a newer system? This is truly what academia should NOT be.<br />
+To my knowledge (and I&#8217;m a CS PhD student at a very reputable university), the MapReduce folks have never claimed it is applicable to a wide variety of systems, even though in reality, it very well could be. This article starts with the assumption that MapReduce is a new DBMS, which has never been a claim. They seem to be genuinely trying to explore a new paradigm&#8230; At the same time, a lot of folks out in the real world are beginning to realize that relational schemas aren&#8217;t really the cure for all diseases either as you seem to claim.<br />
+Or, as the cynic in me says, maybe this is a ploy to advance some of your other business ambitions?</p>
+	
+
+				<p><cite>Comment by Ashwin &#8212; January 19, 2008 @ <a href="#comment-96">12:27 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-97">
+				<img alt='' src='http://www.gravatar.com/avatar/bdc2896420c491965fc5a757dd9fa5b4?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I&#8217;m afraid I don&#8217;t get it.<br />
+I must begin by stating that I have no clue on MapReduce other than what I grabbed from your blog post. Now, given that:<br />
+You say that a problem with MapReduce is that there&#8217;s no schema. Then you go on to say that MapReduce is like Group By plus aggregates in SQL.<br />
+But a view or a stored procedure with Group By and aggregates have no schemas in an RDBMS either &#8211; right?? I agree that the definition of a view in SQL (a bunch of SQL statements) can be considered declarative (what) rather than imperative (how) in nature, but there&#8217;s really no schema for it, is there? This may only go to reveal my poor understanding of RDBMS, but&#8230;you&#8217;d have to go in and check the SQL in the view to see what columns it returns, right? And so if we see MapReduce as a function over the data, much like stored procedures, there&#8217;s really no issue with missing schema&#8230;or what am I missing?<br />
+Put another way, couldn&#8217;t the MapReduce function work over an RDBMS that used a strict schema for all its data even while no such schema exists for describing neither the group by + aggregate functions in the stored procedures/views in the RDBMS nor the equivalent operations in the MapReduce layer?<br />
+/Mats</p>
+	
+
+				<p><cite>Comment by <a href='http://www.matshelander.com/wordpress' rel='external nofollow' class='url'>Mats Helander</a> &#8212; January 19, 2008 @ <a href="#comment-97">4:14 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-98">
+				<img alt='' src='http://www.gravatar.com/avatar/368010bf32738444e7800899fa685045?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Which RDBMS allows computations to complete successfully in the presence of nodes that catch fire?</p>
+	
+
+				<p><cite>Comment by Jim White &#8212; January 19, 2008 @ <a href="#comment-98">9:40 am</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-99">
+				<img alt='' src='http://www.gravatar.com/avatar/639e2bd6efa7373d6951ca6f05615874?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Quite a change in position for the authors. As recently as October 2007, Michael Stonebraker presented his paper <a href="http://www.mit.edu/~dna/vldb07hstore.pdf" rel="nofollow">The End of an Architectural Era (It&#8217;s time for a Complete Rewrite</a> at HPTS.</p>
+<p>
+With respect to other comments about performance, Google&#8217;s Map/Reduce framework has been around since 2003, and work on Bigtable started in 2004. Google&#8217;s Distributed File System predated Map/Reduce. Since the initial publication of their papers on these topics, development of these systems has continued and Google now uses Bigtable to serve live data on their site which has changed the performance and availability requirements significantly. Hadoop is considerably younger (the project started in March of 2005) and HBase did not even exist a year ago.</p>
+	
+
+				<p><cite>Comment by Jim Kellerman &#8212; January 19, 2008 @ <a href="#comment-99">12:12 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-100">
+				<img alt='' src='http://www.gravatar.com/avatar/ec627d6ac7f7fc6b498421d475f9e86c?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Kudos to the authors for providing a well-researched article. The point itself is debatable as evidenced by heated comments, but I think it is important for us to get both historical and adjacent field perspectives on modern technologies &#8211; reusing other people research is the cornerstone of progress. I also think that people who have been in the industry for a long time are uniquely positioned to give us this perspective and this article is one of the best ways Michael and his friends can contribute to advancement of the art.<br />
+I have certainly enjoyed it, more than the usual praises sung to column stores on this blog and posts like these is what is needed to turn this blog into wider new db technologies discussion forum.</p>
+	
+
+				<p><cite>Comment by <a href='http://blog.thenatureofdata.com' rel='external nofollow' class='url'>Denis Altudov</a> &#8212; January 19, 2008 @ <a href="#comment-100">2:23 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-101">
+				<img alt='' src='http://www.gravatar.com/avatar/353081b4549432352aa40533abd587e6?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>You are right that GFS + BigTable + MapReduce are not equivalent to an RDMBS + SQL + its ecosystem of tools and applications.<br />
+However, there is NO database out there (whether academic or commercial) that can scale to tens of thousands of processors and petabytes of unstructured/semi-structured data, and can run on commodity hardware (without any RAID/SAN etc), and can do so efficiently and cost-effectively without costing a fortune for licensing and support and administration. Not to mention the fact that it will take more than just some pie-in-the-sky academic research to actually engineer and implement a reliable query executor and optimizer that can translate arbitrary SQL into an efficient plan for this scale of operation.<br />
+You can quote the last 25 years of parallel database literature all you want, but the reality is that while GFS + BigTable + MapReduce may not be the ultimate answer, it is induced by the constraints of the problem that Google is working on: processing large datasets efficiently and cheaply.</p>
+	
+
+				<p><cite>Comment by xbar &#8212; January 19, 2008 @ <a href="#comment-101">4:02 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-102">
+				<img alt='' src='http://www.gravatar.com/avatar/ad099a1b27475a0eb8c4e0888c6b3b16?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>What I don&#8217;t quite understand is why these sorts of &#8220;damn kids better get off my lawn&#8221; essays keep getting written. Tenenbaum vs Torvalds is one example. Tenenbaum was both correct and irrelevant.<br />
+The views expressed here are both correct and irrelevant. If MapReduce is seeing widespread excitement and adoption, it&#8217;s either because the 20 year old efforts described in this essay were before their time, or because the market rejected them for some reason.<br />
+It would be much more productive to either suggest how these techniques could be applied to MapReduce, in specific terms, or alternatively it would be productive to examine why the market has rejected solutions as described in this essay. Cost and complexity are two factors I think are worth a debate.<br />
+I worked in academia for a while, and I really liked Feigenbaum&#8217;s approach to these sorts of things. His group was doing things in the 80&#8217;s that are only today being widely understood and adopted. But instead of arguing about how primitive modern techniques were compared to his work, he always worked with the young upstarts who were exploring an area that was new to them but old to academia, and gently guided them in the right direction without judging or bragging.</p>
+	
+
+				<p><cite>Comment by Rob McCool &#8212; January 20, 2008 @ <a href="#comment-102">12:58 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-103">
+				<img alt='' src='http://www.gravatar.com/avatar/bf717f6f9c30d5506bf77fa4ec52d276?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>MapReduce was not developed to replace DBMSs at all; it was developed to satisfy a need. As we reviewed in <a href="http://portal.acm.org/citation.cfm?doid=1247480.1247602" rel="nofollow">the map-reduce-merge paper</a>,<br />
+search engine companies (ask, google, and yahoo) independently developed similar frameworks for simple, fast, and reliable processing of huge data sets. It is not the end, just a useful enabler.<br />
+MapReduce may have lots of deficiencies when viewed under a different light but we cannot ignore the fact that it works so successfully. In fact, the reasons for its success are very similar to the points made in Stonebroker&#8217;s 2nd paper on &#8220;one size fits all?&#8221;.<br />
+I think with more constructive support from the database and systems communities, it will mature into a better framework. There is already lots of work on improving and generalizing it, e.g., see dryad from microsoft, sawzall from google, pig from yahoo, hadoop from apache, map-reduce-merge (the paper cited above) from yahoo, and phoenix from stanford.</p>
+	
+
+				<p><cite>Comment by <a href='http://www.dasdan.net/ali' rel='external nofollow' class='url'>Ali Dasdan</a> &#8212; January 20, 2008 @ <a href="#comment-103">6:23 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-104">
+				<img alt='' src='http://www.gravatar.com/avatar/e514b017977ebf742a418cac697d8996?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>My background is in parallel processing, parallel databases, and data mining.  I have recently written a book called &#8220;Data Analysis Using SQL and Excel&#8221;, because I do strongly believe that relational databases can be used for sophisticated data analysis, even for non-programmers.<br />
+I found this posting because one company that I know of is in the process of deciding to use Hadoop and MapReduce for their data warehouse.  For many of the reasons outlined by Profs Stonebreaker and Dewitt, I remain skeptical about this approach, although the particular company is determined to follow this path.<br />
+I do observe that there is considerable agreement between the original article and many of the critics.  Everyone, including the original authors, state emphatically that the MapReduce framework is not a replacement, nor intended as a replacement, for relational databases.<br />
+And that may be true technically.  However, in the marketplace, both are trying to solve the problem of analyzing large amounts of data.  That is, both technologies compete in the market, even though they are quite different.  In a similar way, when we have free time and money, we can play a computer game, go to a movie, read a book, or dine in a restaurant &#8212; even though computer games, movies, books and restaurants are not traditionally thought of as &#8220;competing&#8221; against each other.<br />
+I do think that Profs Stonebreaker and Dewitt do miss some important points:<br />
+(1) For most analytic purposes, indexes are not useful.  Full table scans should simply be assumed.<br />
+(2) The transactional integrity parts of relational technology are not generally useful for complex queries, since SELECT (as opposed to UPDATE or INSERT) is the most common SQL statement for analysis purposes.<br />
+(3) Although some databases do have analytic tools built-in, serious analysis generally use more serious statistical tools such as SAS, SPSS, S-Splus, or R.<br />
+MapReduce is a new paradigm (even if it is an old technology).  Undoubtedly, it can solve many problems, in a fault tolerant way on large amounts of data.  It is not a replacement for relational databases.  It is a paradigm for developing parallel programs, not a general purpose solution for managing and querying data.<br />
+&#8211;gordon<br />
+Gordon S. Linoff, Founder<br />
+Data Miners, Inc.<br />
+<a href="mailto:gordon@data-miners.com">gordon@data-miners.com</a><br />
+Author of:<br />
+&#8220;Data Analysis Using SQL and Excel&#8221;<br />
+&#8220;Data Mining Techniques for Marketing, Sales, and Customer Support&#8221;<br />
+&#8220;Mastering Data Mining:  The Art and Science of Customer Relationship Management&#8221;<br />
+&#8220;Mining the Web&#8221;</p>
+	
+
+				<p><cite>Comment by <a href='http://www.data-miners.com' rel='external nofollow' class='url'>Gordon Linoff</a> &#8212; January 22, 2008 @ <a href="#comment-104">2:40 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-105">
+				<img alt='' src='http://www.gravatar.com/avatar/0656a8e4974607a46365de02190e6206?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Its rather sad that such dialogues protecting the myth of index structure performance still persist. If one is ignorant of jet-engine technology then advocating prop-engine technology over hot-air-balloon technology should be expected. Though Selective Set Retrieval I/O (with 90-98% informationally dense I/Os)  provides better performance than index structures (with  2-3% informationally  dense I/O&#8217;s) under ALL conditions, the following statement has to be true.<br />
+&#8220;Any system that  has no indexes and therefore has only brute force as a processing option, will be creamed whenever an index is the better access mechanism.&#8221;<br />
+The operative word here is &#8220;whenever&#8221;. Notice also that the &#8220;therefore&#8221; depends on a selection from two choices, not a selection from three choices.<br />
+For a paper of possible interest on index structure antiquity, see <a href="http://xsp.xegesis.org/Pebbles.pdf." rel="nofollow"></a><a href="http://xsp.xegesis.org/Pebbles.pdf" rel="nofollow">http://xsp.xegesis.org/Pebbles.pdf</a>.</p>
+	
+
+				<p><cite>Comment by D L Childs &#8212; January 23, 2008 @ <a href="#comment-105">12:40 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-106">
+				<img alt='' src='http://www.gravatar.com/avatar/577827c6c7fd51f96baf33f4086b7482?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I think maybe you want to replace all instances of &#8220;MapReduce&#8221; with &#8220;SimpleDB&#8221; in this article.  As Greg Jorgensen said, <a href="http://typicalprogrammer.com/programming/mapreduce/" rel="nofollow">it almost makes sense that way</a>.</p>
+	
+
+				<p><cite>Comment by Zach &#8212; January 23, 2008 @ <a href="#comment-106">3:16 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-107">
+				<img alt='' src='http://www.gravatar.com/avatar/79ad9dd3ea79d2d721fa85d9246a0397?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Who said Map/Reduce is meant to be a relational database? Where did you get this idea from?</p>
+	
+
+				<p><cite>Comment by M. Ibrahim &#8212; January 24, 2008 @ <a href="#comment-107">9:03 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-108">
+				<img alt='' src='http://www.gravatar.com/avatar/650a759b68717e369afd2fe711324d9d?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Thanks for all your comments. If you are just reading this post, or are planning a comment, you might want to first read the authors&#8217; follow up post <a href="http://databasecolumn.vertica.com/2008/01/mapreduce-continued.html" rel="nofollow">here</a> and submit your comments to that post.<br />
+- The Database Column Editors</p>
+	
+
+				<p><cite>Comment by Admin &#8212; January 25, 2008 @ <a href="#comment-108">4:38 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-109">
+				<img alt='' src='http://www.gravatar.com/avatar/e669735cfc695c84c43f340e1ac35a12?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>I had a first-hand experience where MapReduce and BigTable was used to justify the choice of abandoning schema.  This is definitely a unintended consequence of the rising awareness of MapReduce &#8212; at least I hope it is just a unintended consequence.  Having a schema for data is very important for efficiency of data processing.  Abandoning schema will invariably require the client software somehow rediscover it.</p>
+	
+
+				<p><cite>Comment by <a href='http://lbl.gov/~kwu' rel='external nofollow' class='url'>K. Wu</a> &#8212; March 16, 2008 @ <a href="#comment-109">12:42 am</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-110">
+				<img alt='' src='http://www.gravatar.com/avatar/933285225d6a05a99fe35d72b38ff17e?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Not all MPP database vendors agree with Dewitt and Stonebraker.  For example, Aster Data just launched the world&#8217;s first In-Database MapReduce:<br />
+<a href="http://www.asterdata.com/product/mapreduce.html" rel="nofollow">http://www.asterdata.com/product/mapreduce.html</a></p>
+	
+
+				<p><cite>Comment by <a href='http://www.gmail.com' rel='external nofollow' class='url'>Anonymous</a> &#8212; August 25, 2008 @ <a href="#comment-110">8:44 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-111">
+				<img alt='' src='http://www.gravatar.com/avatar/e10caac96e8a44084f6e77abe3b11d39?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Here at Aster, we&#8217;ve just launched a sneak peek of our In-Database Map-Reduce capability with a whitepaper and demo.<br />
+Our firm belief is that the attractive thing about MapReduce is the programming model &#8212; far superior to traditional database user-defined functions &#038; PL/SQL because it&#8217;s easy to learn but conceptually powerful/flexible. Why not put that programming model to work within an MPP relational database &#8212; retaining the familiarity and powerful of SQL &#038; the other benefits of RDBMS.<br />
+Love to hear your thoughts:<br />
+<a href="http://www.asterdata.com/blog/index.php/2008/08/25/announcing-in-database-mapreduce/" rel="nofollow">http://www.asterdata.com/blog/index.php/2008/08/25/announcing-in-database-mapreduce/</a></p>
+	
+
+				<p><cite>Comment by <a href='http://www.asterdata.com' rel='external nofollow' class='url'>Michael Mullany</a> &#8212; August 25, 2008 @ <a href="#comment-111">8:53 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-112">
+				<img alt='' src='http://www.gravatar.com/avatar/8c2917cbdba71a6d0b110810f27831c9?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>See CloudBase-<br />
+<a href='http://cloudbase.sourceforge.net' rel="nofollow"></a><a href="http://cloudbase.sourceforge.net" rel="nofollow">http://cloudbase.sourceforge.net</a><br />
+It is a data warehouse system built on top of Hadoop&#8217;s Map Reduce architecture that allows one to query Terabyte and Petabyte of data using ANSI SQL. It comes with a JDBC driver so one can use third party BI tools, reporting frameworks to directly connect to CloudBase.<br />
+CloudBase creates database system directly on flat files and converts input ANSI SQL expressions into map-reduce programs for processing flat files. It has an optimized algorithm to handle Joins and plans to support table indexing in next release.</p>
+	
+
+				<p><cite>Comment by Anonymous &#8212; December 29, 2008 @ <a href="#comment-112">1:45 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-113">
+				<img alt='' src='http://www.gravatar.com/avatar/b84caf1c31008937b4e0a5fd748515c9?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>Map and Reduce are indeed general purpose functions, which means they can be implemented in a high-level language as well as a low-level language. So the paradigm itself is not akin to programming in Assembly, because you can write a MapReduce database in a high-level language if you so choose.<br />
+Furthermore, even if you pick a *very* high-level, general purpose language like Common Lisp, you can still control your data types and variable declarations by the use of a dedicated function, which you may call Schema.<br />
+This Schema function would be passed as an argument to the function which is in turn Mapped onto the Keys in your MapReduce example.<br />
+In short, I do not see any validity to your claims in point 1.</p>
+	
+
+				<p><cite>Comment by <a href='http://en.wikipedia.org/wiki/MapReduce' rel='external nofollow' class='url'>Horia Margarit</a> &#8212; June 17, 2009 @ <a href="#comment-113">9:12 pm</a></cite> </p>
+				</li>
+
+							<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-376">
+				<img alt='' src='http://www.gravatar.com/avatar/34822a51feb39c188aa5c5f98fd7995c?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>MapReduce is certainly not a database but it can be very easily argued that it is a DBMS. What essentially is done by the framework is one BIG transaction. I completely agree with the authors and one needs to actually understand what they mean. They complain that the proponents of Map-Reduce have not credited the past work in this field in a proper way and they propose the scheme of splitting files into small chunks as being novel. The worst claim anyone can make is that Google is running petabytes of data on Map-Reduce Framework everyday and thus it&#8217;s scalable. Well, the question I ask is whether this petabyte of data is run through a single instance of map-reduce entity(using some 10000 PCs or so) or are they running different copies of it on a set of clusters. Scalability means that the performance wouldn&#8217;t deteriorate if we increase the data set size while keeping the number of resources same. The reason the authors think that MR framework won&#8217;t be scalable is because a large number of reduce processes(either the number of processes or the data associated with each of the process increases as the data set increases) reading the remote data produced by map processes(on different node of the clusters) at the same time would heavily slow down the MR computing due to seek-time, cache misses etc.</p>
+	
+
+				<p><cite>Comment by Tushar Sharma &#8212; December 24, 2009 @ <a href="#comment-376">11:56 pm</a></cite> </p>
+				</li>
+
+							<li class="comment even thread-even depth-1" id="comment-381">
+				<img alt='' src='http://www.gravatar.com/avatar/6a465fd2a867d6f9a50dbd079071ec7c?s=32&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D32&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' />				<p>So, as educators, you should be glad that someone is making a technique available 25 years ago to THE ACADEMIA ELITE a little bit more popular.</p>
+<p>Get out of the Ivory tower. Welcome to the real world. That was YOUR job, and you failed. Now you bash them.</p>
+	
+
+				<p><cite>Comment by Alexandre Strube &#8212; January 19, 2010 @ <a href="#comment-381">2:58 pm</a></cite> </p>
+				</li>
+
+			
+			</ol>
+
+			
+			<p><a href='http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/feed/'><abbr title="Really Simple Syndication">RSS</abbr> feed for comments on this post.</a>						</p>
+
+						<h2 id="postcomment">Leave a comment</h2>
+
+			
+			<form action="http://databasecolumn.vertica.com/wp-comments-post.php" method="post" id="commentform">
+
+			
+			<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" />
+			<label for="author"><small>Name (required)</small></label></p>
+
+			<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" />
+			<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+			<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+			<label for="url"><small>Website</small></label></p>
+
+			
+			<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+
+			<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+			<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+			<input type="hidden" name="comment_post_ID" value="40" />
+			</p>
+			
+			</form>
+
+			
+			</div>
+<!-- /left content -->
+
+
+
+</div>
+<div class="left_bottom"></div>				
+<div class="box_in"></div>
+<!-- / left side -->				</div>
+
+
+
+		
+	
+	
+	
+
+
+
+	
+
+	</div>
+			<!--  right side -->
+			<div id="page_right">
+
+
+			<div class="box3"><div class="box_top"></div><div class="box_content_sub"><h1>Categories</h1>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://databasecolumn.vertica.com/category/about-database-column/" title="View all posts filed under About Database Column">About Database Column</a> (12)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://databasecolumn.vertica.com/category/conferences-events/" title="View all posts filed under Conferences &amp; events">Conferences &amp; events</a> (3)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://databasecolumn.vertica.com/category/database-architecture/" title="View all posts filed under Database architecture">Database architecture</a> (35)
+</li>
+	<li class="cat-item cat-item-40"><a href="http://databasecolumn.vertica.com/category/database-compression/" title="View all posts filed under Database compression">Database compression</a> (4)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://databasecolumn.vertica.com/category/database-history/" title="View all posts filed under Database history">Database history</a> (5)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://databasecolumn.vertica.com/category/database-innovation/" title="View all posts filed under Database innovation">Database innovation</a> (21)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://databasecolumn.vertica.com/category/database-miscellaneous/" title="View all posts filed under Database miscellaneous">Database miscellaneous</a> (9)
+</li>
+	<li class="cat-item cat-item-84"><a href="http://databasecolumn.vertica.com/category/tech-talk/" title="View all posts filed under Tech Talk">Tech Talk</a> (4)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://databasecolumn.vertica.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a> (2)
+</li>
+	<li class="cat-item cat-item-29"><a href="http://databasecolumn.vertica.com/category/use-cases/" title="View all posts filed under Use cases">Use cases</a> (10)
+</li>
+	<li class="cat-item cat-item-45"><a href="http://databasecolumn.vertica.com/category/vertica/" title="Articles about Vertica, the company.">Vertica</a> (7)
+</li>
+		</ul>
+</div><div class="box_bottom"></div></div><div class="box3"><div class="box_top"></div><div class="box_content_sub"><div id="twitter_div"><h1>Twitter Updates</h1><ul id="twitter_update_list"></ul></div>
+		      <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script><script type="text/javascript" src="http://twitter.com/statuses/user_timeline/vertica.json?callback=twitterCallback2&amp;count=5"></script></div><div class="box_bottom"></div></div><div class="box3"><div class="box_top"></div><div class="box_content_sub"><h1>Tags</h1><div><a href='http://databasecolumn.vertica.com/tag/abadi/' class='tag-link-27' title='1 topic' style='font-size: 8pt;'>Abadi</a>
+<a href='http://databasecolumn.vertica.com/tag/column-store/' class='tag-link-52' title='3 topics' style='font-size: 18.5pt;'>Column Store</a>
+<a href='http://databasecolumn.vertica.com/tag/column-stores/' class='tag-link-15' title='4 topics' style='font-size: 22pt;'>column stores</a>
+<a href='http://databasecolumn.vertica.com/tag/column-versus-row-databases/' class='tag-link-43' title='1 topic' style='font-size: 8pt;'>column versus row databases</a>
+<a href='http://databasecolumn.vertica.com/tag/database-architecture/' class='tag-link-5' title='1 topic' style='font-size: 8pt;'>Database architecture</a>
+<a href='http://databasecolumn.vertica.com/tag/database-architectures/' class='tag-link-32' title='3 topics' style='font-size: 18.5pt;'>database architectures</a>
+<a href='http://databasecolumn.vertica.com/tag/database-compression/' class='tag-link-40' title='2 topics' style='font-size: 14.3pt;'>Database compression</a>
+<a href='http://databasecolumn.vertica.com/tag/database-design/' class='tag-link-11' title='1 topic' style='font-size: 8pt;'>database design</a>
+<a href='http://databasecolumn.vertica.com/tag/database-performance/' class='tag-link-12' title='3 topics' style='font-size: 18.5pt;'>database performance</a>
+<a href='http://databasecolumn.vertica.com/tag/data-cubes/' class='tag-link-17' title='1 topic' style='font-size: 8pt;'>data cubes</a>
+<a href='http://databasecolumn.vertica.com/tag/data-warehouse/' class='tag-link-36' title='3 topics' style='font-size: 18.5pt;'>data warehouse</a>
+<a href='http://databasecolumn.vertica.com/tag/data-warehouse-database/' class='tag-link-42' title='1 topic' style='font-size: 8pt;'>data warehouse database</a>
+<a href='http://databasecolumn.vertica.com/tag/dba/' class='tag-link-22' title='2 topics' style='font-size: 14.3pt;'>DBA</a>
+<a href='http://databasecolumn.vertica.com/tag/dbms/' class='tag-link-39' title='2 topics' style='font-size: 14.3pt;'>DBMS</a>
+<a href='http://databasecolumn.vertica.com/tag/distributed-database/' class='tag-link-13' title='1 topic' style='font-size: 8pt;'>distributed database</a>
+<a href='http://databasecolumn.vertica.com/tag/elt/' class='tag-link-46' title='1 topic' style='font-size: 8pt;'>ELT</a>
+<a href='http://databasecolumn.vertica.com/tag/essbase/' class='tag-link-19' title='1 topic' style='font-size: 8pt;'>EssBase</a>
+<a href='http://databasecolumn.vertica.com/tag/etl/' class='tag-link-47' title='1 topic' style='font-size: 8pt;'>ETL</a>
+<a href='http://databasecolumn.vertica.com/tag/haderle/' class='tag-link-9' title='1 topic' style='font-size: 8pt;'>Haderle</a>
+<a href='http://databasecolumn.vertica.com/tag/hadoop/' class='tag-link-48' title='3 topics' style='font-size: 18.5pt;'>Hadoop</a>
+<a href='http://databasecolumn.vertica.com/tag/holap/' class='tag-link-20' title='1 topic' style='font-size: 8pt;'>HOLAP</a>
+<a href='http://databasecolumn.vertica.com/tag/indexing/' class='tag-link-23' title='1 topic' style='font-size: 8pt;'>indexing</a>
+<a href='http://databasecolumn.vertica.com/tag/just-in-time-decompression/' class='tag-link-41' title='1 topic' style='font-size: 8pt;'>just in time decompression</a>
+<a href='http://databasecolumn.vertica.com/tag/madden/' class='tag-link-21' title='2 topics' style='font-size: 14.3pt;'>Madden</a>
+<a href='http://databasecolumn.vertica.com/tag/mapreduce/' class='tag-link-44' title='2 topics' style='font-size: 14.3pt;'>MapReduce</a>
+<a href='http://databasecolumn.vertica.com/tag/molap/' class='tag-link-18' title='1 topic' style='font-size: 8pt;'>MOLAP</a>
+<a href='http://databasecolumn.vertica.com/tag/mpp/' class='tag-link-31' title='1 topic' style='font-size: 8pt;'>MPP</a>
+<a href='http://databasecolumn.vertica.com/tag/olap/' class='tag-link-16' title='2 topics' style='font-size: 14.3pt;'>OLAP</a>
+<a href='http://databasecolumn.vertica.com/tag/operational-bi/' class='tag-link-66' title='2 topics' style='font-size: 14.3pt;'>operational BI</a>
+<a href='http://databasecolumn.vertica.com/tag/query-optimizer/' class='tag-link-14' title='2 topics' style='font-size: 14.3pt;'>query optimizer</a>
+<a href='http://databasecolumn.vertica.com/tag/rdbms/' class='tag-link-10' title='2 topics' style='font-size: 14.3pt;'>RDBMS</a>
+<a href='http://databasecolumn.vertica.com/tag/real-time-bi/' class='tag-link-65' title='3 topics' style='font-size: 18.5pt;'>real-time BI</a>
+<a href='http://databasecolumn.vertica.com/tag/real-time-data-warehousing/' class='tag-link-64' title='3 topics' style='font-size: 18.5pt;'>real-time data warehousing</a>
+<a href='http://databasecolumn.vertica.com/tag/row-stores/' class='tag-link-28' title='1 topic' style='font-size: 8pt;'>row stores</a>
+<a href='http://databasecolumn.vertica.com/tag/schema/' class='tag-link-37' title='1 topic' style='font-size: 8pt;'>schema</a>
+<a href='http://databasecolumn.vertica.com/tag/shared-disk/' class='tag-link-35' title='1 topic' style='font-size: 8pt;'>shared disk</a>
+<a href='http://databasecolumn.vertica.com/tag/shared-memory/' class='tag-link-33' title='1 topic' style='font-size: 8pt;'>shared memory</a>
+<a href='http://databasecolumn.vertica.com/tag/shared-nothing/' class='tag-link-34' title='1 topic' style='font-size: 8pt;'>shared nothing</a>
+<a href='http://databasecolumn.vertica.com/tag/sigmod/' class='tag-link-24' title='1 topic' style='font-size: 8pt;'>SIGMOD</a>
+<a href='http://databasecolumn.vertica.com/tag/stonebraker/' class='tag-link-30' title='3 topics' style='font-size: 18.5pt;'>Stonebraker</a>
+<a href='http://databasecolumn.vertica.com/tag/trajman/' class='tag-link-49' title='1 topic' style='font-size: 8pt;'>Trajman</a>
+<a href='http://databasecolumn.vertica.com/tag/trickle-load/' class='tag-link-38' title='1 topic' style='font-size: 8pt;'>trickle load</a>
+<a href='http://databasecolumn.vertica.com/tag/tuple/' class='tag-link-25' title='2 topics' style='font-size: 14.3pt;'>tuple</a>
+<a href='http://databasecolumn.vertica.com/tag/vertica/' class='tag-link-45' title='3 topics' style='font-size: 18.5pt;'>Vertica</a>
+<a href='http://databasecolumn.vertica.com/tag/vertical-partition/' class='tag-link-26' title='1 topic' style='font-size: 8pt;'>vertical partition</a></div>
+</div><div class="box_bottom"></div></div>
+</div>			<!-- / right side -->
+</div>
+ <!-- /content area-->
+<div class="box_in"></div>
+</div>
+
+
+
+<!-- Footer -->
+<div class="footer_top"><img src="http://databasecolumn.vertica.com/wp-content/themes/database-column/images/1/pixel.gif" alt="" /></div>
+<div class="footer_content">
+
+		<div id="footer_sitemap">
+
+			<div class="float_left">
+				<h1>Navigate the Database Column</h1>
+				
+				<ul>
+				<li class="page_item page-item-314"><a href="http://databasecolumn.vertica.com/listings/">All Listings</a></li>
+<li class="page_item page-item-2 current_page_parent"><a href="http://databasecolumn.vertica.com/the-column/">The Column</a></li>
+<li class="page_item page-item-5"><a href="http://databasecolumn.vertica.com/image-gallery/">Image Gallery</a></li>
+<li class="page_item page-item-7"><a href="http://databasecolumn.vertica.com/recommended-links/">Recommended Links</a></li>
+<li class="page_item page-item-9"><a href="http://databasecolumn.vertica.com/about-us/">About Us</a></li>
+<li class="page_item page-item-11"><a href="http://databasecolumn.vertica.com/contact-us/">Contact Us</a></li>
+				</ul>				
+				
+			</div>
+
+			<div class="float_left">
+				<h1>Navigate Vertica</h1>
+				
+				<ul style="float: left; width: 40%;">
+					<li><a href="http://www.vertica.com/data-warehousing-software" onclick="window.open(this.href); return false;" title="This link will pop open a new window">Company</a></li>
+					<li><a href="http://www.vertica.com/enterprise-data-warehouse" onclick="window.open(this.href); return false;" title="This link will pop open a new window">Product</a></li>
+					<li><a href="http://www.vertica.com/customers/success" onclick="window.open(this.href); return false;" title="This link will pop open a new window">Customers</a></li>
+				</ul>
+
+				<ul style="float: left; width: 40%;">
+					<li><a href="http://www.vertica.com/solutions" onclick="window.open(this.href); return false;" title="This link will pop open a new window">Solutions</a></li>
+					<li><a href="http://www.vertica.com/partners" onclick="window.open(this.href); return false;" title="This link will pop open a new window">Partners</a></li>
+					<li><a href="http://www.vertica.com/v-zone/overview" onclick="window.open(this.href); return false;" title="This link will pop open a new window">Support</a></li>
+				</ul>
+				
+				<div style="clear:both;"></div>
+
+			</div>
+
+			<div style="clear:both;"></div>
+
+		</div>
+
+</div>
+<div class="footer_bottom"> </div>
+<br />
+<div class="footer_top"><img src="http://databasecolumn.vertica.com/wp-content/themes/database-column/images/1/pixel.gif" alt="" /></div>
+<div class="footer_content">
+
+		<div id="footer_cont">
+
+			<div class="float_left">
+				© Vertica Systems 2010. All Rights Reserved.			</div>
+
+			<div class="float_right">
+					<ul class="footer">
+
+							
+							<li class="page_item page-item-61"><a href="http://databasecolumn.vertica.com/terms-conditions/">Terms &amp; Conditions</a></li>
+<li class="page_item page-item-63"><a href="http://databasecolumn.vertica.com/privacy-policy/">Privacy Policy</a></li>
+					</ul>
+
+			</div>
+			<div style="clear:both;"></div>
+
+		</div>
+
+</div>
+<div class="footer_bottom"> </div>
+</div>
+<!-- / Footer -->
+
+
+<br />
+<center></center>
+
+
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			$("a[rel^='prettyPhoto']").prettyPhoto();
+		});
+	</script>
+
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try{
+		var pageTracker = _gat._getTracker("UA-2550553-1");
+		pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
+	
+	<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-includes/js/jquery/jquery.form.js?ver=2.02m'></script>
+<script type='text/javascript' src='http://databasecolumn.vertica.com/wp-content/plugins/contact-form-7/contact-form-7.js?ver=2.0.6'></script>
+<script type="text/javascript">
+a2a_localize = {
+	Share: "Share",
+	Save: "Save",
+	Subscribe: "Subscribe",
+	Email: "E-mail",
+    Bookmark: "Bookmark",
+	ShowAll: "Show all",
+	ShowLess: "Show less",
+	FindServices: "Find service(s)",
+	FindAnyServiceToAddTo: "Instantly find any service to add to",
+	PoweredBy: "Powered by",
+	ShareViaEmail: "Share via e-mail",
+	SubscribeViaEmail: "Subscribe via e-mail",
+	BookmarkInYourBrowser: "Bookmark in your browser",
+	BookmarkInstructions: "Press Ctrl+D or &#8984;+D to bookmark this page",
+	AddToYourFavorites: "Add to your favorites",
+	SendFromWebOrProgram: "Send from any e-mail address or e-mail program",
+    EmailProgram: "E-mail program"
+};
+a2a_linkname="MapReduce: A major step backwards";
+a2a_linkurl="http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/";
+
+</script><script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+
+
+</body>
+</html>

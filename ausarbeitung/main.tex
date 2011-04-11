@@ -1,0 +1,47 @@
+\documentclass[12pt,a4paper]{scrartcl}		% KOMA-Klassen benutzen!
+
+%\usepackage[ngerman]{babel}			% deutsche Namen/Umlaute
+\usepackage[utf8]{inputenc}			% Zeichensatzkodierung
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{setspace} % Anderthalbfacher Zeilenabstand ist Standard in den meisten Seminararbeiten. Das Paket setspace ermöglicht ein einfaches Umstellen von normalem, anderthalbfachen oder sogar doppeltem Zeilenabstand. 
+\usepackage[paper=a4paper,left=60mm,right=20mm,top=25mm,bottom=25mm]{geometry} %Das geometry Paket dient zur Einrichtung der Seiten. Hier werden die jeweiligen Seitenränder angegeben. Diese wWerte sollten durch die jeweiligen Vorgaben des Seminarleiters oder Instituts ersetzt werden.
+\setlength{\parindent}{3em} %Neue Abschnitte werden mit hängendem Einzug gesetzt, parindent definiert. um wie viel der Absat eingerückt wird. Die Einheit em ist abhängig vom verwendeten Zeichensatz und daher absoluten Werten in mm oder cm vorzuziehen. 
+\setcounter{secnumdepth}{3} %Bis zu welcher Gliederungsebene nummeriert werden soll gibt dieser Befehl vor. In diesem Falle werden \section, \subsection und \subsubsection nummereiert.
+\setcounter{tocdepth}{3} %Bis zu welcher Ebene Einträge ins Inhaltsverzeichnis aufgenommen werden. In diesem Beispiel ebenfalls bis Ebene drei (\subsubsection). Ein durch \paragraph ausgewiesener Abschnitt wird demnach nicht im Inhaltsverzeichnis auftauchen. 
+
+
+\begin{document}
+\title{}
+\author{Thomas Koch}
+\date{\today}
+\maketitle{}
+
+\begin{abstract}
+  
+\end{abstract}
+\tableofcontents{}
+
+\section{NoSQL, the end of an architectural era}
+In \citeyear{sto07} a paper with the provocing title \citetitle{sto07}.
+
+\section{Background on the MapReduce vs. parallel databases debate}
+The HadoopDB paper references two texts of Michael Stonebraker and others.\cite{Pavlo09}
+\cite{sto08stepback}
+
+\section{Discussion of Mapreduce vs. parallel databases benchmarks}
+
+\section{Hive}
+
+\section{Pig}
+
+\section{Conclusion}
+
+
+
+% http://liinwww.ira.uka.de/bibliography/index.html
+% http://de.wikipedia.org/wiki/BibTeX#Bibliographiedatenbanken
+\bibliography{references}{}
+\bibliographystyle{plain}
+\end{document}

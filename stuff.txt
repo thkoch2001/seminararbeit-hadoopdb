@@ -1,0 +1,112 @@
+- hadapt ist kommerzielle Version von HadoopDB
+
+Blog des HadoopDB Forschers: http://dbmsmusings.blogspot.com/
+HadoopDB: http://db.cs.yale.edu/hadoopdb/hadoopdb.html
+Install HadoopDB on Ubuntu: http://posulliv.github.com/2010/05/10/hadoopdb-mysql.html
+http://www.dbms2.com/2011/03/23/hadapt-commercialized-hadoopdb/
+
+http://hadoopdb.sourceforge.net/guide :
+"a careful analysis of data and expected queries results in a significant performance boost at the expense of a longer loading. Two important things to consider are data partitioning and DB tuning (e.g. creating indices). Again, details of those techniques are covered in textbooks. For some queries, hash-partitioning and clustered indices improve HadoopDB's performance 10 times"
+
+Themen:
+
+- Vergleich mit Pig, Flume?
+- Kommerzialisierung als hadapt
+- Vergelich mit HBase? Wichtiges Bottleneck ist I/O, was durch column-oriented storage und Kompression ausgeglichen werden kann.
+  HBase bietet column families und Kompression.
+  Welche Veränderungen ergeben sich durch Solid State Disks?
+- Failure strategies:
+  - failures on large clusters 
+  - query restart vs. partition restart and speculative execution
+  - copy first on failure or continue processing imadiately on replica?
+  - Macht HadoopDB überhaupt neue Kopien, wenn ein Knoten stirbt?
+
+- Vorteil SQL: Beschreibt was, nicht wie. Optimierung wird der Software überlassen.
+- Genereller Unterschied SQL/NoSQL:
+  SQL betreibt hohen Aufwand beim schreiben, um AdHoc Queries zu ermöglichen.
+- Fragen:
+  - Was passiert, wenn während der ReadTasks auch Updates/Inserts passieren, wie es in der Realität wäre?
+  - Selbst ein Unterschied im Faktor 10 in der Verarbeitungsgeschwindigkeit rechtfertigt in der Praxis nicht den Administrationsaufwand von HadoopDB.
+  DB Administratoren sind teuere, Hardware ist billig. PostgreSQL gehört noch zur Philosophie der billigen DB Administratoren und teuren Hardware.
+
+A major step backwards
+======================
+
+http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards
+
+This article is very inacurate and has therefor received many critiques. Many of them already in comments to that article on the same page. It may be noteworthy that the article has been published on the website of Vertica Systems. Map Reduce is a direct thread to the offering of this company. Daniel Abadi also has a small financial stake in Vertica as pointed out in footnote 9 in the HadoopDB article.
+
+Concerns expressed against MapReduce in this article. Only those concers, that are not obviously to rebut.
+
+MapReduce is a step backwards in database access
+
+1. Schemas are good., 2. Separation of the schema from the application is good.
+{aber es gibt avro, protocol buffers, HBase}
+3. High-level access languages are good.
+{Hive, Pig, Sawzall, Cascading}
+
+MapReduce is a poor implementation
+
+MR does not use B-Trees. {It's a batch processing system!}
+
+MapReduce is missing features
+
+All of the following features are routinely provided by modern DBMSs, and all are missing from MapReduce:
+
+Bulk loader — to transform input data in files into a desired format and load it into a DBMS
+{flume}
+Indexing — as noted above {see overview of lily CMS}
+Updates — to change the data in the data base {HBase}
+Transactions — to support parallel update and recovery from failures during update {support is also lacking in relational systems at scale}
+Integrity constraints — to help keep garbage out of the data base {HBase coprocessors? Why keep it out? Let the reader handle it!}
+Referential integrity — again, to help keep garbage out of the data base {denormalize as it's done anyway when relational systems are scaled}
+Views — so the schema can change without having to rewrite the application program
+
+
+Gliederung
+==========
+
+  - Context
+
+    - 
+
+
+  - Resonanz in Entwicklerkreisen:
+
+    - Suche "HadoopDB" auf PostgreSQL Listenarchiv (8.4.2011): 4 Erwähnung seit einem Jahr, 15 total
+      http://search.postgresql.org/search?m=1
+
+    - Google Suche (7.4.): <10 unabhängige Erwähnungen, sonst nur Kopien der Presseerklärung und Präsentationen der Autoren
+
+    - 22 Commits auf Sourceforge SVN (7.4.2011)
+
+  - necessity for failure resilience
+
+    Current parallel DBMS loose a lot of work in case of node failures. If the time necessary to repeat the lost work is greater then the average time between node failures, then queries will never complete.
+
+  - heterogenous clusters
+    causes:
+    - part failures result in degraded hardware performance
+    - disk fragmentation
+    - software configuration differences
+    - concurrent queries or background processes
+    -> addaptive query planning, not in advance
+
+  - Sparse vs. dense data
+
+  - Vergleich HBase/Cassandra mit Column Stores
+    http://dbmsmusings.blogspot.com/2010/03/distinguishing-two-major-types-of_29.html
+
+    - sparse (reference by row name)/dense(reference by position in column)
+    - optimization: read-write/read
+    - columns / column families
+    - column names in HBase/Cassandra are often also data, since the scheme is not predefined
+
+  - HBase 
+    http://twitter.com/#!/Hadapt/status/52357968141885441
+    28.3.2011 Storing data in our storage layer is 600 times faster than storing it in HBase for analysis. So we certainly don't use HBase!
+
+  - Storage waste:
+
+    load data into HDFS, copy in local file system, load into postgreSQL
+

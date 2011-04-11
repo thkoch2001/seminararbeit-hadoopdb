@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+<manage_target braces="true" utf8="true">references.bib</manage_target>
+<library_folder monitor="true"></library_folder>
+<taglist>
+</taglist>
+<doclist>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>journals/pvldb/AbouzeidBARS09</key>
+    <notes></notes>
+    <bib_type>Article</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>HadoopDB: An Architectural Hybrid of MapReduce and DBMS Technologies for Analytical Workloads</bib_title>
+    <bib_authors>Abouzeid, Azza and Bajda-Pawlikowski, Kamil and Abadi, Daniel J. and Rasin, Alexander and Silberschatz, Avi</bib_authors>
+    <bib_journal>PVLDB</bib_journal>
+    <bib_volume>2</bib_volume>
+    <bib_number>1</bib_number>
+    <bib_pages>922-933</bib_pages>
+    <bib_year>2009</bib_year>
+    <bib_extra key="Bibdate">2009-09-02</bib_extra>
+    <bib_extra key="Bibsource">DBLP, http://dblp.uni-trier.de/db/journals/pvldb/pvldb2.html#AbouzeidBARS09</bib_extra>
+    <bib_extra key="Url">http://www.vldb.org/pvldb/2/vldb09-861.pdf</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>conf/ssdbm/Abadi10</key>
+    <notes></notes>
+    <bib_type>InProceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Tradeoffs between Parallel Database Systems, Hadoop, and HadoopDB as Platforms for Petabyte-Scale Analysis</bib_title>
+    <bib_authors>Abadi, Daniel J.</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume>6187</bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1-3</bib_pages>
+    <bib_year>2010</bib_year>
+    <bib_extra key="Bibdate">2010-06-28</bib_extra>
+    <bib_extra key="Bibsource">DBLP, http://dblp.uni-trier.de/db/conf/ssdbm/ssdbm2010.html#Abadi10</bib_extra>
+    <bib_extra key="BookTitle">SSDBM</bib_extra>
+    <bib_extra key="Editor">Gertz, Michael and Ludäscher, Bertram</bib_extra>
+    <bib_extra key="Isbn">978-3-642-13817-1</bib_extra>
+    <bib_extra key="Publisher">Springer</bib_extra>
+    <bib_extra key="Series">Lecture Notes in Computer Science</bib_extra>
+    <bib_extra key="Url">http://dx.doi.org/10.1007/978-3-642-13818-8</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>conf/sigmod/AbouziedBHAS10</key>
+    <notes></notes>
+    <bib_type>InProceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>HadoopDB in action: building real world applications</bib_title>
+    <bib_authors>Abouzied, Azza and Bajda-Pawlikowski, Kamil and Huang, Jiewen and Abadi, Daniel J. and Silberschatz, Avi</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1111-1114</bib_pages>
+    <bib_year>2010</bib_year>
+    <bib_extra key="Bibdate">2010-06-07</bib_extra>
+    <bib_extra key="Bibsource">DBLP, http://dblp.uni-trier.de/db/conf/sigmod/sigmod2010.html#AbouziedBHAS10</bib_extra>
+    <bib_extra key="BookTitle">SIGMOD Conference</bib_extra>
+    <bib_extra key="Editor">Elmagarmid, Ahmed K. and Agrawal, Divyakant</bib_extra>
+    <bib_extra key="Isbn">978-1-4503-0032-2</bib_extra>
+    <bib_extra key="Publisher">ACM</bib_extra>
+    <bib_extra key="Series">Proceedings of the ACM SIGMOD International Conference on Management of Data, SIGMOD 2010, Indianapolis, Indiana, USA, June 6-10, 2010</bib_extra>
+    <bib_extra key="Url">http://doi.acm.org/10.1145/1807167.1807294</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>Pavlo09</key>
+    <notes></notes>
+    <bib_type>Article</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>A comparison of approaches to large-scale data analysis</bib_title>
+    <bib_authors>Pavlo, A. and Paulson, E. and Rasin, A. and Abadi, D. J. and DeWitt, D. J. and Madden, S. and Stonebraker, M.</bib_authors>
+    <bib_journal>SIGMOD ’09</bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages></bib_pages>
+    <bib_year>2009</bib_year>
+    <bib_extra key="Abstract">&quot;{&quot;}...enthusiasmaroundtheMapReduce(MR</bib_extra>
+    <bib_extra key="Keywords">conf, SIGMOD, SIGMOD09, c2009, c200x, c20xx, data analysis, stats, mapReduce, MR, DBMS, parallel SQL, data base, bases, database, DBMS</bib_extra>
+    <bib_extra key="Publisher">ACM</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>sto07</key>
+    <notes></notes>
+    <bib_type>InProceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>The End of an Architectural Era (It’s Time for a Complete Rewrite)</bib_title>
+    <bib_authors>Stonebraker, Michael and Madden, Samuel and Abadi, Daniel J. and Harizopoulos, Stavros and Hachem, Nabil and Helland, Pat</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1150-1160</bib_pages>
+    <bib_year>2007</bib_year>
+    <bib_extra key="Abstract">In previous papers, some of us predicted the end of &quot;onesizefitsall&quot; as a commercial relational DBMS paradigm. These papers presented reasons and experimental evidence that showed that the major RDBMS vendors can be outperformed by 1-2 orders of magnitude by specialized engines in the data warehouse, stream processing, text, and scientific database markets. Assuming that specialized engines dominate these markets over time, the current relational DBMS code lines will be left with the business data processing (OLTP) market and hybrid markets where more than one kind of capability is required. In this paper we show that current RDBMSs can be beaten by nearly two orders of magnitude in the OLTP market as well. The experimental evidence comes from comparing a new OLTP prototype, H-Store, which we have built at M.I.T. to a popular RDBMS on the standard transactional benchmark, TPC-C. We conclude that the current RDBMS code lines, while attempting to be a &quot;onesizefitsall&quot; solution, in fact, excel at nothing. Hence, they are 25 year old legacy code lines that should be retired in favor of a collection of &quot;fromscratch&quot; specialized engines. The DBMS vendors (and the research community) should start with a clean sheet of paper and design systems for tomorrow’s requirements, not continue to push code lines and architectures designed for yesterday’s needs.</bib_extra>
+    <bib_extra key="Address">Vienna, Austria</bib_extra>
+    <bib_extra key="BookTitle">33rd International Conference on Very Large Data Bases</bib_extra>
+    <bib_extra key="Editor">Koch, Christoph and Gehrke, Johannes and Garofalakis, Minos N. and Srivastava, Divesh and Aberer, Karl and Deshpande, Anand and Florescu, Daniela and Chan, Chee Yong and Ganti, Venkatesh and Kanne, Carl-Christian and Klas, Wolfgang and Neuhold, Erich J.</bib_extra>
+    <bib_extra key="Isbn">978-1-59593-649-3</bib_extra>
+    <bib_extra key="Month">sep</bib_extra>
+    <bib_extra key="Publisher">ACM Press</bib_extra>
+    <bib_extra key="Uri">http://www.vldb.org/conf/2007/papers/industrial/p1150-stonebraker.pdf</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/MapReduce%20%20A%20major%20step%20backwards%20%20%20The%20Database%20Column.html</filename>
+    <relative_filename>references/MapReduce%20%20A%20major%20step%20backwards%20%20%20The%20Database%20Column.html</relative_filename>
+    <key>sto08stepback</key>
+    <notes></notes>
+    <bib_type>misc</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>A major step backwards</bib_title>
+    <bib_authors>D. DeWitt, M. Stonebraker</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages></bib_pages>
+    <bib_year>2008</bib_year>
+    <bib_extra key="howpublished">\url{http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/}</bib_extra>
+    <bib_extra key="month">01</bib_extra>
+    <bib_extra key="note">accessed 11-April-2011</bib_extra>
+    <bib_extra key="url">http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/</bib_extra>
+  </doc>
+</doclist>
+</library>
