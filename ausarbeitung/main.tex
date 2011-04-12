@@ -3,7 +3,9 @@
 %\usepackage[ngerman]{babel}			% deutsche Namen/Umlaute
 \usepackage[utf8]{inputenc}			% Zeichensatzkodierung
 \usepackage{url}
+\usepackage{graphicx}
 \usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\usepackage{amsmath}
 
 \usepackage{setspace} % Anderthalbfacher Zeilenabstand ist Standard in den meisten Seminararbeiten. Das Paket setspace ermöglicht ein einfaches Umstellen von normalem, anderthalbfachen oder sogar doppeltem Zeilenabstand. 
 \usepackage[paper=a4paper,inner=25mm,outer=20mm,top=15mm,bottom=20mm]{geometry} %Das geometry Paket dient zur Einrichtung der Seiten. Hier werden die jeweiligen Seitenränder angegeben. Diese wWerte sollten durch die jeweiligen Vorgaben des Seminarleiters oder Instituts ersetzt werden.
@@ -42,6 +44,7 @@ In an online article from January 2008, published on the website of the database
 {According to Wikipedia Stonebraker is co-founder of Vertica Systems, which has recently (march 2011) been acquired by HP. Footnote 9 in \cite{journals/pvldb/AbouzeidBARS09} discloses that also Daniel Abadi has a small financial stake in the company.},
 Stonebraker heavily criticizes MapReduce.\cite{sto08stepback} The article has been commented (in comments on the same page or in blog posts\cite{Chu-Carrol08hammers}) as being inaccurate or missing the point. The main inaccuracy comes from judging MapReduce in areas which it has not been designed for especially judging it as a DBMS, which it isn't.
 Since 2008 MapReduce and its supporting tools have made a lot of progress. Therefor it makes sense to revisit some of the arguments and consider recent developments.
+
 \subsection{Understanding of the term MapReduce}
 As Stonebraker rightly points out, MapReduce is not novel. In its core it's just the concept of using a map and a reduce function and in this a basic concept of functional programming. MapReduce can work on different underlying data stores: the Google File System (GFS), Hadoop Distributed File System (HDFS), databases like HBase and Cassandra. These are all systems for large data sets. But MapReduce is also a main building in CouchDB which uses views and B-Trees and targets server installations as well as mobile devices.
 In the discussed papers the term MapReduce however is used to describe the combination of a scalable, fault tolerant file system (GFS or HDFS) together with a batch processing execution framework (Hadoop or Google MapReduce).
@@ -72,15 +75,49 @@ As with the lack of features Stonebraker misses integration with DBMS tools. At 
 
 \section{Discussion of MapReduce vs. parallel databases benchmarks}
 The previous section discussed the misconception about MapReduce being a database. In line with this misconception Stonebraker, Abadi et al. moved on to directly compare performance between MapReduce and two RDBMSs.\cite{Pavlo09} This section discusses some of the flaws of this work.
-The benchmarks were made on a cluster of at maximum 100 machines. This decision is justified by the ``superior efficiency of modern DBMSs`` that would not require more hardware to work on petabyte scale. As will be discussed in detail later on, this comparison does not take into account the different 
+The benchmarks were made on a cluster of at maximum 100 machines. This decision is justified by the ``superior efficiency of modern DBMSs'' that would not require more hardware to work on petabyte scale. This argument will be revisited in this section. Additionally the necessity for such large data sets is generally questioned:
+\begin{quote}
+  Since few data sets in the world even approach a petabyte in size, it is not at all clear how many MR users really need 1.000 nodes.
+\end{quote}
+This proposition sounds a lot like the famous (mis)quotes ``I think there is a world market for maybe five computers'' and ``640K ought to be enough for anybody''. While it may not be desirable from an energy efficiency or data privacy point of view to have many petabyte clusters, it only needs a little imagination to come up with many valid use cases. Millions of smart phones with cameras produce an immense amount of pictures and videos. Modern cars have sensors and computers build in whose data could (or is?) used to improve the next generation of cars. Science analyzes large data sets in genetics or high energy physics. The Global Biodiversity Information Facility is currently evaluating Hadoop.
 
-TO-DO
+\paragraph{Fault Tolerance}
+The probability of one node failure in a cluster is a linear function of the number of cluster nodes which in turn depends on the data size:
+\begin{equation*}
+  p_{failure cluster} \sim p_{failure node} \cdot n_{nodes} \sim p_{failure node} \cdot datasize
+\end{equation*}
+In most cases the algorithms are at least $O(n log n)$. So with growing data size one can expect single node failures during the execution of a computation. A system that restarts the whole computation on a single node failure, as typical in RDBMSs, may never be able to complete on large enough data sizes.
+By limiting the benchmark to a cluster of 100 nodes this problem is practically avoided. Abadi discusses and addresses the problem in the HadoopDB work.\cite{journals/pvldb/AbouzeidBARS09}.
+
+\paragraph{Data Loading}
+The discussed benchmarks all create a set up in which data is prepared and loaded into a data analytics cluster just for the purpose of the analysis. It is assumed that the data is imported from some other data store that is responsible for reliable long term storage and backup.
+This however is not the typical use case of GFS or HDFS. These file systems are used to collect the raw incoming data from crawlers, sensors, log files or user actions. Instead of moving this data to a separate analytic cluster, MapReduce works directly on the original data, perhaps storing the computed data to a separate data store.
+The validity of the given benchmarks is therefor highly questionable. A realistic benchmark would need to consider the necessity for reliable storage and parallel writes. A separate ``data loading phase'' however does not exist.
+
+\paragraph{Problem Space}
+One of the benchmarks, the ``Selection Task'' works on input that already combines a url with its page rank. This may server as an indicator for the complete misunderstanding of the different problem space of MapReduce opposed to that of RDBMSs. The original MapReduce paper explicitly names the ``Reverse Web-Link Graph'' as an example task for MapReduce. The output of this task is the input to calculate page rank. This algorithm is one of the model use cases for MapReduce.
+The benchmark however assumes the page rank as a given input data for a task that is indeed a proper use case for a RDBMS and not for MapReduce. MapReduce users usually do not deny the usefulness of RDBMSs in their appropriate problem space. Facebook for example has been reported to use Oracle and MySQL to analyze data that has been prepared by Hadoop. (Figure~\ref{fig:facebookdatawarehouse})
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/rdms_as_frontend}
+  \caption{Data warehouse architecture at Facebook\cite[p. 508]{White201010}}
+  \label{fig:facebookdatawarehouse}
+\end{figure}
+
+There are more details to discuss in Stonebrakers benchmarks but this is left to a separate work. Other points are explored in the benchmarks of HadoopDB.
 
 \section{HadoopDB}
 Previous sections discussed major shortcomings in the works of Stonebraker and Abadi in the understanding of MapReduce and its areas of application. However the HadoopDB paper and project is motivated to address those assumed shortcomings which have already been identified as invalid.
 This section describes HadoopDB and argues that it would be an irrelevant project without any valid application area and practical usability.
 
 TO-DO
+\subsection{Architecture}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/hadoopdb-arch.png}
+  \caption{The Architecture of HadoopDB\cite{journals/pvldb/AbouzeidBARS09}}
+  \label{fig:hadoopdbarch}
+\end{figure}
 
 Lack of impact of HadoopDB:
   - Resonanz in Entwicklerkreisen:

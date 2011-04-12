@@ -10,6 +10,11 @@ http://hadoopdb.sourceforge.net/guide :
 
 Themen:
 
+- Wie gut reagieren RDBMSs auf scheme evolution?
+- Writing queries against a RDBMS needs set up time for schemes and indices. Map Reduce jobs can be written ad hoc.
+- Scheme / No scheme = Waterfal / Scrum, MR analyzes raw data
+- MR works on measured raw data while DBMSs require well crafted prepared input data. There may not be that much well formed data.
+- Use MR libraries that extract predefined data instead of predefined schemes.
 - Vergleich mit Pig, Flume?
 - Kommerzialisierung als hadapt
 - Vergelich mit HBase? Wichtiges Bottleneck ist I/O, was durch column-oriented storage und Kompression ausgeglichen werden kann.
