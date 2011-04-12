@@ -1,0 +1,14 @@
+/*1301911295,176820406*/
+
+code,pre{text-align:left}
+.devdebuglog{border:2px solid #000;background:#ff4b00;color:#fff;padding:5px;font-size:12px}
+.devdebuglog a{color:#fff;text-decoration:underline}
+.devwarning{background:#ff4b00}
+.devnotice{background:#333;font-weight:bold}
+#devprintbottom{clear:both}
+#apc_misses{padding:5px 0}
+select#newsfeed_selector{width:100%}
+#platform_dev_reqs{padding:8px}
+body.plugin{background:transparent;overflow-y:visible}
+
+#bootloader_BWttP { height: 42px; }

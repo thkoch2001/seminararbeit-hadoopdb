@@ -1,0 +1,2946 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0075)http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="true" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/count"></script><link rel="stylesheet" type="text/css" href="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/buttons3.css">
+
+<script type="text/javascript" async="" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/buttons.js"></script><script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+<title>Databases are hammers; MapReduce is a screwdriver. : Good Math, Bad Math</title>
+
+    <meta name="description" content=" A bunch of people have sent me links to an article about MapReduce. I&#39;ve hesitated to write about it, because the currently hyped MapReduce stuff was developed, and extensively used by Google, my employer. But the article is really...">
+    <meta name="keywords" content="">
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://scienceblogs.com/goodmath/rsd.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://scienceblogs.com/goodmath/index.xml">
+
+<style type="text/css">
+/* 
+Prefix all your new classes with div.blogMain to prevent 
+clobbering the global styles; for example:
+
+div.blogMain p {font-size: 14px;}
+*/
+
+</style>
+
+
+
+<!-- Dart Zone: good_math_bad_math -->
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/mt-site.js"></script>
+
+<script type="text/javascript">
+window.onload = individualArchivesOnLoad(commenter_name);
+</script>
+
+
+
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="robots" content="NOODP">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="false">
+
+<link rel="stylesheet" href="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/main.css" type="text/css" media="screen, projection">
+
+<!--[if IE]>
+<link rel="stylesheet" href="/-/css/screen/patches/win-ie-all.css" type="text/css" media="screen, projection" />
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" href="/-/css/screen/patches/win-ie7.css" type="text/css" media="screen, projection" />
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" href="/-/css/screen/patches/win-ie-old.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<link rel="stylesheet" href="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/main(1).css" type="text/css" media="print">
+
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/global.js"></script>
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/jquery.js"></script>
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/jquery-functions.js"></script>
+
+<script type="text/javascript">
+/* RANDOM NUMBER GENERATOR FOR DART */
+
+var axel = Math.random() + "";
+var ord = axel * 1000000000000000000;
+</script>
+
+<!--[if lt IE 8]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" type="text/javascript"></script>
+<![endif]-->
+<!-- documentation for this script: http://code.google.com/p/ie7-js/ -->
+
+<link rel="stylesheet" type="text/css" href="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/blog-widget.css"></head>
+
+<body id="blog">
+
+<div class="seedBanner">
+
+	<p class="left">Now on ScienceBlogs: 
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+
+
+<a class="title" href="http://scienceblogs.com/aetiology/2011/04/margulis_does_it_again.php?utm_source=networkbanner&utm_medium=link">Margulis does it again</a>
+
+							
+
+							
+
+
+
+							
+
+
+
+							
+
+							
+
+
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+
+
+							
+
+							
+
+
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+
+
+							
+
+							
+
+
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+
+
+							
+
+							
+
+							
+
+
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+							
+
+
+
+							
+
+							
+</p>
+	
+	<!--<p class="right"><a href="http://www.seedmediagroup.com">Seed Media Group</a></p>-->
+	
+</div>
+<div id="sbMainContainer">
+
+	<div id="topPromoContainer">
+	
+		<div id="leaderboard">
+		<!-- ad: leaderboard -->
+		
+<!-- technology --><!-- ad code: generated by dart -->
+ 
+ 
+<script language="JavaScript1.1"> 
+ 
+	var bust;
+	if (typeof bust == 'undefined') {
+		bust = Math.floor(1000000*Math.random());
+	}
+ 
+	if ((!document.images && navigator.userAgent.indexOf('Mozilla/2.') >= 0) || navigator.userAgent.indexOf("WebTV")>= 0) {
+		document.write('<a  href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord='+bust+'">');
+		document.write('<img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord='+bust+'" border="0" height="90" width="728"></a>');
+	} else {
+		document.write('<scr' + 'ipt language="JavaScript1.1" SRC="http://ad.doubleclick.net/adj/ng.scienceblogs/technology_index;dcopt=ist;sz=728x90;tile=1;ord='+bust+'">');
+		document.write('<a href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord='+bust+'">');
+		document.write('<img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord='+bust+'" border="0" height="90" width="728"></a>');
+		document.write('</scr' + 'ipt>');
+	}
+ 
+</script><script language="JavaScript1.1" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/technology_index;dcopt=ist;sz=728x90;tile=1"><a href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord=65145"><img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord=65145" border="0" height="90" width="728"></a></script><!-- Copyright DoubleClick Inc., All rights reserved. -->
+<!-- This code was autogenerated @ Thu Dec 09 16:10:47 EST 2010 -->
+<script src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/flashwrite_1_2.js"></script>
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="FLASH_AD" width="728" height="90"><param name="movie" value="http://s0.2mdn.net/2599070/earthday_pack_728x90.swf"><param name="FlashVars" value="clickTag=http%3A%2F%2Fad.doubleclick.net%2Fclick%253Bh%253Dv8%2F3ae6%2F3%2F0%2F%252a%2Fv%253B236351078%253B3-0%253B0%253B45454269%253B3454-728%2F90%253B41050308%2F41068095%2F1%253B%253B%257Eokv%253D%253Bdcopt%253Dist%253Bsz%253D728x90%253Btile%253D1%253B%257Eaopt%253D2%2F1%2Fff%2F0%253B%257Esscs%253D%253fhttp%3A%2F%2Fnatgeo.trymedia.com%2Ft_14th_ngad%2Fs-1_3041_14437%2FAllGames%2FSimulation%2FNatGeo-Games-Earth-Day-Pack.html"><param name="quality" value="high"><param name="bgcolor" value="#"><param name="wmode" value="opaque"><param name="AllowScriptAccess" value="never"><embed src="http://s0.2mdn.net/2599070/earthday_pack_728x90.swf" flashvars="clickTag=http%3A%2F%2Fad.doubleclick.net%2Fclick%253Bh%253Dv8%2F3ae6%2F3%2F0%2F%252a%2Fv%253B236351078%253B3-0%253B0%253B45454269%253B3454-728%2F90%253B41050308%2F41068095%2F1%253B%253B%257Eokv%253D%253Bdcopt%253Dist%253Bsz%253D728x90%253Btile%253D1%253B%257Eaopt%253D2%2F1%2Fff%2F0%253B%257Esscs%253D%253fhttp%3A%2F%2Fnatgeo.trymedia.com%2Ft_14th_ngad%2Fs-1_3041_14437%2FAllGames%2FSimulation%2FNatGeo-Games-Earth-Day-Pack.html" quality="high" wmode="opaque" swliveconnect="TRUE" width="728" height="90" bgcolor="#" type="application/x-shockwave-flash" allowscriptaccess="never"></object>
+<noscript>&lt;a target="_blank" href="http://ad.doubleclick.net/click%3Bh%3Dv8/3ae6/3/0/%2a/v%3B236351078%3B3-0%3B0%3B45454269%3B3454-728/90%3B41050308/41068095/1%3B%3B%7Eokv%3D%3Bdcopt%3Dist%3Bsz%3D728x90%3Btile%3D1%3B%7Eaopt%3D2/1/ff/0%3B%7Esscs%3D%3fhttp://natgeo.trymedia.com/t_14th_ngad/s-1_3041_14437/AllGames/Simulation/NatGeo-Games-Earth-Day-Pack.html"&gt;&lt;img src="http://s0.2mdn.net/2599070/728x90_earthday_pack_default.jpg"  border="0" alt="" &gt;&lt;/a&gt;</noscript>
+ 
+ 
+<noscript>
+	&lt;a HREF="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord=20021017123955"&gt;
+	&lt;img SRC="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_index;sz=728x90;tile=1;ord=20021017123955" border="0" height="90" width="728"&gt;&lt;/a&gt;
+</noscript>
+ 
+<!-- /ng.scienceblogs/technology_index:728:90:5	end ad code -->
+
+		</div>
+		
+		<div id="topPromo">
+
+<a class="singleImage" href="http://scienceblogs.com/bookclub/inside_the_outbreaks/"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/bkclb_outbreaks_222x90.gif" alt="ScienceBlogs Book Club: Inside the Outbreaks"></a>
+
+</div>
+
+
+
+
+
+
+<!--
+<script type="text/javascript">
+function checkit()
+{
+if (document.getElementById('EMAIL').value == '')
+{
+alert('We need an email address!');
+return false;
+}
+}
+</script>
+
+<h6>The Week In ScienceBlogs: Sign up for our newsletter.</h6>
+
+<form action="http://list-manage.com/subscribe.phtml" method="POST" target="_blank" onsubmit="return checkit();"><input type="text" name="EMAIL" id="EMAIL" value="your email address" style="color: #999;" onfocus="this.value='';this.style.color='#000';" /><input type="submit" value="Sign Up" /><input type="hidden" name="id" value="44a1d8dcab" /></form>
+-->	
+	</div>
+
+	<div class="globalNav">	<ul id="mainNav">
+		<li id="hoursNav"><a href="http://scienceblogs.com/channel/24-hours/?utm_source=globalChannel&utm_medium=link">Last 24 Hrs</a></li>
+		<li id="lifeNav"><a href="http://scienceblogs.com/channel/life-science/?utm_source=globalChannel&utm_medium=link">Life Science</a></li>
+		<li id="physicalNav"><a href="http://scienceblogs.com/channel/physical-science/?utm_source=globalChannel&utm_medium=link">Physical Science</a></li>
+		<li id="environmentNav"><a href="http://scienceblogs.com/channel/environment/?utm_source=globalChannel&utm_medium=link">Environment</a></li>
+		<li id="humanitiesNav"><a href="http://scienceblogs.com/channel/humanities/?utm_source=globalChannel&utm_medium=link">Humanities</a></li>
+		<li id="educationNav"><a href="http://scienceblogs.com/channel/education/?utm_source=globalChannel&utm_medium=link">Education</a></li>
+		<li id="politicsNav"><a href="http://scienceblogs.com/channel/politics/?utm_source=globalChannel&utm_medium=link">Politics</a></li>
+		<li id="medicineNav"><a href="http://scienceblogs.com/channel/medicine/?utm_source=globalChannel&utm_medium=link">Medicine</a></li>
+		<li id="brainNav"><a href="http://scienceblogs.com/channel/brain-and-behavior/?utm_source=globalChannel&utm_medium=link">Brain &amp; Behavior</a></li>
+		<li id="technologyNav"><a href="http://scienceblogs.com/channel/technology/?utm_source=globalChannel&utm_medium=link">Technology</a></li>
+		<li id="informationNav"><a href="http://scienceblogs.com/channel/information-science/?utm_source=globalChannel&utm_medium=link">Information Science</a></li>
+		<li id="jobsNav"><a href="http://scienceblogs.com/channel/jobs/?utm_source=globalChannel&utm_medium=link">Jobs</a></li>
+	</ul></div>
+
+<div class="blogContainer">
+
+	<div class="mainCol">
+	
+		<div class="blogTop">		
+<div class="masthead makeClickable" style="background: url(http://scienceblogs.com/goodmath/upload/gmbm01_violet.jpg) 0 0 no-repeat;">
+			
+<h1><a href="http://scienceblogs.com/goodmath/" accesskey="1">Good Math, Bad Math</a></h1>
+				
+<p>Finding the fun in good math; Shredding bad math and squashing the crackpots who espouse it.</p>
+				
+</div>
+			
+<div class="nav">		
+<ul>
+<li><a href="http://scienceblogs.com/goodmath/">Latest Posts</a></li>
+<li><a href="http://scienceblogs.com/goodmath/archives.php">Archives</a></li>
+<li><a href="http://scienceblogs.com/goodmath/about.php">About</a></li>
+<li><a href="http://scienceblogs.com/channel/rss.php">RSS</a></li>
+<li><a href="http://scienceblogs.com/goodmath/contact.php">Contact</a></li>
+</ul>		
+</div><!-- close nav -->
+			
+</div>
+		
+<div class="blogLeft">
+
+<!-- This is a linked template. DO NOT EDIT IT. -->
+
+<h3><span>Search</span></h3>
+			
+<form action="http://www.google.com/cse" onsubmit="document.getElementById(&#39;qbox&#39;).value=document.getElementById(&#39;qbox&#39;).value + &#39; site:http://scienceblogs.com/goodmath/&#39;;" id="searchbox_017254414699180528062:uyrcvn__yd0" class="blogSearch">
+<p><input type="hidden" name="cx" value="017254414699180528062:uyrcvn__yd0">
+<input type="text" name="q" id="qbox">
+<input type="submit" name="sa" value="Search"></p>
+</form>
+
+<h3><span>Profile</span></h3>
+
+<p class="profile">
+<img alt="markcc.jpg" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/markcc.jpg" width="110" height="120"><br style="clear: both;">
+
+Mark Chu-Carroll (aka MarkCC) is a PhD Computer Scientist, who works for Google as a Software Engineer.  My professional interests center on programming languages and tools, and how to improve the languages and tools that are used for building complex software systems.
+</p>
+
+<h3><span>Donors Choose</span></h3>
+<p><script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/challenge_widget_js.html"></script><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="160" height="600" id="socialmedia2010v2_160x600" align="middle"><param name="allowScriptAccess" value="always"><param name="wmode" value="opaque"><param name="allowFullScreen" value="false"><param name="movie" value="http://www.donorschoose.org/fla/socialmedia2010v2_160x600.swf?id=18964&amp;baseURL=http://www.donorschoose.org/"><param name="quality" value="high"><param name="bgcolor" value="#ffffff">	<embed src="http://www.donorschoose.org/fla/socialmedia2010v2_160x600.swf?id=18964&amp;baseURL=http://www.donorschoose.org/" quality="high" bgcolor="#ffffff" width="160" height="600" name="challenge_160x600?id=18964&amp;baseURL=http://www.donorschoose.org/" align="middle" allowscriptaccess="always" wmode="opaque" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object></p>
+
+
+
+<h3><span>Other Information</span></h3>
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/dc4schm8bd.js"></script>
+<div class="freeModule">
+
+<a href="http://technorati.com/faves?add="><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/tech-fav-1.gif" alt="Add this blog to my Technorati Favorites!"></a>
+<!--WEBBOT bot="HTMLMarkup" Endspan -->
+</div>
+
+<!-- This is a linked template. DO NOT EDIT IT. -->
+
+<h3><span>Recent Posts</span><br class="clear"></h3>
+
+<ul class="linkList">
+<li><a href="http://scienceblogs.com/goodmath/2010/08/moving_on.php">Moving on</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/07/goodbye_scienceblogs.php">Goodbye, Scienceblogs</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/07/seed_conflicts_of_interest_and.php">Seed, Conflicts of Interest, and Sleaze</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/06/searching_for_topics.php">Searching for Topics</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/06/saturday_recipe_ginger_scallio.php">Saturday Recipe: Ginger Scallion Sauce</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/06/the_surprises_never_eend_the_u.php">The Surprises Never Eend: The Ulam Spiral of Primes</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/06/metaphorical_crankery_a_bad_me.php">Metaphorical Crankery: a bad metaphor is like a steaming pile of ...</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/06/the_unfalsifiable_theory_of_ev.php">The Unfalsifiable Theory Of Everything from viXra</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/06/gravity_shmavity_its_the_heat.php">Gravity, Shmavity. It's the heat, dammit!</a></li>
+<li><a href="http://scienceblogs.com/goodmath/2010/05/big_number_bogosity_from_a_chr.php">Big Number Bogosity from a Christian College Kid</a></li>
+
+</ul>
+
+<!-- This is a linked template. DO NOT EDIT IT. -->
+
+
+
+
+<h3><span>Recent Comments</span></h3>
+<ul class="linkList altLinks">
+
+
+<li>Anonymous on  <a href="http://scienceblogs.com/goodmath/2006/09/arithmetic_on_the_abacus_part.php#c2680143">Arithmetic on the Abacus: Part 1</a></li>
+
+
+
+
+
+
+
+<li><a title="http://www.gotoorder.com/" href="http://www.gotoorder.com/" rel="nofollow">Ed hardy shirts</a> on  <a href="http://scienceblogs.com/goodmath/2010/07/goodbye_scienceblogs.php#c2679372">Goodbye, Scienceblogs</a></li>
+
+
+
+
+
+
+
+<li>joe_one_comment on  <a href="http://scienceblogs.com/goodmath/2006/11/the_c_is_efficient_language_fa.php#c2678655">The "C is Efficient" Language Fallacy</a></li>
+
+
+
+
+
+
+
+<li>Anonymous on  <a href="http://scienceblogs.com/goodmath/2006/11/the_c_is_efficient_language_fa.php#c2678650">The "C is Efficient" Language Fallacy</a></li>
+
+
+
+
+
+
+
+<li>Chuck on  <a href="http://scienceblogs.com/goodmath/2010/06/searching_for_topics.php#c2677770">Searching for Topics</a></li>
+
+
+
+
+
+
+
+<li>Tammie James on  <a href="http://scienceblogs.com/goodmath/2009/07/high_school_reunion_new_commen.php#c2677706">High School Reunion: New comment thread</a></li>
+
+
+
+
+
+
+
+<li>dmitry on  <a href="http://scienceblogs.com/goodmath/2010/06/searching_for_topics.php#c2675984">Searching for Topics</a></li>
+
+
+
+
+
+
+
+<li>jp on  <a href="http://scienceblogs.com/goodmath/2007/01/basics_recursion_and_induction_1.php#c2675891">Basics: Recursion and Induction</a></li>
+
+
+
+
+
+
+
+<li>Puzzled on  <a href="http://scienceblogs.com/goodmath/2010/06/the_surprises_never_eend_the_u.php#c2675587">The Surprises Never Eend: The Ulam Spiral of Primes</a></li>
+
+
+
+
+
+
+
+<li>p.6.78 on  <a href="http://scienceblogs.com/goodmath/2009/07/high_school_reunion_new_commen.php#c2674889">High School Reunion: New comment thread</a></li>
+
+</ul>
+
+
+
+<!-- This is a linked template. DO NOT EDIT IT. -->
+
+<h3><span>Categories</span></h3>
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/add_category/" title="">Add category</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/book/" title="">Book</a>
+
+
+
+<ul class="linkList">
+
+<li>oeu
+
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chaos/" title="">Chaos</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/" title="">Chatter</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/books_for_young_mathgeeks/" title="">Books for Young Mathgeeks</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/doctor_who/" title="">Doctor Who</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/humor/" title="">Humor</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/meta/" title="">Meta</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/music/" title="">Music</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/recipes/" title="">Recipes</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/chatter/politics/" title="">politics</a>
+
+
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/personal/" title="">Personal</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/" title="">bad math</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_economics/" title="">Bad Economics</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_logic/" title="">Bad Logic</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_math_education/" title="">Bad Math Education</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_probability/" title="">Bad Probability</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_software/" title="">Bad Software</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_statistics/" title="">Bad Statistics</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/big_numbers/" title="">Big Numbers</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/cantor_crankery/" title="">Cantor Crankery</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/debunking_creationism/" title="">Debunking Creationism</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/debunking_creationism/intelligent_design/" title="">intelligent design</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/debunking_creationism/intelligent_design/egnorance/" title="">Egnorance</a>
+
+
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/hiv_denial/" title="">HIV denial</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/markccs_errors/" title="">MarkCC's Errors</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/bad_physics/" title="">bad physics</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/intelligent_design/" title="">intelligent design</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/numerology/" title="">numerology</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/sexism/" title="">sexism</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/bad_math/woo/" title="">woo</a>
+
+
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/fundamentalism/" title="">fundamentalism</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/" title="">goodmath</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/basics/" title="">Basics</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/coolness/" title="">Coolness</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/encryption/" title="">Encryption</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/game_theory/" title="">Game Theory</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/graph_theory/" title="">Graph Theory</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/logic/" title="">Logic</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/math_education/" title="">Math Education</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/numbers/" title="">Numbers</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/numbers/surreal_numbers/" title="">Surreal Numbers</a>
+
+
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/people/" title="">People</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/" title="">Programming</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/set_theory/" title="">Set Theory</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/set_theory/group_theory/" title="">Group Theory</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/set_theory/group_theory/abstract_algebra/" title="">Abstract Algebra</a>
+
+
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/category_theory/" title="">category theory</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/classics/" title="">classics</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/information_theory/" title="">information theory</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/lambda_calculus/" title="">lambda calculus</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/manual_computing_devices/" title="">manual computing devices</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/" title="">programming</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/computation/" title="">Computation</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/computational_complexity/" title="">Computational Complexity</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/data_structures/" title="">Data Structures</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/erlang/" title="">Erlang</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/haskell/" title="">Haskell</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/networks/" title="">Networks</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/pi_calculus/" title="">Pi Calculus</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/programming/pathological_programming/" title="">pathological programming</a>
+
+
+
+</li>
+</ul>
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/statistics/" title="">statistics</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/topology/" title="">topology</a>
+
+
+
+<ul class="linkList">
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/topology/chaos_1/" title="">Chaos</a>
+
+
+
+</li>
+
+
+
+
+<li><a href="http://scienceblogs.com/goodmath/goodmath/topology/fractals/" title="">Fractals</a>
+
+
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<h3><span>Blogroll</span></h3>
+<ul class="linkList">
+<li> <a href="http://www.sunclipse.org/">Science after Sunclipse</a>
+</li><li><a href="http://scienceblogs.com/insolence/">Orac</a></li>
+<li><a href="http://scienceblogs.com/aetiology/">Aetiology</a></li>
+<li><a href="http://scienceblogs.com/pharyngula/">Pharyngula</a></li>
+<li><a href="http://www.badscience.net/">Bad Science</a></li>
+<li><a href="http://nielsenhayden.com/makinglight/">Making Light</a></li>
+<li><a href="http://bigdumbchimp.blogspot.com/">Big Dumb Chimp</a></li>
+<li><a href="http://rockstarramblings.blogspot.com/">Rockstars' Ramblings</a></li>
+<li><a href="http://skeptico.blogs.com/skeptico">Skeptico</a></li>
+<li> <a href="http://polymathematics.typepad.com/polymath/">Polymath</a>
+</li></ul>
+<h3><span>Old Topic Indices</span></h3>
+<ul class="linkList">
+<li><a href="http://goodmath.blogspot.com/2006/06/information-theory-index.html">Information Theory</a>
+</li><li><a href="http://goodmath.blogspot.com/2006/06/group-theory-index.html">Group Theory</a>
+</li><li><a href="http://goodmath.blogspot.com/2006/06/automata-theory-index.html">Automata Theory</a>
+</li><li><a href="http://goodmath.blogspot.com/2006/06/logic-index.html">Logic</a>
+</li><li><a href="http://goodmath.blogspot.com/2006/06/lamda-calculus-index.html">Lamda Calculus</a>
+</li><li><a href="http://goodmath.blogspot.com/2006/06/rebutting-creationism-index.html">Rebutting Creationism</a>
+</li><li><a href="http://goodmath.blogspot.com/2006/06/rebutting-pear-index.html">Rebutting PEAR</a>
+</li></ul>
+<h3><span>Great Online Books</span></h3>
+<ul class="linkList">
+<li> <a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">SICP</a></li>
+</ul>
+
+</div>		
+<div class="blogMain">
+
+<p class="contentNav">
+<a href="http://scienceblogs.com/goodmath/2008/01/before_groups_from_categories.php">« Before Groups from Categories: a Category Refresher</a> |
+<a href="http://scienceblogs.com/goodmath/">Main</a>
+| <a href="http://scienceblogs.com/goodmath/2008/01/capturing_more_symmetry_using.php">Capturing More Symmetry using Categories: Groupoids »</a>
+</p>
+
+<h2><a id="a065762" href="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math.html">Databases are hammers; MapReduce is a screwdriver.</a></h2>
+
+<p class="categories">
+Category: <a href="http://scienceblogs.com/goodmath/goodmath/programming/">Programming</a><br>
+Posted on: January 22, 2008 10:34 AM, by <a href="">Mark C. Chu-Carroll</a>
+</p>
+
+<div class="entry" id="entry-65762">
+
+<p> A bunch of people have sent me links to <a href="http://www.databasecolumn.com/2008/01/mapreduce-a-major-step-back.html">an article about MapReduce.</a> I've hesitated to write about it, because the currently hyped <a href="http://en.wikipedia.org/wiki/MapReduce">MapReduce</a> stuff was developed, and extensively used by Google, my employer. But the article is really annoying, and deserves a response. So I'm going to be absolutely clear. I am <em>not</em> commenting on this in my capacity as a Google employee. (In fact, I've never actually used MapReduce at work!)  This is strictly on my own time, and it's purely my own opinion. If it's the dumbest thing you've ever read, that's my fault, not Google's. If it's the most brilliant thing you've ever read, that's my credit, not Google's. I wasn't asked to write this by Google, and I didn't ask their permission, either. This is just me, the annoying geek behind this blog, writing solely
+on my own behalf, speaking for no one but me. Got it?</p>
+
+<p> The reason that I'm interested in this is because it's related to my PhD work. Back in
+grad school, what I worked on was applying parallelism to structured data in
+<em>non-scientific</em> applications. That's pretty much what MapReduce does. And the solution
+that I proposed was a kind hierarchical scatter/gather operation - which is, very nearly, the
+way that MapReduce works. The big difference? MapReduce beats what I did. The guys who designed MapReduce noticed something that I didn't, and took advantage of it, which made M/R programs a lot cleaner and easier to write. The article that I'm going to discuss criticizes M/R for exactly that key idea.</p>
+
+
+
+<div id="more"><p> Let's start at the beginning. What is MapReduce? What does it do?</p>
+
+<p> Suppose you're at work, and you need to do something that's going to take a long time to
+run on your computer. You don't want to wait. But you don't want to go out and spend a couple
+of million dollars buying a supercomputer. How do you make it run faster? One way is buy a
+whole bunch of cheap machines, and make it run on all of them at once. Another is to notice
+that your office has lots of computers - pretty much every office has a computer on the desk of every employee. And at any given moment, most of those computers aren't doing much. So why not take advantage of that? When your machine isn't doing much, you let you coworkers borrow the capability you're not using; when you need to do something, you can borrow their machines. So when you need to run something big, you can easily find a pool of a dozen machines.</p>
+
+<p> The problem with that approach is that most programs aren't written to run on a dozen machines. They're written to run on one machine. To split a hard task among a lot of computers is hard.</p>
+
+<p> MapReduce is a library that lets you adopt a particular, stylized way of programming that's easy to split among a bunch of machines. The basic idea is that you divide the job into two parts: a Map, and a Reduce. Map basically takes the problem, splits it into sub-parts, and sends the sub-parts to different machines - so all the pieces run at the same time. Reduce takes the results from the sub-parts and combines them back together to get a single answer.</p>
+
+<p> The key to how MapReduce does things is to take input as, conceptually, a list of records. The records are split among the different machines by the map. The result of the map computation is a list of key/value pairs. Reduce takes each set of values that has the same key, and combines them into a single value. So Map takes a set of data chunks, and produces key/value pairs; reduce merges things, so that instead of a set of key/value pair sets, you get one result. You can't tell whether the job was split into 100 pieces or 2 pieces; the end result looks pretty much like the result of a single map. (The key idea that differentiates M/R from my PhD work is that realization that by treating results as key/value maps, you get a very clean, uniform reduction process. I got the idea of the scatter/gather pattern, but my reduces were really ugly in comparison to M/R.)</p>
+
+<p> The beauty of MapReduce is that it's easy to write. M/R programs are really as easy as parallel programming ever gets.</p>
+
+<p> So, getting back to the article. They criticize MapReduce for, basically, not being based on the idea of a relational database.</p>
+
+<p> When I first wanted to spend some time learning about relational databases, my then boss told me a story about database people, which I've found to be remarkably true. The story is, RDB people have found the most beautiful, wonderful, perfect hammer in the whole world. It's perfectly balanced - not too heavy, not too light, and swings just right to pound in a nail just right every time. The grip is custom-made, fitted to the shape of the owners hand, so that they can use it all day without getting any blisters. It's also beautifully decorated - encrusted with gemstones and gold filigree - but only in places that won't detract from how well it works as a hammer. It really is the greatest hammer ever. Relational database guys love their hammer. It's just such a wonderful tool! And when they make something with it, it really comes out great. In fact, they like it so much that they think it's the only tool they need. If you give them a screw, they'll just pound it in like it's a nail. And when you point out to them that dammit, it's a screw, not a nail, they'll say "I know that. But you can't expect me to use a crappy little screwdriver when I have a magnificent hammer like this!"</p>
+
+<p> That's exactly what's going on here. They've got their relational databases. RDBs are
+absolutely brilliant things. They're amazing tools, which can be used to build amazing
+software. I've done a lot of work using RDBs, and without them, I wouldn't have been able
+to do some of the work that I'm proudest of. I don't want to cut down RDBs at all: they're truly great. But not everything is a relational database, and not everything is naturally suited towards being treated as if it were relational. The criticisms of MapReduce all come down to: "But it's not the way relational databases would do it!" - without every realizing that <em>that's the point</em>. RDBs don't parallelize very well: how many RDBs do you know that can efficiently split a task among 1,000 cheap computers? RDBs don't handle non-tabular data well: RDBs are notorious for doing a poor job on recursive data structures. MapReduce
+isn't intended to replace relational databases: it's intended to provide a lightweight way of programming things so that they can run fast by running in parallel on a lot of machines. That's <em>all</em> it was intended to do. </p>
+
+<p> To be specific, the criticisms from the DB guys were that MapReduce is:</p>
+
+<ol>
+<li> A giant step backward in the programming paradigm for large-scale data intensive applications</li>
+
+<li> A sub-optimal implementation, in that it uses brute force instead of indexing</li>
+
+<li> Not novel at all -- it represents a specific implementation of well known techniques developed nearly 25 years ago</li>
+
+<li> Missing most of the features that are routinely included in current DBMS</li>
+
+<li> Incompatible with all of the tools DBMS users have come to depend on</li>
+</ol>
+
+<p> Point one is rubbish. M/R is a great way of programming <em>some</em> large-scale data
+intensive applications. If you've got a large computation whose data is naturally described
+relationally, and which is feasible to run on a single really big machine, and you have access
+to said really big machine, then no question - you should be using an RDB. And for many
+computations that seem too complex to run is a reasonable amount of time on a single machine, working out the proper layout in tables, with the proper indexing scheme, can make what seemed non-feasible downright easy. But that's not <em>every</em> computation. In fact, that's not even <em>most</em> computations. MapReduce isn't intended to replace the relational database. </p>
+
+<p> Let me give an example. When I was writing about Fractals, one reader was fascinated by the BuddhaBrot, and decided to try <a href="http://scienceblogs.com/goodmath/2007/07/the_mandelbrot_set_1.php#comment-494786">generating an image of a related fractal, called the NebulaBrot</a>. The basic idea of that is to take the set of points which are on the border of the mandelbrot set, and trace their paths as you perform the mandelbrot iteration. The more times a given point is crossed by one of those paths, the brighter you make that point. The end result is a very cool image. The problem with it is, it's not zoomable. The paths are erratic, and there's no way of figuring out which initial points are the roots of paths that are going to pass through a particular sub-area of the figure. So what the very bright reader did was build a <em>huge</em> NebulaBrot - the idea being that instead of starting small and then zooming, you start big and then squish. That gives you the ability to look at very high resolution views of small parts. Sort of like pre-zooming.</p>
+
+<p> The way that he implemented the NebulaBrot was as a MapReduce. He needed to trace through paths of millions of points. That can take quite a bit of time. So what he did was divide up the initial points into subsets, and farm them out with a map. Each map instance computed the paths for some set of points. The result of the map was a set of pairs: points, and the number of times that paths had crossed those points. The points were the keys, the number of crossings were the values. The reduce took the set of point/crossing pairs, and summed up the crossings for each point. Then the result was translated into an image. Presto! Giant NebulaBrot, very quickly.</p>
+
+<p> You can't do that in a relational database. It's not a relational application. It doesn't really start with row data - MapReduce just calls its sets of input data rows, because it's a nice metaphor; it doesn't mean that they're really tabular data - in the NebulaBrot, the 
+data isn't really rows, it's points. No relational tool is going to help with that - there's no scheme of careful, elegant table layout and indexing that's going to make that computation tractable on a single small machine. And relational tools aren't going to help make it run in parallel.</p>
+
+<p> Moving on to point two, which was that MapReduce is primitive and sub-optimal, because it doesn't use indexing. Same basic response: indexing is a great tool if your data is tabular, and you have a central index that you can work with. But if your task isn't fundamentally relational, and what you really need is computation - like the massive numbers of floating point multiplications in the NebulaBrot - then indexes aren't going to help. The problem that MapReduce is trying to solve is making it easy to write a program that does a huge amount of computation in a reasonable amount of time. Indexes don't help if the essential task is computationally intense.</p>
+
+<p> Point three: "it's not novel." No, stop, you must be kidding! It never claimed to be
+novel. It's not <em>supposed</em> to be novel. In fact, the <a href="http://labs.google.com/papers/mapreduce.html">initial publication which
+describes MapReduce</a> specifically states that it was inspired by the Map and Reduce primitives from functional programming languages! MapReduce is, basically, a form of data
+parallel computing - that is, a scalable implementation of a well known, well understood,
+easy-to-use model of parallel programming. How on earth is that a <em>problem</em>? </p>
+
+<p> Point four: "missing features in RDBMS". Isn't this really just a different way of saying
+the initial criticism? It's really just another version of "It's not relational, so it's not
+good". Once again: that's deliberate. MapReduce isn't a database application. If you've got a
+relational database problem, use a relational database. If you've got a massive computational
+task that you want to distribute among dozens, or hundreds, or thousands of small machines,
+then use MapReduce. Those wonderful DBMS tools? They weren't designed for massively parallel
+cluster/cloud computing. In fact, they <em>don't work</em> in the massive cluster
+environment.</p>
+
+<p> Point five: "incompatible with tools that DB developers have come to depend on". Are
+	you starting to see why I told the hammer story? This is just <em>another</em> restatement of the same old original criticism. It's not a relational database, so it's not good. No, database-oriented tools and processes don't work for MapReduce programming. In fact, what
+makes for a good DB design will often make for a really piss-poor M/R design. They're not trying to do the same thing.</p>
+
+<p> So in the end, is there anything worth taking from the database guys critique of
+MapReduce? Frankly, I don't think so. They really don't seem to understand what M/R is
+designed for, or why it's designed the way it is. They seem to have homed in on the fact that
+M/R uses the terms "table" and "row", and concluded that it's intended to be something like
+the kinds of tasks for which you'd use an RDBMS. But aside from the superficial resemblance in
+terminology, there's very little connection between the two ideas. M/R is a great tool for a
+particular family of computational tasks. That doesn't detract from RDBMS - relational
+databases are also an amazing tool for a large family of computational tasks. The fact that
+the relational database approach isn't the ideal solution to <em>every</em> task isn't the
+fault of M/R. The fact that M/R uses similar terminology to RDBMS despite being intended for a very different family of tasks than RDBMS doesn't mean that M/R is wrong. M/R isn't an alternative to relational databases. It's something entirely different.</p>
+
+<p> Just because you've got the best hammer in the entire world doesn't make everything a nail. If you've got a screw, even a cheap, old, rusty screwdriver is going to do a better
+job. And MapReduce is a lot better than a cheap, old, rusty screwdriver.</p>
+
+
+</div>
+
+</div>
+
+<style>.pm_tools_small .pm_tool {display:block;float:left;height:20px;margin:0 0.5em 8px;}</style>
+<div class="pm_tools" style="margin-bottom:40px">
+	<div class="pm_tools_expanded">
+		<div class="pm_tools_large">
+			<iframe src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/like.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:516px; height:35px;" allowtransparency="true"></iframe>
+		</div>
+	</div>							
+	<div class="pm_tools_small" style="margin:0 2px 0 -4px;float:left;width:100%;">             
+		<div class="pm_tool twitter">
+			<iframe allowtransparency="true" frameborder="0" role="presentation" scrolling="no" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/tweet_button.html" style="width: 100px; height: 20px;"></iframe>
+		</div>
+		<div class="pm_tool digg">
+			<script type="text/javascript">
+				(function() {
+				var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
+				s.type = 'text/javascript';
+				s.async = true;
+				s.src = 'http://widgets.digg.com/buttons.js';
+				s1.parentNode.insertBefore(s, s1);
+				})();
+			</script>
+			<span class="db-wrapper db-clear db-digger"><span><span class="db-container db-submit"><span class="db-body db-digger"><span class="db-count">0</span><span class="db-copy">diggs</span><a class="db-anchor">digg</a></span></span></span></span>
+		</div>
+		<div class="pm_tool reddit">
+			<a href="http://reddit.com/submit?url=http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php&Databases%20are%20hammers;%20MapReduce%20is%20a%20screwdriver.=Databases%20are%20hammers;%20MapReduce%20is%20a%20screwdriver." onclick="window.open(this.href,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=436&#39;);return false;" target="_new"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/icon_reddit.gif" alt="Share on Facebook" databases="" are="" hammers;="" mapreduce="" is="" a="" screwdriver.="Share on Facebook"></a>
+		</div>
+		<div class="pm_tool stumbleupon">
+			<a href="http://www.stumbleupon.com/submit?url=http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php&Databases%20are%20hammers;%20MapReduce%20is%20a%20screwdriver.=Databases%20are%20hammers;%20MapReduce%20is%20a%20screwdriver." onclick="window.open(this.href,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=436&#39;);return false;" target="_new"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/icon_stumbleupon.gif" alt="Share on StumbleUpon" databases="" are="" hammers;="" mapreduce="" is="" a="" screwdriver.="Share on StumbleUpon"></a>
+		</div>
+		<div class="pm_tool fbshare">
+			<a href="http://www.facebook.com/sharer.php?u=http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php&t=Databases%20are%20hammers;%20MapReduce%20is%20a%20screwdriver." onclick="window.open(this.href,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=436&#39;);return false;" target="_new"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/icon_facebook.gif" alt="Share on Facebook" databases="" are="" hammers;="" mapreduce="" is="" a="" screwdriver.="Share on Facebook"></a>
+		</div>
+	</div> 
+</div>
+
+<div id="flairBar"><span class="channelLinks">Find more posts in: <a href="http://scienceblogs.com/channel/technology/?utm_source=channelLink&utm_medium=virallink" class="technology"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/icon_technology.gif" alt="">Technology</a></span></div>
+
+
+<!-- this is a linked template! don't edit it! -->
+
+
+
+
+<div id="comments" class="comments">
+<div class="comments-content">
+
+<h3 class="metaHeader">Comments</h3>
+<a id="c720863"></a>
+<div class="comment oddcomment " id="comment-720863">
+<div class="commentContent">
+
+<span class="commentNumber">1</span>
+
+<p>Thanks for clearing that up, Mark.</p>
+
+<p class="commentFooter">Posted by: Yo Man  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-720863">January 22, 2008 11:50 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c720871"></a>
+<div class="comment evencomment " id="comment-720871">
+<div class="commentContent">
+
+<span class="commentNumber">2</span>
+
+<p>"RDBs don't handle non-tabular data well: RDBs are notorious for doing a poor job on recursive data structures."</p>
+
+<p>And it's somewhat surprising how often this sort of structure comes up in real-world data. Our brains naturally try to sort things into hierarchichal structures, but that's not actually how most naturally-occurring data is most accurately laid out.<br>
+</p>
+
+<p class="commentFooter">Posted by: Scott Simmons  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-720871">January 22, 2008 11:53 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c720934"></a>
+<div class="comment oddcomment " id="comment-720934">
+<div class="commentContent">
+
+<span class="commentNumber">3</span>
+
+<p>As computers are starting to invade more and more space, do you think that we'll end up writing a significant portion of our programs in a way that they can make use of available computing devices? It'd be cool, if we actually could employ idle office computers, mobile phones or toasters just like that, but personally I don't see that in the very near future.<br>
+</p>
+
+<p class="commentFooter">Posted by: Flaky  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-720934">January 22, 2008 12:33 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c720941"></a>
+<div class="comment evencomment authorComment" id="comment-720941">
+<div class="commentContent">
+
+<span class="commentNumber">4</span>
+
+<p>Flaky:</p>
+
+<p>No, I don't.</p>
+
+<p>The problem is, it's damned hard to program things to run in parallel. That's the biggest issue. No one is going to write parallel programs until performance really becomes a serious issue.</p>
+
+<p>When it does become an issue, it's hard enough to make parallel programs run effectively when you've got a pretty<br>
+uniform collection of processors, which is the basic assumption of both M/R and of my dissertation work. If you're talking about distributing computation among a large collection of random processors - from the miniscule processor in your toaster to the decent processor in your DVR to the heavy iron in a gaming PC - the difficulty of making things work, and getting a decent load balance, and having the end result actually be fast enough to generate the trouble is just too much work. It just won't pay off in the end.</p>
+
+<p>I think this kind of parallelism is going to be limited to mostly homogeneous environments: an office full of identical PCs, racks full of servers, data centers, etc.</p>
+
+<p>On the other hand, I also think that you're going to see an increase in the number of places where you can effectively rent a bunch of CPUs to do a job. So when you have something massive to run, you'll be able to wander to sourceforge or IBM or someone like that, with a big datacenter, and rent enough time to run your system on their hardware.</p>
+
+<p class="commentFooter">Posted by: Mark C. Chu-Carroll  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-720941">January 22, 2008 12:40 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c720952"></a>
+<div class="comment oddcomment " id="comment-720952">
+<div class="commentContent">
+
+<span class="commentNumber">5</span>
+
+<p>"RDBs don't handle non-tabular data well: RDBs are notorious for doing a poor job on recursive data structures."</p>
+
+<p>RDBs or SQL-based DBs? Recursive joins have been around since the earliest days of relational theory - but SQL cannot describe them; it seems pathologically opposed to recursivity.</p>
+
+<p class="commentFooter">Posted by: gwenhwyfaer  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-720952">January 22, 2008 12:50 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c720954"></a>
+<div class="comment evencomment " id="comment-720954">
+<div class="commentContent">
+
+<span class="commentNumber">6</span>
+
+<p>(...or recursion, even)</p>
+
+<p class="commentFooter">Posted by: gwenhwyfaer  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-720954">January 22, 2008 12:52 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721019"></a>
+<div class="comment oddcomment " id="comment-721019">
+<div class="commentContent">
+
+<span class="commentNumber">7</span>
+
+<p>Thanks for the kind discussion of my NebulaBrot rendering, Mark! If anyone is interested in seeing the images that came out of this, check out <a href="http://www.danvk.org/wp/2007-04-06/nebulabrot/" rel="nofollow">http://www.danvk.org/wp/2007-04-06/nebulabrot/.</a></p>
+
+<p class="commentFooter">Posted by: <a title="http://danvk.org" href="http://danvk.org/" rel="nofollow">Dan Vanderkam</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721019">January 22, 2008  1:37 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721028"></a>
+<div class="comment evencomment " id="comment-721028">
+<div class="commentContent">
+
+<span class="commentNumber">8</span>
+
+<p>Thanks for the writing this. I refuted the original article in a somewhat different style here: <a href="http://typicalprogrammer.com/programming/mapreduce/" rel="nofollow">http://typicalprogrammer.com/programming/mapreduce/</a><br>
+</p>
+
+<p class="commentFooter">Posted by: <a title="http://typicalprogrammer.com" href="http://typicalprogrammer.com/" rel="nofollow">Typical Programmer</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721028">January 22, 2008  1:42 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721073"></a>
+<div class="comment oddcomment " id="comment-721073">
+<div class="commentContent">
+
+<span class="commentNumber">9</span>
+
+<p>Very well put Mark.  One of my favorite tag lines is "if your only tool is a hammer, every problem looks like a nail": Drs. DeWitt and Stonebraker have made their reputations in RDBMS -- DeWitt in particular with parallel databases.  It's their only tool.</p>
+
+<p class="commentFooter">Posted by: <a title="http://artk.typepad.com" href="http://artk.typepad.com/" rel="nofollow">ArtK</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721073">January 22, 2008  2:11 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721114"></a>
+<div class="comment evencomment " id="comment-721114">
+<div class="commentContent">
+
+<span class="commentNumber">10</span>
+
+<p>and my favorite version is... when all you have is a hammer everything looks like a baby seal</p>
+
+<p class="commentFooter">Posted by: <a title="http://newsworthymath.com" href="http://newsworthymath.com/" rel="nofollow">grahamsw</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721114">January 22, 2008  2:36 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721121"></a>
+<div class="comment oddcomment " id="comment-721121">
+<div class="commentContent">
+
+<span class="commentNumber">11</span>
+
+<p>All refutations to the original articles have valid points, but miss this one issue: When you're talking about Petabytes, you might want to look at some of the advancements in research by people who've been dealing with petabytes all this while.</p>
+
+<p>It's not about relational data. That is not the only thing databases do. Saying that database research is about RDBMS is like saying OS Research is about hacking Linux.</p>
+
+<p>I agree that MapReduce is a tried and tested programming model, and a great "screwdriver". However, what is happening right now is that the research community is getting excited about what is an excellent piece of *engineering*. Soon, the research communities (OSDI, etc), are going start spending millions of man hours researching "MapMergeReduce", and "Data Structures for Map Cache Locality", <b>completely forgetting</b> that Parallel Joins and Index structures  already exist, you just have to look outside of your OSDI journals and read SIGMOD papers from 20 years ago. </p>
+
+<p>So it's basically a plea from one research community to another: Please look at our work; we think you'll reinvent the wheel for the next 5 years if you don't. </p>
+
+<p>The original blog has nothing to do with engineering. Google's MapReduce is an excellent implementation. I am yet to see an open source equivalent that can scale beyond 1000 nodes and still be stable. (And let's not even talk about how efficient Hadoop is). Hence, unless Google releases something tangible, any "research" in MapReduce will have NO impact on the world, other than</p>
+
+<p>a) proving that a 20 year old paradigm still holds<br>
+b) they have some magic sauce that you will never get hold of</p>
+
+<p>Given these points, how does Google's MapReduce, and the publicity it gets, benefit the budding computer scientist, engineer, or blogger? It doesn't. You're better off using PBS for computing, you'll be more efficient. This is why the DB community is asking: "if you want to <i>innovate</i> beyond mapreduce, which you should, take a look at our work, it's useful."</p>
+
+<p>All of this being said, we should look at who's getting this right. The PIG project at yahoo creates a declarative layer OVER Hadoop. Not only do you benefit from the M/R paradigm, you also have a compiler that generates tweakable M/R routines from terse, manageable lines of simple declarative code. This can potentially save thousands of hours of coding time, where you were writing m/r after m/r, doing the same old sort, merge, group, filter operations. This is what people would want, once MapReduce is done. Have the OS folks thought of this? no. the DB people did, because they've done similar stuff before. That's the basic point.</p>
+
+<p>[disclosure: unlike the author, i have written some goog m/r code.]</p>
+
+<p class="commentFooter">Posted by: Diablo  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721121">January 22, 2008  2:41 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721128"></a>
+<div class="comment evencomment " id="comment-721128">
+<div class="commentContent">
+
+<span class="commentNumber">12</span>
+
+<p>I have to agree, it was a stupid article, and MapReduce really is a very old technique. I used it already in 70's, yes, there were system with multiple cpus and attached I/O already then so threading is nothing new or difficult. Most concrete example from that time is a monthly report and microfilm system which, designed by our database people, took 31 days to run ( if I would have let it but not every month has 31 days! ) It took me two days to rebuild the whole system to use MapReduce style processing - run time less than 6 hours after changes. The other benefits were once I had the skeleton we were able to build any reporting data just by parameterizing the run instead having one system to run one report. By the way, the system is still in use today. Unfortunately this is something which is not in most CS/DBA education. Even last summer I had to evaluate a (new) system which had the same problem in smaller scale, some terminal sessions starting slowly because of some indexed access. After switching it to MapReduce style the start time did go from 120-160 seconds to round 2 seconds. Many more cases over years, it actually is not too difficult to build a model which shows the benefits but once you start talking about seek times, latencies, channel / controller / memory congestions   with people who only know how to write some vendor SQL, you get empty stares and arguments, it can be very frustrating. The art of performance has been forgotten too long.  </p>
+
+<p class="commentFooter">Posted by: Tuomo Stauffer  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721128">January 22, 2008  2:48 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721152"></a>
+<div class="comment oddcomment " id="comment-721152">
+<div class="commentContent">
+
+<span class="commentNumber">13</span>
+
+<p>A question from a non-computer scientist who is nonetheless interested in this discussion.  Isn't Google a distributed collection of massive databases?  In my mind's eye I imagined the data that originates from applications like Gmail, Docs etc to be somehow stored in a databases - or am I missing the point, and this MapReduce is primarily about search only?</p>
+
+<p class="commentFooter">Posted by: Grant Sundin  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721152">January 22, 2008  3:09 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721169"></a>
+<div class="comment evencomment " id="comment-721169">
+<div class="commentContent">
+
+<span class="commentNumber">14</span>
+
+<p>gwenhwyfaer:</p>
+
+<p>No, recursive joins (which ARE supported in SQL with vendor extensions - see Oracle's 'connect by' extension for an example) are not very efficient, they can't use indexes well enough.</p>
+
+<p>There are tricks to accelerate tree structures, but they require certain trade-offs.</p>
+
+<p>Network (object) database are much better for hierarchical structures, but they suck at ad-hoc relational queries.</p>
+
+<p class="commentFooter">Posted by: Alex Besogonov  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721169">January 22, 2008  3:24 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721170"></a>
+<div class="comment oddcomment authorComment" id="comment-721170">
+<div class="commentContent">
+
+<span class="commentNumber">15</span>
+
+<p>Grant:</p>
+
+<p>I don't work on search or docs, so I don't actually know specifically how they're implemented. But even if I didn't, I wouldn't be able to comment on it. </p>
+
+<p>From my own point of view, I don't see MapReduce as a search thing. I see it as a processing thing. That is, the point of MapReduce isn't to be able to, say, get a fast result when you type something into a search box. It's to do something that takes a long time - something that involves a lot of computation.</p>
+
+<p>One of the things that I spent a lot of time on in grad school is network latency. Spreading something over a network has a significant cost in communication time. It's not worth doing something on more than one machine unless it's going to take a long time, because otherwise, the time spent just getting stuff onto the wire to send it to other machines will outweigh the cost of just doing the computation.</p>
+
+<p>I haven't checked the latencies recently. But as of about five years ago, the latency was high enough that you could send something close to 1/4 of a megabyte of data effectively for free - the cost of just getting something onto the network meant that there was no measurable difference between sending 300 bytes and 300,000 bytes. In terms of computing cycles, you're talking about <em>millions</em> of cycles in the time it takes to send a message and recieve a response. So unless you have something that takes millions of cycles to compute, sending it to another machine will slow you down, not speed you up.</p>
+
+<p>So while I don't know, I'd be shocked if MapReduce had any connection with something like Google Docs. I just can't imagine that there's any task in Docs that needs enough computation to justify the immense cost of communicating.<br>
+</p>
+
+<p class="commentFooter">Posted by: Mark C. Chu-Carroll  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721170">January 22, 2008  3:25 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721226"></a>
+<div class="comment evencomment " id="comment-721226">
+<div class="commentContent">
+
+<span class="commentNumber">16</span>
+
+<p>As a computer programmer, there's a couple of things I've noticed:<br>
+</p><ol><li>People who do research like projects that have good reasons for not using relational databases (like above) will still insist on not using relational databases when they would be useful. (especially when the same data needs to be accessed outside their black box)</li><li>People who always have used relational databases question things like MapReduce because the trust so totally in SQL query optimization, prefetching, indexing and caching and think...WOW that would be hard to beat with any other data store, and I certainty wouldn't be bright enough to write it. Thus people who've adopted relational databases want to use them even when they are not the best.</li><li>As you've said above, it really a matter of picking the right tool for the right job which is always easier said than done (see 1. and 2.).</li><ol></ol></ol><p></p>
+
+<p class="commentFooter">Posted by: kailden  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721226">January 22, 2008  4:07 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721255"></a>
+<div class="comment oddcomment authorComment" id="comment-721255">
+<div class="commentContent">
+
+<span class="commentNumber">17</span>
+
+<p>Kailden:</p>
+
+<p>You're right.</p>
+
+<p>One of my own pet frustrations is how many people use programming languages that are incredibly awful fits for the program they're writing. But it's what they know, so they stick with it, even though it's a rotten tool. Human inertia is always a problem.</p>
+
+<p class="commentFooter">Posted by: Mark C. Chu-Carroll  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721255">January 22, 2008  4:25 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721454"></a>
+<div class="comment evencomment " id="comment-721454">
+<div class="commentContent">
+
+<span class="commentNumber">18</span>
+
+<p>To me, the entire article seemed pointless. It was just like saying:</p>
+
+<p>"This apple is awfully bad and not tasty at all. Why is it a bad apple? Well, because it's not an orange. Let us explain: see, this apple clearly lacks the orange colour so characteristic of oranges. The skin is totally too thin, and after peeling it off, you can't really split of with your fingers. This points prove that this apple is not an orange, therefore it must be a bad apple."</p>
+
+<p>Parallel/distributed computation and databases are totally different things - even if databases can be run on distributed systems. How can you even try to criticize one for not being the other?</p>
+
+<p class="commentFooter">Posted by: krajzeg  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721454">January 22, 2008  8:00 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721494"></a>
+<div class="comment oddcomment " id="comment-721494">
+<div class="commentContent">
+
+<span class="commentNumber">19</span>
+
+<p>Mark, the "wrong tool for the job" is in a way a parallel to the comment you had above on networked computing not being worth it unless you outweigh the cost of communication: unless the problem is large and complex enough (and we actually realize it), learning a new language, or even switch from the language you've been using lately to one you're not quite current in, may simply take more effort and time than just using the one you're up to speed in even if it takes a little longer.</p>
+
+<p><br>
+</p>
+
+<p class="commentFooter">Posted by: <a title="http://janneinosaka.blogspot.com" href="http://janneinosaka.blogspot.com/" rel="nofollow">Janne</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721494">January 22, 2008  8:48 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721511"></a>
+<div class="comment evencomment " id="comment-721511">
+<div class="commentContent">
+
+<span class="commentNumber">20</span>
+
+<p>Another non-programmer IT person (who went to CMU and used Andrew in the 80's) with a question: What say you about OS-level parallel processing support like Xgrid? I've got 2500 machines on the network with the capability, but we honestly don't have that many BIG computing tasks to handle - but all I've got to do is flip a switch on the client side and it's available to any Xgrid serving machine we might have. Seems attractive, I'd think, being supported by the OS.</p>
+
+<p>Also, is it based on M/R, or is it completely different?</p>
+
+<p class="commentFooter">Posted by: Alex  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721511">January 22, 2008  9:07 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721540"></a>
+<div class="comment oddcomment " id="comment-721540">
+<div class="commentContent">
+
+<span class="commentNumber">21</span>
+
+<p>grahamsw wrote: <br>
+"and my favorite version is... when all you have is a hammer everything looks like a baby seal"</p>
+
+<p>Mine is "when all you have is a nailgun, every problem looks like a messiah."</p>
+
+<p>Nice article BTW...</p>
+
+<p class="commentFooter">Posted by: bigiain  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721540">January 22, 2008  9:52 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721548"></a>
+<div class="comment evencomment " id="comment-721548">
+<div class="commentContent">
+
+<span class="commentNumber">22</span>
+
+<p>While I don't understand the technical aspects here as I'm not in computer programming, this analysis is beautifully written and brings to my mind the frustrating meetings I've attended where people objected to things because the proposed changes didn't fit their personal views of the world/work habits/power agendas, as opposed to whether the proposed changes would really provide benefits to those of us affectged by the change.  </p>
+
+<p class="commentFooter">Posted by: Texas Reader  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721548">January 22, 2008 10:01 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721612"></a>
+<div class="comment oddcomment " id="comment-721612">
+<div class="commentContent">
+
+<span class="commentNumber">23</span>
+
+<p>What I find particularly humorous about the article's point No. 2 "It doesn't use indexes!" is that the original mission of MapReduce was to...create indexes, specifically, an enormous index of the web.</p>
+
+<p>My impression is that MapReduce is used today to create the very sort of indexes for fast searching that the authors insist MapReduce should be using.  Do they think enormous data structures organizing the internet are just delivered in the night by the index fairy or something?</p>
+
+<p class="commentFooter">Posted by: Matthew L.  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721612">January 23, 2008 12:16 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721852"></a>
+<div class="comment evencomment " id="comment-721852">
+<div class="commentContent">
+
+<span class="commentNumber">24</span>
+
+<p>I'm wondering if there's talking past each other going on between the RDB people and the M/R people.</p>
+
+<p>You said that "RDBs don't handle non-tabular data well' but you also said that "The result of the map computation is a list of key/value pairs." - isn't that a table?!</p>
+
+<p>Is there an argument to be made that processing the Reduce portion of the endeavor might be better handled by a database after the Map portion is completed, or doesn't that make any sense?</p>
+
+<p class="commentFooter">Posted by: Ian  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721852">January 23, 2008  9:29 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c721982"></a>
+<div class="comment oddcomment " id="comment-721982">
+<div class="commentContent">
+
+<span class="commentNumber">25</span>
+
+<p>The other amusing thing about the article was its claim that M/R would not scale well. Umm, isn't Google already proving otherwise? It's like staring at the Earth from the surface of the moon and asserting it isn't round.</p>
+
+<p class="commentFooter">Posted by: Joe  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-721982">January 23, 2008 11:33 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c722027"></a>
+<div class="comment evencomment " id="comment-722027">
+<div class="commentContent">
+
+<span class="commentNumber">26</span>
+
+<p>Some semi-offtopic comments:</p>
+
+<p>The n_{1/2} (the byte size in a point-to-point transfer where the bandwidth reaches half the realized maximum) is around 1-2kB for Infiniband and around 8-10kB IIRC for GigE. So, the latencies have come way down. (The latter means, for example, that it takes 160 microseconds to send 10KB to another computer. Relativley long by some standards since a single 2.4GHz core can do at least 300K operations on that data during that time. But since Google (according to the standard MapReduce paper) is using the filesystem for the push part of it's data transfer (the result being, presumably much smaller) of 64KB blocks, I don't think it's the latency that Google's folks are worried about. There must be enough work to make it worth distributing.)</p>
+
+<p>Thanks for mentioning the generally non-scientific nature of MapReduce's current uses. It's not generally applicable for the sort of tightly-coupled algorithms done in, say, large-scale fluid dynamics simulations. Though, someone out there has done a matrix-matrix multiply in MapReduce. They don't give the performance of the underlying serial code, so it's hard to evaluate the algorithm in comparison to popular threaded implementations like GotoBLAS.</p>
+
+<p>It should be pointed out that for Google's well-touted application (re-indexing all of their web data) MapReduce's scheduler relies on the distributed redundancy in GoogleFS to ensure that the data to be processed is on the machine that will process it when it needs it and to handle any failure modes on that machine (including poor performance). I.e., there can be more to using MapReduce than just the gains enabled by the algorithm itself.</p>
+
+<p>Finally, Marc, though you can be forgiven since you're a functional-language geek, I hoped you'd have pointed out that Google's MapReduce implementation isn't just some "library" but, in fact, a C++ class library! :) <br>
+</p>
+
+<p class="commentFooter">Posted by: billb  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-722027">January 23, 2008 12:06 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c722035"></a>
+<div class="comment oddcomment authorComment" id="comment-722035">
+<div class="commentContent">
+
+<span class="commentNumber">27</span>
+
+<p>Billb:</p>
+
+<p>I didn't say anything about how MapReduce is implemented. As I mentioned, I don't use MapReduce in my work, so I'm not too familiar with the details. I *think* there's more than one implementation, with different performance related tradeoffs. The original M/R, according to the published paper, is in C++. I would guess that the others are in either C++ or Java, but I don't know for sure.</p>
+
+<p class="commentFooter">Posted by: Mark C. Chu-Carroll  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-722035">January 23, 2008 12:11 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c722654"></a>
+<div class="comment evencomment " id="comment-722654">
+<div class="commentContent">
+
+<span class="commentNumber">28</span>
+
+<p>I'm an old db guy and a tech programmer and I'm confused. Map/reduce sounds very similar to parallel index creation that Oracle and probably others has had for years. I remember investigating index creation using multiple CPU's about 10 - 15 years ago on a new fangled 64 CPU n-cube, nowadays you build an index by saying parallel = n and tada it does it. </p>
+
+<p>If you don't have a multi processor box with an expensive  database installed or don't want to, then map-reduce sounds like a nice way to build indexes. </p>
+
+<p>When I started Mainframes were on the way out and mini's were all the rage, many of the mini folk were rediscovering techniques the mainframe guys had used for years. Now the new parallel PC people are saying "look at this, how cool", and the mini people are saying we've been doing that for years..and so on..<br>
+</p>
+
+<p class="commentFooter">Posted by: Davo  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-722654">January 23, 2008 10:07 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c723043"></a>
+<div class="comment oddcomment " id="comment-723043">
+<div class="commentContent">
+
+<span class="commentNumber">29</span>
+
+<p>Davo:  That's a common thing to happen in computing.  When I was in grad school for computer science (early 80s), I recall someone who'd been to a computer science conference and decided to drop in on a PC conference next door.  He came out of it saying "My god!  These people are rediscovering every mistake we ever made!"</p>
+
+<p class="commentFooter">Posted by: David  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-723043">January 24, 2008 10:39 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c723088"></a>
+<div class="comment evencomment authorComment" id="comment-723088">
+<div class="commentContent">
+
+<span class="commentNumber">30</span>
+
+<p>Davo:</p>
+
+<p>If all that MapReduce did was create indices for a table in a database, you'd be right. But that's not what it does - that's the point. Look at the example I gave of generating the nebulabrot. How can you reduce that to building a database index?</p>
+
+<p>MapReduce isn't a database system. It's not a storage system, or an indexing system, or a query system. It's an <em>execution strategy</em>, for distributing a complex computation among a collection of machines. You can <em>use</em> MapReduce as the implementation strategy for index generation for a database. You can use a database as a storage system for managing data for a M/R computation. They're different things.</p>
+
+<p>The fundamental idea of MapReduce is to take advantage of the computational capability of cheap computers, instead of getting expensive multiprocessor machines. </p>
+
+<p>As an example: if I were still in grad school, my advisor would be able to buy 20 cheap dual-core PCs and put them in a rack for $10,000 or so, and I could use them as a cluster with 40 processors. How much would it cost me to buy a 40 processor parallel system? With M/R, I could easily write parallel programs for running on that cluster of 20 machines. Are there any database systems that I can buy that can distribute a computation among those 20 machines? Are there even any databases that I can buy that will distribute index generation among those 20? </p>
+
+<p>The point is, M/R and RDBMS are totally disjoint things. </p>
+
+<p class="commentFooter">Posted by: Mark C. Chu-Carroll  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-723088">January 24, 2008 11:11 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c724145"></a>
+<div class="comment oddcomment " id="comment-724145">
+<div class="commentContent">
+
+<span class="commentNumber">31</span>
+
+<p><i>So it's basically a plea from one research community to another: Please look at our work; we think you'll reinvent the wheel for the next 5 years if you don't.</i><br>
+Diablo, that's one of the better comments I've seen on this topic, on this blog, and others, where you are actually cutting through the hype and distilling this for the masses.  This excitement reminds me of the SOAP/Web Services hype somewhat, with the old guard, shaking their heads, saying "um, what about transactions?  security?", the Young Turks responding "What are you talking about, Pops??  We've got XML, it's a whole new world!  See ya!"<br>
+</p><p><br>
+</p><p></p>
+
+<p class="commentFooter">Posted by: Robert Sullivan  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-724145">January 25, 2008 12:20 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c724494"></a>
+<div class="comment evencomment " id="comment-724494">
+<div class="commentContent">
+
+<span class="commentNumber">32</span>
+
+<p>Thank you for the response to the other article. It helps me understand more about the benefits and drawbacks to MapReduce.</p>
+
+<p>I'll bet this is something that can be used for quicker rendering of complex 3D images (movies). And with things like Amazon's elastic compute cloud, you've already got an infinite (kind of) number of processors for doing all that parallel work.<br>
+</p>
+
+<p class="commentFooter">Posted by: <a title="http://blog.bernardfarrell.com/" href="http://blog.bernardfarrell.com/" rel="nofollow">Bernard Farrell</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-724494">January 25, 2008 10:42 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c724725"></a>
+<div class="comment oddcomment " id="comment-724725">
+<div class="commentContent">
+
+<span class="commentNumber">33</span>
+
+<p>The database "guru" that my company hired insisted that SQL Server would be able to do <i>game battle simulations</i> faster than our native C code.  Yes, some RDB guys really drink their own kool aid!</p>
+
+<p>Great article, thanks. <br>
+</p>
+
+<p class="commentFooter">Posted by: <a title="http://wanderingstan.com/" href="http://wanderingstan.com/" rel="nofollow">Stan James</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-724725">January 25, 2008 12:24 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c724866"></a>
+<div class="comment evencomment " id="comment-724866">
+<div class="commentContent">
+
+<span class="commentNumber">34</span>
+
+<p>Nice article, and I agree wholeheartedly. I didn't read the original article as a plea at all, it read more like an angry nonsensical rant. Sure relational databases are wonderful, but they aren't the right solution for heaps of chaotic data. M/R is sooo soo much more than a query technology.</p>
+
+<p class="commentFooter">Posted by: <a title="http://www.makefile.com/2008/1/19/mapreduce-sucks" href="http://www.makefile.com/2008/1/19/mapreduce-sucks" rel="nofollow">Scott</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-724866">January 25, 2008  1:40 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c724906"></a>
+<div class="comment oddcomment " id="comment-724906">
+<div class="commentContent">
+
+<span class="commentNumber">35</span>
+
+<p>Mark:<br>
+Someone proposed to me that if you replaced every instance of "MapReduce" with "BigTable" in that article it almost made sense.  Can you comment on whether their criticisms might apply to BigTable?</p>
+
+<p class="commentFooter">Posted by: Frank  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-724906">January 25, 2008  1:56 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c726252"></a>
+<div class="comment evencomment " id="comment-726252">
+<div class="commentContent">
+
+<span class="commentNumber">36</span>
+
+<p>David:<br>
+lol</p>
+
+<p>Mark:<br>
+Have a look here <a href="http://en.wikipedia.org/wiki/Merge_sort" rel="nofollow">http://en.wikipedia.org/wiki/Merge_sort</a> turn the diagram on the right sideways and it looks very much like the map/reduce algo. With merge sort processes are forked and the merge is performed. The same scheme is used many times in data warehouses (where I'm from), multiple processes split the data set change it and merge it back together, so the concept of map/reduce has been around along time.</p>
+
+<p>What the map/reduce seems to do which is new (after a very brief read) is, as you say, provide the plumbing for looking after the processes on disparate machines, this has been done before in rdbms's and imho a bit more elegantly but as you say, to use map reduce you don't need an rdbms.</p>
+
+<p>So imho it is a nice implementation of a system combining a couple of old concepts, is it revolutionary? well I s'pose that's a matter of semantics, if you come from java/web land then perhaps it's new, if you come from big database land it's a nice implementation but has some flaws.</p>
+
+<p>There is one thing I don't see in the paper that I probably missed and that is once you transform your data what do you do with it? How do you look it up without some sort of indexing system, be it rdbms or flat file?</p>
+
+<p>cheers,<br>
+Davo</p>
+
+<p class="commentFooter">Posted by: Davo  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-726252">January 26, 2008  8:13 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c728360"></a>
+<div class="comment oddcomment " id="comment-728360">
+<div class="commentContent">
+
+<span class="commentNumber">37</span>
+
+<p>Isn't there a couple of dynamics that are missing from the discussion here that explain the chasm between DB and M/R?  Good enough and economics.  I had some Japanese researchers come to me with surprise about the "fault-acceptance" computing of BigTable.  It blew their minds that faults were expected and designed into the system.  But it makes sense when you realize that there is no way to evaluate the quality of the results (who will notice entry #6 missing? nobody.).  So maybe M/R does fine in the world of "good enough" which makes sense when the premier implementation is based off of a free service model.  "Hey, what do want for advertising supported?"  Second, M/R is a response to the significant economics required for enterprise class DB.  M/R is (as you put it in your example) something that came out of grad school's by engineers smart enough to understand that the cost of the x86 platform makes a lot of sense if you can parallelize the compute.  If mainframe compute pricing falls, then guess what, the next great compute system will be a big unified box.  Regardless, as grads and open source programmers realize that they can hook up 20 x86 boxes from Fry's for a lot cheaper than a big ole honkin dbase, then guess which system they'll use?</p>
+
+<p class="commentFooter">Posted by: Thomas  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-728360">January 28, 2008  4:57 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c731087"></a>
+<div class="comment evencomment " id="comment-731087">
+<div class="commentContent">
+
+<span class="commentNumber">38</span>
+
+<p>There are commercial RDBs that allow index generation over 20 machines.  They aren't cheap and it is rare that a company would need such a system for their standard business processes.  (Where you would use a RDB system.)  That doesn't mean such systems are a replacement for mapreduce; different tools for a different set of problems.</p>
+
+<p class="commentFooter">Posted by: Jim  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-731087">January 30, 2008  5:04 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c734539"></a>
+<div class="comment oddcomment " id="comment-734539">
+<div class="commentContent">
+
+<span class="commentNumber">39</span>
+
+<p>Hmm. On the other end of the spectrum there are a lot more situations where RDBs are part of the problem instead of of the solution. If it fits in ram on a single machine it should probably not be in a RDB. A transaction log and a memory dump is a lot less code and allows developers to stay at the OO side of things. Smalltalk is somewhat more powerful than SQL for ad-hoc querying and handles hierarchical data just fine. </p>
+
+<p class="commentFooter">Posted by: Stephan Eggermont  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-734539">February  2, 2008  7:08 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c735080"></a>
+<div class="comment evencomment " id="comment-735080">
+<div class="commentContent">
+
+<span class="commentNumber">40</span>
+
+<p>As an RDB guy, I find that this "rebuttal" of the M/R criticisms by DeWitt and Stonebreaker really misses most of the points of the original article.  It's not really so much that RDB folks have a hammer that they want to use for every problem, but rather that those who have to deploy extremely large data archives do not usually have the luxury of choosing one technology (M/R) for some problems and another (RDB) for others.  <br>
+</p><p><br>
+As a general purpose tool for data intensive applications, it is hard to beat RDBs, and it's perfectly valid to say, "if you want to use M/R instead, you better have really good reasons for doing so, and be warned that you will be giving up all these advantages of RDBs".  Having had experience for over 10 years with deploying a multi-Terabyte scientific archive, I can assure you that there are <b>tons</b> of other considerations beyond just parallel query performance.  The advantages that DeWitt &amp; Stonebreaker list are very important factors in choosing one technology over the other.  <br>
+</p><p><br>
+So while M/R may be fantastic at handling a certain kind of computational problem, RDBs remain excellent overall solutions for very large scientific data archives, and those considering M/R seriously would serve themselves well by remembering that. </p><p></p><p></p>
+
+<p class="commentFooter">Posted by: Art  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-735080">February  2, 2008  6:22 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2213985"></a>
+<div class="comment oddcomment " id="comment-2213985">
+<div class="commentContent">
+
+<span class="commentNumber">41</span>
+
+<p>Has anyone else noticed the Database Column article has disappeared?<br>
+</p>
+
+<p class="commentFooter">Posted by: Chris Gonnerman  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2213985">January 19, 2010  3:07 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2356436"></a>
+<div class="comment evencomment " id="comment-2356436">
+<div class="commentContent">
+
+<span class="commentNumber">42</span>
+
+<p>I have not done much research on parallel programming. However, still a question? Doesn't multi-core processors do the same thing as MAPREDUCE? ..I have worked with some 32 core processors. Or does MAPReduce will result in more faster computation!</p>
+
+<p class="commentFooter">Posted by: <a title="http://www.ece.iit.edu/~dshila" href="http://www.ece.iit.edu/~dshila" rel="nofollow">Devu</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2356436">March 16, 2010 10:31 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2370879"></a>
+<div class="comment oddcomment " id="comment-2370879">
+<div class="commentContent">
+
+<span class="commentNumber">43</span>
+
+<p>Isn't there a couple of dynamics that are missing from the discussion here that explain the chasm between DB and M/R? Good enough and economics. I had some Japanese researchers come to me with surprise about the "fault-acceptance" computing of BigTable. It blew their minds that faults were expected and designed into the system. But it makes sense when you realize that there is no way to evaluate the quality of the results (who will notice entry #6 missing? nobody.). So maybe M/R does fine in the world of "good enough" which makes sense when the premier implementation is based off of a free service model. "Hey, what do want for advertising supported?" Second, M/R is a response to the significant economics required for enterprise class DB. M/R is (as you put it in your example) something that came out of grad school's by engineers smart enough to understand that the cost of the x86 platform makes a lot of sense if you can parallelize the compute. If mainframe compute pricing falls, then guess what, the next great compute system will be a big unified box. Regardless, as grads and open source programmers realize that they can hook up 20 x86 boxes from Fry's for a lot cheaper than a big ole honkin dbase, then guess which system they'll use?</p>
+
+<p class="commentFooter">Posted by: <a title="http://so4mp3.blogspot.com" href="http://so4mp3.blogspot.com/" rel="nofollow">so4mp3</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2370879">March 23, 2010  4:15 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2370885"></a>
+<div class="comment evencomment " id="comment-2370885">
+<div class="commentContent">
+
+<span class="commentNumber">44</span>
+
+<p>So it's basically a plea from one research community to another: Please look at our work; we think you'll reinvent the wheel for the next 5 years if you don't.<br>
+Diablo, that's one of the better comments I've seen on this topic, on this blog, and others, where you are actually cutting through the hype and distilling this for the masses. This excitement reminds me of the SOAP/Web Services hype somewhat, with the old guard, shaking their heads, saying "um, what about transactions? security?", the Young Turks responding "What are you talking about, Pops?? We've got XML, it's a whole new world! See ya!"<br>
+</p>
+
+<p class="commentFooter">Posted by: <a title="http://so4pro.blogspot.com" href="http://so4pro.blogspot.com/" rel="nofollow">so4pro</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2370885">March 23, 2010  4:18 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2666925"></a>
+<div class="comment oddcomment " id="comment-2666925">
+<div class="commentContent">
+
+<span class="commentNumber">45</span>
+
+<p>This is appears to be a reproduction of the original article: <br>
+<a href="http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/" rel="nofollow">http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/</a></p>
+
+<p class="commentFooter">Posted by: hyperslug  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2666925">July 18, 2010 12:32 PM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2671221"></a>
+<div class="comment evencomment " id="comment-2671221">
+<div class="commentContent">
+
+<span class="commentNumber">46</span>
+
+<p>hyperslug, thanks for the link</p>
+
+<p class="commentFooter">Posted by: Anonymous  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2671221">July 20, 2010  6:43 AM</a></p>
+
+</div>
+</div>
+
+
+<a id="c2673695"></a>
+<div class="comment oddcomment " id="comment-2673695">
+<div class="commentContent">
+
+<span class="commentNumber">47</span>
+
+<p>I have not done much research on parallel programming. However, still a question? Doesn't multi-core processors do the same thing as MAPREDUCE? ..I have worked with some 32 core processors. Or does MAPReduce will result in more faster computation!</p>
+
+<p class="commentFooter">Posted by: <a title="http://www.orjinaltutuneson.gen.tr" href="http://www.orjinaltutuneson.gen.tr/" rel="nofollow">tütüne son</a>  | <a href="http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php#comment-2673695">July 21, 2010  5:40 AM</a></p>
+
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+	
+</div><!--- close blogMain ---->
+
+</div>
+
+<div id="rightCol">
+<div id="rightColInner">
+
+	<div id="greenCol">
+	
+		<h2><a href="http://scienceblogs.com/">ScienceBlogs</a></h2>
+		
+		<h3>Search ScienceBlogs:</h3>
+		
+		<form action="http://www.google.com/cse" id="searchbox_017254414699180528062:uyrcvn__yd0" class="searchbox">
+		<input type="hidden" name="cx" value="017254414699180528062:uyrcvn__yd0">
+		<input type="text" name="q" class="text">
+		<input type="image" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/button_search.gif" value="search" alt="search" name="sa">
+		</form>
+		
+		<h3>Go to:</h3>
+		<p class="dropdown"><select onchange="location.href=this.options[this.selectedIndex].value + &#39;?utm_source=bloglist&amp;utm_medium=dropdown&#39;;">
+<option>Choose a blog...</option>
+
+
+
+
+<option value="http://scienceblogs.com/worldsciencefestival/">2010 World Science Festival Blog</option>
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/illconsidered/">A Few Things Ill Considered</option>
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/aardvarchaeology/">Aardvarchaeology</option>
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/aetiology/">Aetiology</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/art_of_science_learning/">Art of Science Learning</option>
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/bioephemera/">bioephemera</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com.br/brazillion/">Brazillion Thoughts</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/brookhaven/">Brookhaven Bits &amp; Bytes</option>
+
+
+
+<option value="http://scienceblogs.com/builtonfacts/">Built on Facts</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/casaubonsbook/">Casaubon's Book</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/classm/">Class M</option>
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/commonknowledge/">Common Knowledge</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/confessions/">Confessions of a Science Librarian</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/corpuscallosum/">The Corpus Callosum</option>
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/deanscorner/">Dean's Corner</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/deltoid/">Deltoid</option>
+
+
+
+<option value="http://scienceblogs.com/denialism/">denialism blog</option>
+
+
+
+<option value="http://scienceblogs.com/developingintelligence/">Developing Intelligence</option>
+
+
+
+<option value="http://scienceblogs.com/digitalbio/">Discovering Biology in a Digital World</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/dispatches/">Dispatches from the Culture Wars</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/drugmonkey/">DrugMonkey</option>
+
+
+
+<option value="http://scienceblogs.com/catdynamics/">Dynamics of Cats</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/erv/">erv</option>
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/evolution/">Evolution for Everyone</option>
+
+
+
+<option value="http://scienceblogs.com/evolutionblog/">EvolutionBlog</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/gregladen/">Greg Laden's Blog</option>
+
+
+
+<option value="http://scienceblogs.com/guiltyplanet/">Guilty Planet</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/SETI/">Life at the SETI Institute</option>
+
+
+
+<option value="http://scienceblogs.com/lifelines/">Life Lines</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/mikethemadbiologist/">Mike the Mad Biologist</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/neurophilosophy/">Neurophilosophy</option>
+
+
+
+<option value="http://scienceblogs.com/neurotopia/">Neurotopia</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/observations/">Observations of a Nerd</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/omnibrain/">Omni Brain</option>
+
+
+
+<option value="http://scienceblogs.com/isisthescientist/">On Becoming a Domestic and Laboratory Goddess</option>
+
+
+
+<option value="http://scienceblogs.com/oscillator/">Oscillator</option>
+
+
+
+<option value="http://scienceblogs.com/seed/">Page 3.14</option>
+
+
+
+<option value="http://scienceblogs.com/pharyngula/">Pharyngula</option>
+
+
+
+<option value="http://scienceblogs.com/photosynthesis/">Photo Synthesis</option>
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/thepumphandle/">The Pump Handle</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/insolence/">Respectful Insolence</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/scienceisculture/">Science is Culture</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/bookclub/">The ScienceBlogs Book Club</option>
+
+
+
+<option value="http://scienceblogs.com/sb/">ScienceBlogs HQ</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/sciencepunk/">SciencePunk</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/scientificactivist/">The Scientific Activist</option>
+
+
+
+<option value="http://scienceblogs.com/thescian/">The Scientific Indian</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/startswithabang/">Starts With A Bang</option>
+
+
+
+<option value="http://scienceblogs.com/stoat/">Stoat</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/tetrapodzoology/">Tetrapod Zoology</option>
+
+
+
+<option value="http://scienceblogs.com/thoughtfulanimal/">The Thoughtful Animal</option>
+
+
+
+<option value="http://scienceblogs.com/tfk/">Thoughts from Kansas</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/tomorrowstable/">Tomorrow's Table</option>
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/principles/">Uncertain Principles</option>
+
+
+
+<option value="http://scienceblogs.com/universe/">Universe</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/usasciencefestival/">USA Science and Engineering Festival: The Blog</option>
+
+
+
+
+
+
+
+
+
+
+
+<option value="http://scienceblogs.com/webeasties/">We Beasties</option>
+
+
+
+<option value="http://scienceblogs.com/weizmann/">The Weizmann Wave</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/worldsfair/">The World's Fair</option>
+
+
+
+
+
+<option value="http://scienceblogs.com/zooillogix/">Zooillogix</option>
+
+
+</select></p>
+		
+		<div id="sliders">
+		
+			<h3 id="channelsLink">Channels</h3>
+			<ul id="channelsList" class="topList">
+				<li><a href="http://scienceblogs.com/channel/24-hours/">Last 24 Hours</a></li>
+				<li><a href="http://scienceblogs.com/channel/life-science/">Life Science</a></li>
+				<li><a href="http://scienceblogs.com/channel/physical-science/">Physical Science</a></li>
+				<li><a href="http://scienceblogs.com/channel/environment/">Environment</a></li>
+				<li><a href="http://scienceblogs.com/channel/humanities/">Humanities &amp; Social Science</a></li>
+				<li><a href="http://scienceblogs.com/channel/education/">Education</a></li>
+				<li><a href="http://scienceblogs.com/channel/politics/">Politics</a></li>
+				<li><a href="http://scienceblogs.com/channel/medicine/">Medicine &amp; Health</a></li>
+				<li><a href="http://scienceblogs.com/channel/brain-and-behavior/">Brain &amp; Behavior</a></li>
+				<li><a href="http://scienceblogs.com/channel/technology/">Technology</a></li>
+				<li><a href="http://scienceblogs.com/channel/information-science/">Information Science</a></li>
+				<li><a href="http://scienceblogs.com/channel/jobs/">Jobs</a></li>
+			</ul>
+			
+			<h3 id="rssLink">RSS Feeds</h3>
+			<ul id="rssList" class="topList">
+				<li><a href="http://scienceblogs.com/sample/editors-feed.xml">ScienceBlogs Select</a></li>
+				<li><a href="http://scienceblogs.com/sample/combined.xml">The Combined Feed</a></li>
+				<li><a href="http://scienceblogs.com/sample/peer-review.xml">Peer Review on Sb</a></li>
+				<li><a href="http://scienceblogs.com/sample/sb-news.xml">News-Related Posts</a></li>
+				<li><a href="http://scienceblogs.com/channel/rss.php">All Feeds</a></li>
+			</ul>
+			
+			<h3 id="moreLink">More ScienceBlogs</h3>
+			<ul id="moreList" class="topList">
+				<li><a href="http://twitter.com/scienceblogs/"><span class="new">New!</span> Sb on Twitter</a></li>
+				<li><a href="http://scienceblogs.com/channel/email.php">Email Alerts</a></li>
+				<li><a href="http://scienceblogs.com/channel/newsletter/subscribe.php">Weekly Newsletter</a></li>
+				<li><a href="http://scienceblogs.com/shop/">The ScienceBlogs Shop</a></li>
+				<li><a href="http://scienceblogs.com/channel/comments/">The Latest Comments</a></li>
+			</ul>
+		
+		</div>
+
+		<!-- div style="margin: 0 0 24px 6px; text-align: center;" -->
+		<div style="margin:0; text-align:center;">
+		<iframe src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/likebox.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:190px; height:200px;" allowtransparency="true"></iframe>
+		<!-- iframe src="http://www.facebook.com/plugins/likebox.php?id=256321580087&amp;width=160&amp;connections=0&amp;stream=false&amp;header=true&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:190px; height:62px;" allowTransparency="true"></iframe -->
+		</div>
+		
+		<div class="skyscraper">
+		Advertisement
+		<div class="adHolder">
+		<!-- ad: skyscraper a -->
+
+<!-- technology --><!-- ad code: generated by dart -->
+ 
+ 
+<script language="JavaScript1.1"> 
+ 
+	var bust;
+	if (typeof bust == 'undefined') {
+		bust = Math.floor(1000000*Math.random());
+	}
+ 
+	if ((!document.images && navigator.userAgent.indexOf('Mozilla/2.') >= 0) || navigator.userAgent.indexOf("WebTV")>= 0) {
+		document.write('<a  href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'">');
+		document.write('<img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'" border="0" height="600" width="160"></a>');
+	} else {
+		document.write('<scr' + 'ipt language="JavaScript1.1" SRC="http://ad.doubleclick.net/adj/ng.scienceblogs/technology_articles;dcopt=;sz=160x600;tile=3;ord='+bust+'">');
+		document.write('<a href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'">');
+		document.write('<img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'" border="0" height="600" width="160"></a>');
+		document.write('</scr' + 'ipt>');
+	}
+ 
+</script><script language="JavaScript1.1" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/technology_articles;dcopt=;sz=160x600;tile=3"><a href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=65145"><img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=65145" border="0" height="600" width="160"></a></script>
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/meld114.js"></script><iframe width="160" height="600" marginwidth="0" marginheight="0" frameborder="0" border="0" scrolling="no" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/ros.html"></iframe>
+
+ 
+ 
+<noscript>
+	&lt;a HREF="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=20021017123955"&gt;
+	&lt;img SRC="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=20021017123955" border="0" height="600" width="160"&gt;&lt;/a&gt;
+</noscript>
+ 
+<!-- /ng.scienceblogs/technology_articles:160:600:5	end ad code -->
+
+		</div>
+		</div>
+		
+		<div class="listHolder">
+<h3 class="big">The Latest Readers' Picks</h3>
+
+<ol id="readersPicksList">
+
+<li><b>1</b><a rel="nofollow" href="http://scienceblogs.com/thoughtfulanimal/2011/04/chimp_yawn.php?utm_source=readerspicks&utm_medium=link">Sleepy or Empathetic: What Does Yawning Mean? : The Thoughtful Animal</a></li>
+<li><b>2</b><a rel="nofollow" href="http://scienceblogs.com/isisthescientist/2011/04/shut_the_hell_up_about_your_im.php?utm_source=readerspicks&utm_medium=link">Shut the Hell Up About Your Imposter Syndrome : On Becoming a Domestic and Laboratory Goddess</a></li>
+<li><b>3</b><a rel="nofollow" href="http://scienceblogs.com/insolence/2011/04/the_resident_anti-vaccine_reporter_at_cb.php?utm_source=readerspicks&utm_medium=link">The resident anti-vaccine reporter at CBS News strikes again : Respectful Insolence</a></li>
+<li><b>4</b><a rel="nofollow" href="http://scienceblogs.com/erv/2011/04/using_viruses_to_treat_cancer.php?utm_source=readerspicks&utm_medium=link">Using viruses to treat cancer: Backwards Day again! : erv</a></li>
+<li><b>5</b><a rel="nofollow" href="http://scienceblogs.com/mikethemadbiologist/2011/03/when_economists_misunderstand.php?utm_source=readerspicks&utm_medium=link">When Economists Misunderstand Biology : Mike the Mad Biologist</a></li>
+
+</ol></div>
+
+		
+		
+		<!-- RESEARCH BLOGGING WIDGET -->
+		<div class="adHolder" style="width: 160px; margin: 0 0 24px 14px;">
+		<iframe width="160" height="500" style="border:0;overflow:hidden;" scrolling="no" frameborder="0" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/posts.html"></iframe></div>
+		
+		<div style="margin-bottom: 24px; text-align: center;">
+<a href="http://twitter.com/scienceblogs"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/Blogpage_Unit1_twitter.gif" alt="Follow ScienceBlogs on Twitter"></a>
+</div>
+		
+		<div class="listHolder" style="display: none;">
+		<h3 class="big">Science News from <a href="http://nytimes.com/science/">NYTimes.com »</a></h3>
+		
+<div id="nytimesBlock">
+		
+<h3>From NYTimes.com</h3>
+<p id="top">Latest science stories | <a href="http://nytimes.com/science/">More at nytimes.com<img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/icon_arrow_org-right.gif" alt="" style="vertical-align: middle; margin-top: -3px; margin-left: 4px;"></a></p>
+
+<ol id="nytimesList">
+
+
+<li><b>1</b><a class="title" href="http://feeds.nytimes.com/click.phdo?i=74653ec60152b6a9bddd4271e075918f">New Doubts About Turning Plutonium Into a Fuel</a> <p class="blogTitle"><!-- MTFeedEntryModified format="%l:%M %p, %m.%d.%Y" --></p></li>
+<li><b>2</b><a class="title" href="http://feeds.nytimes.com/click.phdo?i=6a92bc82c5ec658771993405712e3f15">From Ancient Giants, Finding New Life to Help the Planet</a> <p class="blogTitle"><!-- MTFeedEntryModified format="%l:%M %p, %m.%d.%Y" --></p></li>
+<li><b>3</b><a class="title" href="http://feeds.nytimes.com/click.phdo?i=598a671714502e01bed7fe2579613e48">Novelties: If You Can’t Name That Star, Try Asking Your Telescope</a> <p class="blogTitle"><!-- MTFeedEntryModified format="%l:%M %p, %m.%d.%Y" --></p></li>
+<li><b>4</b><a class="title" href="http://feeds.nytimes.com/click.phdo?i=a0bd032bb6e1addd57b72cbc21b48e0d">Lack of Data Heightens Japan’s Nuclear Crisis</a> <p class="blogTitle"><!-- MTFeedEntryModified format="%l:%M %p, %m.%d.%Y" --></p></li>
+<li><b>5</b><a class="title" href="http://feeds.nytimes.com/click.phdo?i=30cb773b2885cce40cdecbdbb748759b">Observatory: In Macaques, Familiarity Breeds...More Macaques?</a> <p class="blogTitle"><!-- MTFeedEntryModified format="%l:%M %p, %m.%d.%Y" --></p></li>
+
+
+</ol>
+		
+</div><!-- close NYTimes block -->
+		</div>
+		
+		<div class="skyscraper">
+		Advertisement
+		<div class="adHolder">
+		<!-- ad: skyscraper b -->
+
+<!-- ad code: generated by dart -->
+ 
+ 
+<script language="JavaScript1.1"> 
+ 
+	var bust;
+	if (typeof bust == 'undefined') {
+		bust = Math.floor(1000000*Math.random());
+	}
+ 
+	if ((!document.images && navigator.userAgent.indexOf('Mozilla/2.') >= 0) || navigator.userAgent.indexOf("WebTV")>= 0) {
+		document.write('<a  href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'">');
+		document.write('<img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'" border="0" height="600" width="160"></a>');
+	} else {
+		document.write('<scr' + 'ipt language="JavaScript1.1" SRC="http://ad.doubleclick.net/adj/ng.scienceblogs/technology_articles;dcopt=;sz=160x600;tile=3;ord='+bust+'">');
+		document.write('<a href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'">');
+		document.write('<img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord='+bust+'" border="0" height="600" width="160"></a>');
+		document.write('</scr' + 'ipt>');
+	}
+ 
+</script><script language="JavaScript1.1" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/technology_articles;dcopt=;sz=160x600;tile=3"><a href="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=65145"><img src="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=65145" border="0" height="600" width="160"></a></script>
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/meld114.js"></script><iframe width="160" height="600" marginwidth="0" marginheight="0" frameborder="0" border="0" scrolling="no" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/ros(1).html"></iframe>
+
+ 
+ 
+<noscript>
+	&lt;a HREF="http://ad.doubleclick.net/jump/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=20021017123955"&gt;
+	&lt;img SRC="http://ad.doubleclick.net/ad/ng.scienceblogs/technology_articles;sz=160x600;tile=3;ord=20021017123955" border="0" height="600" width="160"&gt;&lt;/a&gt;
+</noscript>
+ 
+<!-- /ng.scienceblogs/technology_articles:160:600:5	end ad code -->
+
+
+		</div>
+		</div>
+		
+		<div style="margin-bottom: 24px; text-align: center;">
+<script type="text/javascript" language="javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/placeholder-4798562"></script><a href="javascript:submitCJ8262057X396('CJ8262057X396',null);"><img src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/8262057-47.gif" width="120" height="240" alt="The Complete National Geographic - save $10! Also use code AF10120" border="0"></a>
+</div>
+
+
+<!--
+<div style="margin-bottom: 24px; text-align: center;">
+
+<script type="text/javascript" src="http://www.change.org/widget_flash/PetitionScroller/change_embed.js"></script>
+
+<div id="change_BottomBar"><span id="change_Powered">Change.org</span><a>|</a><span id="change_Start">Start <a href="http://www.change.org/petition" target="_blank">Petition</a></span></div>
+
+<script type="text/javascript" src="http://www.change.org/widgets/content/petition_scroller_js?width=190&causes=all&color=00681E&partner=1422-162"></script>
+
+</div>
+-->
+
+
+
+<!--
+<div style="margin-bottom: 24px; text-align: center;">
+<a http://www.surveymonkey.com/s/GDBQQGD"><img src="http://scienceblogs.com/promos/premium_166x250.gif" alt="Premium Survey" /></a>
+</div>
+-->
+		
+	</div>
+
+</div>
+</div><!-- right col -->
+
+</div>
+
+</div>
+
+<div id="footerBlock">
+<div class="inner">
+
+	<p class="blogLinks"><a href="http://scienceblogs.com/theblogs.php">The Blog Index</a>  |  <a href="http://scienceblogs.com/channel/about.php">About ScienceBlogs</a>  |  <a href="mailto:advertising@scienceblogs.com?subject=Advertising%20with%20ScienceBlogs%20inquiry">Advertise with ScienceBlogs</a>  |  <a href="http://scienceblogs.com/main/privacy/">Privacy Policy</a>  |  <a href="http://scienceblogs.com/main/terms/">Terms &amp; Conditions</a>  |  <a href="http://scienceblogs.com/channel/about.php#contact">Contact Us</a></p>
+
+	<p>© 2006-2010 ScienceBlogs LLC. ScienceBlogs is a registered trademark of ScienceBlogs LLC. All rights reserved.</p>
+	
+	<!-- <p>Sites by Seed Media Group:  <a href="http://seedmediagroup.com/">Seed Media Group</a>  |  <a href="http://scienceblogs.com/">ScienceBlogs</a>  |  <a href="http://seedmagazine.com/">SEEDMAGAZINE.COM</a></p> -->
+
+	<a href="http://seedmediagroup.com/" class="smgLink"></a>
+	
+</div>
+</div><!-- close footer block -->
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-163469-3");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+<!-- Start Quantcast tag -->
+<script type="text/javascript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/quant.js"></script>
+<script type="text/javascript">
+_qacct="p-99371ybtcwVuI";quantserve();</script>
+<noscript>
+&lt;img src="http://pixel.quantserve.com/pixel/p-99371ybtcwVuI.gif" style="display: none" height="1" width="1" alt="Quantcast"/&gt;</noscript>
+<!-- End Quantcast tag -->
+
+<input type="hidden" name="OBKey" value="8kVDobuc8+AAEjPuKp2edA=="> <script language="JavaScript">var OBCTm=1248980629434; </script><script language="JavaScript" src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/claim.js"> </script>
+
+<!-- Begin comScore Tag -->
+<script>
+    document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+</script><script src="./Databases are hammers; MapReduce is a screwdriver.   Good Math, Bad Math_files/beacon.js"></script>
+
+<script>
+  COMSCORE.beacon({
+    c1:2,
+    c2:3005368,
+    c3:"",
+    c4:"",
+    c5:"",
+    c6:"",
+    c15:""
+  });
+</script>
+<noscript>
+  &lt;img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=3005368&amp;c3=&amp;c4=&amp;c5=&amp;c6=&amp;c15=&amp;cj=1" /&gt;
+</noscript>
+<!-- End comScore Tag -->
+	
+
+
+
+</body></html>

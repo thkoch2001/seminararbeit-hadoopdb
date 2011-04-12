@@ -47,11 +47,11 @@
     <bib_extra key="Url">http://dx.doi.org/10.1007/978-3-642-13818-8</bib_extra>
   </doc>
   <doc>
-    <filename></filename>
-    <relative_filename></relative_filename>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/hadoopdb-demo.pdf</filename>
+    <relative_filename>references/hadoopdb-demo.pdf</relative_filename>
     <key>conf/sigmod/AbouziedBHAS10</key>
     <notes></notes>
-    <bib_type>InProceedings</bib_type>
+    <bib_type>inproceedings</bib_type>
     <bib_doi></bib_doi>
     <bib_title>HadoopDB in action: building real world applications</bib_title>
     <bib_authors>Abouzied, Azza and Bajda-Pawlikowski, Kamil and Huang, Jiewen and Abadi, Daniel J. and Silberschatz, Avi</bib_authors>
@@ -62,19 +62,19 @@
     <bib_year>2010</bib_year>
     <bib_extra key="Bibdate">2010-06-07</bib_extra>
     <bib_extra key="Bibsource">DBLP, http://dblp.uni-trier.de/db/conf/sigmod/sigmod2010.html#AbouziedBHAS10</bib_extra>
-    <bib_extra key="BookTitle">SIGMOD Conference</bib_extra>
-    <bib_extra key="Editor">Elmagarmid, Ahmed K. and Agrawal, Divyakant</bib_extra>
+    <bib_extra key="booktitle">SIGMOD Conference</bib_extra>
+    <bib_extra key="editor">Elmagarmid, Ahmed K. and Agrawal, Divyakant</bib_extra>
     <bib_extra key="Isbn">978-1-4503-0032-2</bib_extra>
-    <bib_extra key="Publisher">ACM</bib_extra>
+    <bib_extra key="publisher">ACM</bib_extra>
     <bib_extra key="Series">Proceedings of the ACM SIGMOD International Conference on Management of Data, SIGMOD 2010, Indianapolis, Indiana, USA, June 6-10, 2010</bib_extra>
     <bib_extra key="Url">http://doi.acm.org/10.1145/1807167.1807294</bib_extra>
   </doc>
   <doc>
-    <filename></filename>
-    <relative_filename></relative_filename>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/benchmarks-sigmod09.pdf</filename>
+    <relative_filename>references/benchmarks-sigmod09.pdf</relative_filename>
     <key>Pavlo09</key>
     <notes></notes>
-    <bib_type>Article</bib_type>
+    <bib_type>article</bib_type>
     <bib_doi></bib_doi>
     <bib_title>A comparison of approaches to large-scale data analysis</bib_title>
     <bib_authors>Pavlo, A. and Paulson, E. and Rasin, A. and Abadi, D. J. and DeWitt, D. J. and Madden, S. and Stonebraker, M.</bib_authors>
@@ -88,11 +88,11 @@
     <bib_extra key="Publisher">ACM</bib_extra>
   </doc>
   <doc>
-    <filename></filename>
-    <relative_filename></relative_filename>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/end_of_an_architectural_era.pdf</filename>
+    <relative_filename>references/end_of_an_architectural_era.pdf</relative_filename>
     <key>sto07</key>
     <notes></notes>
-    <bib_type>InProceedings</bib_type>
+    <bib_type>inproceedings</bib_type>
     <bib_doi></bib_doi>
     <bib_title>The End of an Architectural Era (It’s Time for a Complete Rewrite)</bib_title>
     <bib_authors>Stonebraker, Michael and Madden, Samuel and Abadi, Daniel J. and Harizopoulos, Stavros and Hachem, Nabil and Helland, Pat</bib_authors>
@@ -102,12 +102,12 @@
     <bib_pages>1150-1160</bib_pages>
     <bib_year>2007</bib_year>
     <bib_extra key="Abstract">In previous papers, some of us predicted the end of &quot;onesizefitsall&quot; as a commercial relational DBMS paradigm. These papers presented reasons and experimental evidence that showed that the major RDBMS vendors can be outperformed by 1-2 orders of magnitude by specialized engines in the data warehouse, stream processing, text, and scientific database markets. Assuming that specialized engines dominate these markets over time, the current relational DBMS code lines will be left with the business data processing (OLTP) market and hybrid markets where more than one kind of capability is required. In this paper we show that current RDBMSs can be beaten by nearly two orders of magnitude in the OLTP market as well. The experimental evidence comes from comparing a new OLTP prototype, H-Store, which we have built at M.I.T. to a popular RDBMS on the standard transactional benchmark, TPC-C. We conclude that the current RDBMS code lines, while attempting to be a &quot;onesizefitsall&quot; solution, in fact, excel at nothing. Hence, they are 25 year old legacy code lines that should be retired in favor of a collection of &quot;fromscratch&quot; specialized engines. The DBMS vendors (and the research community) should start with a clean sheet of paper and design systems for tomorrow’s requirements, not continue to push code lines and architectures designed for yesterday’s needs.</bib_extra>
-    <bib_extra key="Address">Vienna, Austria</bib_extra>
-    <bib_extra key="BookTitle">33rd International Conference on Very Large Data Bases</bib_extra>
-    <bib_extra key="Editor">Koch, Christoph and Gehrke, Johannes and Garofalakis, Minos N. and Srivastava, Divesh and Aberer, Karl and Deshpande, Anand and Florescu, Daniela and Chan, Chee Yong and Ganti, Venkatesh and Kanne, Carl-Christian and Klas, Wolfgang and Neuhold, Erich J.</bib_extra>
+    <bib_extra key="address">Vienna, Austria</bib_extra>
+    <bib_extra key="booktitle">33rd International Conference on Very Large Data Bases</bib_extra>
+    <bib_extra key="editor">Koch, Christoph and Gehrke, Johannes and Garofalakis, Minos N. and Srivastava, Divesh and Aberer, Karl and Deshpande, Anand and Florescu, Daniela and Chan, Chee Yong and Ganti, Venkatesh and Kanne, Carl-Christian and Klas, Wolfgang and Neuhold, Erich J.</bib_extra>
     <bib_extra key="Isbn">978-1-59593-649-3</bib_extra>
     <bib_extra key="Month">sep</bib_extra>
-    <bib_extra key="Publisher">ACM Press</bib_extra>
+    <bib_extra key="publisher">ACM Press</bib_extra>
     <bib_extra key="Uri">http://www.vldb.org/conf/2007/papers/industrial/p1150-stonebraker.pdf</bib_extra>
   </doc>
   <doc>
@@ -128,6 +128,166 @@
     <bib_extra key="month">01</bib_extra>
     <bib_extra key="note">accessed 11-April-2011</bib_extra>
     <bib_extra key="url">http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/cidr07p20.pdf</filename>
+    <relative_filename>references/cidr07p20.pdf</relative_filename>
+    <key>conf/cidr/StonebrakerBCCGHHLRZ07</key>
+    <notes></notes>
+    <bib_type>inproceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>One Size Fits All? Part 2: Benchmarking Studies</bib_title>
+    <bib_authors>Stonebraker, Michael and Bear, Chuck and Cetintemel, Ugur \c and Cherniack, Mitch and Ge, Tingjian and Hachem, Nabil and Harizopoulos, Stavros and Lifter, John and Rogers, Jennie and Zdonik, Stanley B.</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>173-184</bib_pages>
+    <bib_year>2007</bib_year>
+    <bib_extra key="Bibdate">2007-03-06</bib_extra>
+    <bib_extra key="Bibsource">DBLP, http://dblp.uni-trier.de/db/conf/cidr/cidr2007.html#StonebrakerBCCGHHLRZ07</bib_extra>
+    <bib_extra key="booktitle">CIDR</bib_extra>
+    <bib_extra key="publisher">www.crdrdb.org</bib_extra>
+    <bib_extra key="Url">http://www.cidrdb.org/cidr2007/papers/cidr07p20.pdf</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/Databases%20are%20hammers%3B%20MapReduce%20is%20a%20screwdriver.%20%20%20Good%20Math,%20Bad%20Math.html</filename>
+    <relative_filename>references/Databases%20are%20hammers%3B%20MapReduce%20is%20a%20screwdriver.%20%20%20Good%20Math,%20Bad%20Math.html</relative_filename>
+    <key>Chu-Carrol08hammers</key>
+    <notes></notes>
+    <bib_type>misc</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Databases are hammers; MapReduce is a screwdriver</bib_title>
+    <bib_authors>Mark C. Chu-Carroll</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages></bib_pages>
+    <bib_year>2008</bib_year>
+    <bib_extra key="howpublished">\url{http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php}</bib_extra>
+    <bib_extra key="month">01</bib_extra>
+    <bib_extra key="note">accessed 11-april-2011</bib_extra>
+    <bib_extra key="url">http://scienceblogs.com/goodmath/2008/01/databases_are_hammers_mapreduc.php</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>Olston:2008:PLN:1376616.1376726</key>
+    <notes></notes>
+    <bib_type>InProceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Pig latin: a not-so-foreign language for data processing</bib_title>
+    <bib_authors>Olston, Christopher and Reed, Benjamin and Srivastava, Utkarsh and Kumar, Ravi and Tomkins, Andrew</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1099-1110</bib_pages>
+    <bib_year>2008</bib_year>
+    <bib_extra key="Acmid">1376726</bib_extra>
+    <bib_extra key="Address">New York, NY, USA</bib_extra>
+    <bib_extra key="BookTitle">Proceedings of the 2008 ACM SIGMOD international conference on Management of data</bib_extra>
+    <bib_extra key="Doi">http://doi.acm.org/10.1145/1376616.1376726</bib_extra>
+    <bib_extra key="Isbn">978-1-60558-102-6</bib_extra>
+    <bib_extra key="Keywords">dataflow language, pig latin</bib_extra>
+    <bib_extra key="Location">Vancouver, Canada</bib_extra>
+    <bib_extra key="Numpages">12</bib_extra>
+    <bib_extra key="Publisher">ACM</bib_extra>
+    <bib_extra key="Series">SIGMOD ’08</bib_extra>
+    <bib_extra key="Url">http://doi.acm.org/10.1145/1376616.1376726</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>Yang:2007:MSR:1247480.1247602</key>
+    <notes></notes>
+    <bib_type>InProceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Map-reduce-merge: simplified relational data processing on large clusters</bib_title>
+    <bib_authors>Yang, Hung-chih and Dasdan, Ali and Hsiao, Ruey-Lung and Parker, D.  Stott</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1029-1040</bib_pages>
+    <bib_year>2007</bib_year>
+    <bib_extra key="Acmid">1247602</bib_extra>
+    <bib_extra key="Address">New York, NY, USA</bib_extra>
+    <bib_extra key="BookTitle">Proceedings of the 2007 ACM SIGMOD international conference on Management of data</bib_extra>
+    <bib_extra key="Doi">http://doi.acm.org/10.1145/1247480.1247602</bib_extra>
+    <bib_extra key="Isbn">978-1-59593-686-8</bib_extra>
+    <bib_extra key="Keywords">cluster, data processing, distributed, join, map-reduce, map-reduce-merge, parallel, relational, search engine</bib_extra>
+    <bib_extra key="Location">Beijing, China</bib_extra>
+    <bib_extra key="Numpages">12</bib_extra>
+    <bib_extra key="Publisher">ACM</bib_extra>
+    <bib_extra key="Series">SIGMOD ’07</bib_extra>
+    <bib_extra key="Url">http://doi.acm.org/10.1145/1247480.1247602</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/mapreduce-osdi04.pdf</filename>
+    <relative_filename>references/mapreduce-osdi04.pdf</relative_filename>
+    <key>Dean:2008:MSD:1327452.1327492</key>
+    <notes></notes>
+    <bib_type>article</bib_type>
+    <bib_doi>http://doi.acm.org/10.1145/1327452.1327492</bib_doi>
+    <bib_title>MapReduce: simplified data processing on large clusters</bib_title>
+    <bib_authors>Dean, Jeffrey and Ghemawat, Sanjay</bib_authors>
+    <bib_journal>Commun. ACM</bib_journal>
+    <bib_volume>51</bib_volume>
+    <bib_number>1</bib_number>
+    <bib_pages>107-113</bib_pages>
+    <bib_year>2008</bib_year>
+    <bib_extra key="Acmid">1327492</bib_extra>
+    <bib_extra key="Address">New York, NY, USA</bib_extra>
+    <bib_extra key="Issn">0001-0782</bib_extra>
+    <bib_extra key="Issue_date">January 2008</bib_extra>
+    <bib_extra key="Month">January</bib_extra>
+    <bib_extra key="Numpages">7</bib_extra>
+    <bib_extra key="Publisher">ACM</bib_extra>
+    <bib_extra key="Url">http://doi.acm.org/10.1145/1327452.1327492</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/bigtable-osdi06.pdf</filename>
+    <relative_filename>references/bigtable-osdi06.pdf</relative_filename>
+    <key>Chang:2006:BDS:1267308.1267323</key>
+    <notes></notes>
+    <bib_type>inproceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Bigtable: a distributed storage system for structured data</bib_title>
+    <bib_authors>Chang, Fay and Dean, Jeffrey and Ghemawat, Sanjay and Hsieh, Wilson C. and Wallach, Deborah A. and Burrows, Mike and Chandra, Tushar and Fikes, Andrew and Gruber, Robert E.</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>15-15</bib_pages>
+    <bib_year>2006</bib_year>
+    <bib_extra key="Acmid">1267323</bib_extra>
+    <bib_extra key="address">Berkeley, CA, USA</bib_extra>
+    <bib_extra key="booktitle">Proceedings of the 7th USENIX Symposium on Operating Systems Design and Implementation - Volume 7</bib_extra>
+    <bib_extra key="Location">Seattle, WA</bib_extra>
+    <bib_extra key="Numpages">1</bib_extra>
+    <bib_extra key="publisher">USENIX Association</bib_extra>
+    <bib_extra key="Series">OSDI ’06</bib_extra>
+    <bib_extra key="Url">http://portal.acm.org/citation.cfm?id=1267308.1267323</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/Hadoop.The.Definitive.Guide.2nd.Edition.pdf</filename>
+    <relative_filename>references/Hadoop.The.Definitive.Guide.2nd.Edition.pdf</relative_filename>
+    <key>White201010</key>
+    <notes></notes>
+    <bib_type>book</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Hadoop: The Definitive Guide</bib_title>
+    <bib_authors>White, Tom</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages></bib_pages>
+    <bib_year>2010</bib_year>
+    <bib_extra key="edition">Second Edition</bib_extra>
+    <bib_extra key="Isbn">9781449389734</bib_extra>
+    <bib_extra key="Month">10</bib_extra>
+    <bib_extra key="Price">$49.99</bib_extra>
+    <bib_extra key="publisher">Yahoo Press</bib_extra>
+    <bib_extra key="Timestamp">2011.04.12</bib_extra>
+    <bib_extra key="Totalpages">624</bib_extra>
+    <bib_extra key="Url">http://amazon.com/o/ASIN/1449389732/</bib_extra>
   </doc>
 </doclist>
 </library>

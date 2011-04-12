@@ -1,0 +1,13 @@
+function submitCJ8262057X276(formId, url) {
+   var s = "";
+   if (url != null) {
+      s = "<form id=\"" + formId + "\" method=\"post\" action=\"http://www.kqzyfj.com/click-s\" target=\"_blank\" onmouseover=\"window.status=\'null\';return true;\" onmouseout=\"window.status=\' \';return true;\">\r\n<input type=\"hidden\" name=\"aid\" value=\"8262057\"/>\r\n<input type=\"hidden\" name=\"pid\" value=\"4099848\"/><input type=\"hidden\" name=\"url\" value=\"" + url + "\"/></form>";
+   } else {
+      s = "<form id=\"" + formId + "\" method=\"post\" action=\"http://www.kqzyfj.com/click-s\" target=\"_blank\" onmouseover=\"window.status=\'null\';return true;\" onmouseout=\"window.status=\' \';return true;\">\r\n<input type=\"hidden\" name=\"aid\" value=\"8262057\"/>\r\n<input type=\"hidden\" name=\"pid\" value=\"4099848\"/></form>";
+   }
+   var x = document.createElement("div");
+   x.innerHTML = s;
+   document.getElementsByTagName("body")[0].appendChild(x);
+   document.getElementById(formId).submit();
+}
+document.write("<a href=\"javascript:submitCJ8262057X276(\'CJ8262057X276\',null);\"><img src=\"http://www.yceml.net/0425/8262057-47.gif\" width=\"120\" height=\"240\" alt=\"The Complete National Geographic - save $10! Also use code AF10120\" border=\"0\"/></a>");

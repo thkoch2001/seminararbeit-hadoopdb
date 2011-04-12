@@ -1,0 +1,19 @@
+/*1302018641,169776321*/
+
+.connect_widget .like_button_like,.connect_widget .like_button_like .piece{background-color:#eee;border-color:#ddd;cursor:default}
+.connect_widget .like_button_dark .like_button_like,.connect_widget .like_button_dark .like_button_like .piece{background-color:#444;border-color:#555;cursor:default}
+.connect_widget .like_button_like .corner{background-position:10px -70px}
+.connect_widget .like_button_dark .like_button_like .corner{background-position:10px -76px}
+.connect_widget .like_button_like .liketext{background-image:none;clear:right;color:#aaa}
+.connect_widget .tombstone_cross{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zm/r/QoRACSmkC2M.png) no-repeat 0 -128px;display:block;float:left;height:12px;margin-right:3px;width:14px;z-index:99}
+.connect_widget .like_button_no_like .tombstone_cross{background-image:none}
+.connect_widget .like_button_dark .like_button_like .tombstone_cross{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zm/r/QoRACSmkC2M.png) no-repeat 0 -156px}
+.connect_widget .like_button_like .tombstone_cross:hover{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zf/r/UQwL6vNuH-P.gif);background-position:0 -44px;cursor:pointer;height:11px;margin-left:1px;margin-right:5px;margin-top:1px;width:11px}
+.connect_widget .like_button_simple .like_button_like .tombstone_cross:hover{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zm/r/QoRACSmkC2M.png);background-position:0 -128px;cursor:auto;height:12px;margin-left:0;margin-right:3px;margin-top:0;width:14px}
+.connect_widget .like_button_dark .like_button_like .tombstone_cross:hover{background-position:0 -55px}
+.connect_widget .connect_button_container .like_button_like .liketext,.connect_widget .connect_widget_connect_button .like_button_like .liketext{padding-left:17px}
+.connect_widget_comment_box div.connect_widget_comment_box_nub{background:none}
+.connect_widget .like_button_dark .like_button_like .liketext{color:#666}
+div.connect_widget div.connect_confirmation_cell_like{padding-left:7px}
+
+#bootloader_tjRs7 { height: 42px; }

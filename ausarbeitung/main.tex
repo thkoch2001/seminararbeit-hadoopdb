@@ -3,17 +3,18 @@
 %\usepackage[ngerman]{babel}			% deutsche Namen/Umlaute
 \usepackage[utf8]{inputenc}			% Zeichensatzkodierung
 \usepackage{url}
-\usepackage{hyperref}
+\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
 
 \usepackage{setspace} % Anderthalbfacher Zeilenabstand ist Standard in den meisten Seminararbeiten. Das Paket setspace ermöglicht ein einfaches Umstellen von normalem, anderthalbfachen oder sogar doppeltem Zeilenabstand. 
-\usepackage[paper=a4paper,left=60mm,right=20mm,top=25mm,bottom=25mm]{geometry} %Das geometry Paket dient zur Einrichtung der Seiten. Hier werden die jeweiligen Seitenränder angegeben. Diese wWerte sollten durch die jeweiligen Vorgaben des Seminarleiters oder Instituts ersetzt werden.
+\usepackage[paper=a4paper,inner=25mm,outer=20mm,top=15mm,bottom=20mm]{geometry} %Das geometry Paket dient zur Einrichtung der Seiten. Hier werden die jeweiligen Seitenränder angegeben. Diese wWerte sollten durch die jeweiligen Vorgaben des Seminarleiters oder Instituts ersetzt werden.
 \setlength{\parindent}{3em} %Neue Abschnitte werden mit hängendem Einzug gesetzt, parindent definiert. um wie viel der Absat eingerückt wird. Die Einheit em ist abhängig vom verwendeten Zeichensatz und daher absoluten Werten in mm oder cm vorzuziehen. 
 \setcounter{secnumdepth}{3} %Bis zu welcher Gliederungsebene nummeriert werden soll gibt dieser Befehl vor. In diesem Falle werden \section, \subsection und \subsubsection nummereiert.
 \setcounter{tocdepth}{3} %Bis zu welcher Ebene Einträge ins Inhaltsverzeichnis aufgenommen werden. In diesem Beispiel ebenfalls bis Ebene drei (\subsubsection). Ein durch \paragraph ausgewiesener Abschnitt wird demnach nicht im Inhaltsverzeichnis auftauchen. 
 
 
 \begin{document}
-\title{}
+\title{HadoopDB}
+\subtitle{a major step towards a dead end}
 \author{Thomas Koch}
 \date{\today}
 \maketitle{}
@@ -23,18 +24,80 @@
 \end{abstract}
 \tableofcontents{}
 
-\section{NoSQL, the end of an architectural era}
-In \citeyear{sto07} a paper with the provocing title \citetitle{sto07}.
+\section{NoSQL and the end of an architectural era}
+In 2007 a paper with the provoking title ``The end of an architectural era:(it's time for a complete rewrite)''\cite{sto07} claimed that the time for traditional relational database management systems would be over. Current RDBMSs have their roots in nearly thirty years old legacy code lines. They are build on assumptions, requirements and hardware constraints that no longer hold true today and should therefor be replaced by a collection of specialized engines.
+The change in Hardware is the most obvious. Main memory (RAM) on servers, CPU speed, number of CPUs and storage size have all increased by several orders of magnitude while at the same time hardware price decreased. In former times it was feasible to pay high salaries for specialized staff to administrate and optimize hardware. Today it is a decent decision to buy more hardware and spare costly developer time.
+At the time systems like SQL Server, DB2 or Oracle were architected, they targeted the only then existing database market which back then was business data processing. Today several new markets exists:
+\begin{itemize}
+\item Text (search engines, translations)
+\item Data Warehouses
+\item Stream Processing (social networks, news sites, real time communication)
+\item Scientific and intelligence databases (semantic data)
+\end{itemize}
+For all this use cases, specialized systems can outperform RDBMSs by a factor of 10.\cite{conf/cidr/StonebrakerBCCGHHLRZ07}. Stonebrakers findings and conclusions correspond with the views of many proponents of the so called ``NoSQL'' movement. His text from 2007 has therefor been proposed as an introductory reading for an international nosqlsummer in 2010.\footnote{\url{http://nosqlsummer.org/papers} The author was the organizer of the nosqlsummer meetings at lake Constance.} 
+Although Stonebraker and his co authors (one of them is Daniel J. Abadi, the main author of the HadoopDB paper) make a strong point against RDBMSs and for alternative systems, the next section will discuss how they oppose MapReduce in favor of parallel databases and by doing so ignore their own arguments made against relational systems.
 
-\section{Background on the MapReduce vs. parallel databases debate}
-The HadoopDB paper references two texts of Michael Stonebraker and others.\cite{Pavlo09}
-\cite{sto08stepback}
+\section{The MapReduce vs. parallel databases debate}
+In an online article from January 2008, published on the website of the database company Vertica Systems\footnote
+{According to Wikipedia Stonebraker is co-founder of Vertica Systems, which has recently (march 2011) been acquired by HP. Footnote 9 in \cite{journals/pvldb/AbouzeidBARS09} discloses that also Daniel Abadi has a small financial stake in the company.},
+Stonebraker heavily criticizes MapReduce.\cite{sto08stepback} The article has been commented (in comments on the same page or in blog posts\cite{Chu-Carrol08hammers}) as being inaccurate or missing the point. The main inaccuracy comes from judging MapReduce in areas which it has not been designed for especially judging it as a DBMS, which it isn't.
+Since 2008 MapReduce and its supporting tools have made a lot of progress. Therefor it makes sense to revisit some of the arguments and consider recent developments.
+\subsection{Understanding of the term MapReduce}
+As Stonebraker rightly points out, MapReduce is not novel. In its core it's just the concept of using a map and a reduce function and in this a basic concept of functional programming. MapReduce can work on different underlying data stores: the Google File System (GFS), Hadoop Distributed File System (HDFS), databases like HBase and Cassandra. These are all systems for large data sets. But MapReduce is also a main building in CouchDB which uses views and B-Trees and targets server installations as well as mobile devices.
+In the discussed papers the term MapReduce however is used to describe the combination of a scalable, fault tolerant file system (GFS or HDFS) together with a batch processing execution framework (Hadoop or Google MapReduce).
+This inaccurate term usage may contribute to some of the misunderstandings discussed below. This text will however adapt to this nomenclature for the sake of readability.
 
-\section{Discussion of Mapreduce vs. parallel databases benchmarks}
+\subsection{Rebuttal of MapReduce criticism}
+\paragraph{Lack of schemes}
+MapReduce has no support of schemes since it does not aim to be a database. However the object serialization projects avro, protocol buffers and thrift provide facilities to define schemes in one central place or together with the data and use them from most popular programming languages.\footnote{avro: \url{http://avro.apache.org/}, protocol buffers: \url{http://code.google.com/p/protobuf}, thrift: \url{http://thrift.apache.org}}
+
+\paragraph{Lack of high level access languages}
+Pig and Hive\footnote{Pig: \url{http://pig.apache.org}, Hive: \url{http://hive.apache.org}} lists their first releases on their websites as being from late 2008 or early 2009. Stonebraker also mentions them in 2009\cite[p. 3, sec. 3.3 programming model]{Pavlo09}. Around the same time Cascading\footnote{\url{http://www.cascading.org/}} appeared. But still in 2009 he fails to recognize that MapReduce should not be judged as a RDBMS but as a programming framework which is versatile enough to be also a foundation for some kind of database.
+To make the list complete there are also Jagl from IBM and the not so active Cloudbase\footnote{Jagl: \url{http://code.google.com/p/jaql}, Cloudbase: \url{http://cloudbase.sourceforge.net}}. Unlike the systems mentioned so far Googles Sawzall\footnote{\url{http://code.google.com/p/szl}} while also being free software does not (yet) work with Hadoop.
+Since MapReduce is not a database but a platform it is even possible to implementations applications on top of it which would be impossible to model with SQL like machine learning. The Mahout project\footnote{\url{http://mahout.apache.org}} is exactly that.\footnote{some pointers taken from: \url{http://www.hpts.ws/session10/shekita.txt}}
+
+\paragraph{Missing features}
+While it may not be fair to compare the tool set of decades of relational database development with those of the young MapReduce world, there is still already quite something to mention for the categories questioned:
+
+\begin{itemize}
+\item Bulk loader: Sqoop\footnote{\url{https://github.com/cloudera/sqoop}} is developed by Cloudera to transfer data between Hadoop, relational databases and other means. Besides that there are multiple projects to continuously import stream data into Hadoop: Flume, Scribe and Chukwa\footnote{\url{http://nosql.mypopescu.com/post/820711193/how-does-flume-and-scribe-compare}}.
+\item Indexing: The Belgian CMS company Outerthought is pioneering to build its newest CMS on top of HBase and therefor also Hadoop. For its content repository it evaluated different scalable indexing solutions to provide secondary indexes into HBase.\footnote{\url{http://www.lilyproject.org/lily/about/technology.html}} Outerthought has been included by Gartner in "Cool Vendors in Content Management 2010" list.\footnote{\url{http://outerthought.org/blog/373-ot.html}}
+\item Updates: MapReduce or better said the Google File System respectively HDFS have been developed for big files that are written once and never changed. On top of that Googles BigTable or Apache HBase provide databases for random access and updates to small data items.
+\item Transactions: When Googles BigTable database was implemented, transactions were left out initially. Later on it was observed, that there was actually no real need to support them, because most applications require only row level isolation.\cite[p. 12]{Chang:2006:BDS:1267308.1267323} The developers of the web service streamy.com give a description how they started development with a normalized scheme on a RDBMS and had to denormalize there scheme step by step to scale the service. In the end they gave up on their RDBMS altogether and used HBase instead.\cite[p. 431-435]{White201010}
+\item Integrity constraints: As with transactions one can argue that most use cases for MapReduce don't have the need for integrity constraints. Data that is handled by MapReduce is often collected from unreliable or unstructured sources like web pages, log files or sensors. It is desirable to also save corrupted data, like invalid HTML or out of scale measured data. This data can after wards be simply ignored by MapReduce jobs but is still available for further analysis. A search engine could for example reduce the ranking of domains with many invalid HTML pages or in a sensor network one could identify sensors which often produce erroneous values. So in the world of MapReduce integrity is handled at read time, not at write time. Different MapReduce jobs may have different opinions about which data they consider worth of further examination.
+\item Referential integrity: See the argument on transactions. When the scheme is denormalized there is no need for referential integrity. Furthermore with data at scale one may need to give up on perfect data. Web links may point to nonexistent pages, Users may have deleted their accounts, changed their name or email address.
+\item Views: I'm not aware of anything similar in MapReduce related technology nor have I ever read a complaint about its absence. But as we've seen above tools on top of MapReduce gets developed when needs for them occur.
+\end{itemize}
+As with the lack of features Stonebraker misses integration with DBMS tools. At least for Business Intelligence this may not be the case anymore since Pentaho announced Hadoop support in may 2010.\footnote{\url{http://www.pentaho.com/news/releases/20100519_pentaho_harnesses_apache_hadoop_to_deliver_big_data_analytics.php}}
+
+\section{Discussion of MapReduce vs. parallel databases benchmarks}
+The previous section discussed the misconception about MapReduce being a database. In line with this misconception Stonebraker, Abadi et al. moved on to directly compare performance between MapReduce and two RDBMSs.\cite{Pavlo09} This section discusses some of the flaws of this work.
+The benchmarks were made on a cluster of at maximum 100 machines. This decision is justified by the ``superior efficiency of modern DBMSs`` that would not require more hardware to work on petabyte scale. As will be discussed in detail later on, this comparison does not take into account the different 
+
+TO-DO
+
+\section{HadoopDB}
+Previous sections discussed major shortcomings in the works of Stonebraker and Abadi in the understanding of MapReduce and its areas of application. However the HadoopDB paper and project is motivated to address those assumed shortcomings which have already been identified as invalid.
+This section describes HadoopDB and argues that it would be an irrelevant project without any valid application area and practical usability.
+
+TO-DO
+
+Lack of impact of HadoopDB:
+  - Resonanz in Entwicklerkreisen:
+
+    - Suche "HadoopDB" auf PostgreSQL Listenarchiv (8.4.2011): 4 Erwähnung seit einem Jahr, 15 total
+      http://search.postgresql.org/search?m=1
+
+    - Google Suche (7.4.): <10 unabhängige Erwähnungen, sonst nur Kopien der Presseerklärung und Präsentationen der Autoren
+
+    - 22 Commits auf Sourceforge SVN (7.4.2011)
+
+Commercialization as Hadapt
 
 \section{Hive}
+HadoopDB 
 
-\section{Pig}
+\section{Pig, Cascading, Sawzall}
 
 \section{Conclusion}
 
@@ -43,5 +106,8 @@ The HadoopDB paper references two texts of Michael Stonebraker and others.\cite{
 % http://liinwww.ira.uka.de/bibliography/index.html
 % http://de.wikipedia.org/wiki/BibTeX#Bibliographiedatenbanken
 \bibliography{references}{}
-\bibliographystyle{plain}
+\bibliographystyle{alphadin}
 \end{document}
+
+% LocalWords:  RDBMSs HadoopDB CPUs Stonebrakers nosqlsummer Stonebraker Abadi
+% LocalWords:  Vertica Jagl Cloudbase Gartner streamy et al

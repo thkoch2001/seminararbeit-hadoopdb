@@ -1,0 +1,52 @@
+
+/*-- RB WIDGET: SCIENCEBLOGS VERSION
+-----------------------------------------*/
+
+/* body {background: #fff; margin: 0;} FOR LOCAL TESTING */
+
+#RBwidget {width: 160px; height: 480px; position: relative; margin: 0; padding-bottom: 20px; font: normal 11px/14px 'Trebuchet MS', arial ! important; overflow: hidden;}
+
+#RBwidget * {margin: 0; padding: 0; color: #333; border: 0; text-decoration: none;}
+
+#RBwidget a {color: #0054a6; text-decoration: none;}
+
+#RBwidget a:focus {outline: 0;}
+
+#RBwidget a:hover {text-decoration: underline;}
+
+#RBwidget #RB1 {position: relative; z-index: 10; width: 154px; height: 465px; background: #f5fceb; border: 3px solid #c1e886;}
+
+#RBwidget #RB1 #inner {height: 350px; overflow: auto;}
+
+#RBwidget #RB1 #RBlogo {display: block; height: 32px; margin: 9px 9px 18px; text-indent: -9000px; text-decoration: none; background: url(/public/img/logo_widget.gif) 0 0 no-repeat;}
+
+#RBwidget #RB1 a.RBb {color: #598527; text-transform: uppercase;}
+
+#RBwidget ol {margin: 0 12px 20px 0; padding: 0 0 0 28px; list-style-type: decimal;}
+
+#RBwidget li {position: relative; margin: 0 0 8px; padding: 0; font-size: 11px ! important; line-height: 14px ! important;}
+
+#RBwidget li a {display: block;}
+
+#RBwidget .RBfly {display: none; position: absolute; top: 18px; left: 34px; width: 140px; font-size: 10px; cursor: default;}
+
+#RBwidget .RBfly .RBt {display: block; width: 140px; padding: 0 0 1px; letter-spacing: 1px; text-align: center; color: #fff; font-weight: bold; font-size: 9px; line-height: 9px; text-transform: uppercase; border: 1px solid #666; border-bottom: 0; background: #666;}
+
+#RBwidget .RBfly .RBc {display: block; overflow: hidden; width: 128px; padding: 3px 6px; font-size: 9px; line-height: 12px; border: 1px solid #eee; border-top: 0; background: #eee;}
+
+#RBwidget .RBfly a {display: inline;}
+
+/* DISABLE FLYOUT
+#RBwidget li:hover .RBfly,
+#RBwidget .RBfly:hover {display: block; z-index: 100;} */
+
+#RBwidget #RBad {position: absolute; bottom: 0; width: 154px; margin: 0; text-align: center; background: #fff; overflow: hidden;}
+	#RBwidget #RBad img {max-width: 154px; display: block; margin: 0 auto;}
+
+#RBwidget #RB2 {position: absolute; bottom: 0; z-index: 1; width: 154px; padding: 18px 0 8px; background: #dbefbd; border: 3px solid #c1e886; border-top: 0;}
+
+#RBwidget #SMGlink {position: absolute; z-index: 10; width: 154px; bottom: 7px; text-align: center; color: #444; text-align: center; font-size: 10px;}
+	#RBwidget #SMGlink a {font-weight: bold; color: #000;}
+
+.greenAlt #RB1,
+.greenAlt #RB2 {border-color: #c1e886 ! important;} /* GREEN BORDER OPTION */
