@@ -1,22 +1,16 @@
-- hadapt ist kommerzielle Version von HadoopDB
-
 Blog des HadoopDB Forschers: http://dbmsmusings.blogspot.com/
 HadoopDB: http://db.cs.yale.edu/hadoopdb/hadoopdb.html
 Install HadoopDB on Ubuntu: http://posulliv.github.com/2010/05/10/hadoopdb-mysql.html
 http://www.dbms2.com/2011/03/23/hadapt-commercialized-hadoopdb/
 
-http://hadoopdb.sourceforge.net/guide :
-"a careful analysis of data and expected queries results in a significant performance boost at the expense of a longer loading. Two important things to consider are data partitioning and DB tuning (e.g. creating indices). Again, details of those techniques are covered in textbooks. For some queries, hash-partitioning and clustered indices improve HadoopDB's performance 10 times"
 
 Themen:
 
-- Wie gut reagieren RDBMSs auf scheme evolution?
-- Writing queries against a RDBMS needs set up time for schemes and indices. Map Reduce jobs can be written ad hoc.
-- Scheme / No scheme = Waterfal / Scrum, MR analyzes raw data
+
 - MR works on measured raw data while DBMSs require well crafted prepared input data. There may not be that much well formed data.
 - Use MR libraries that extract predefined data instead of predefined schemes.
 - Vergleich mit Pig, Flume?
-- Kommerzialisierung als hadapt
+
 - Vergelich mit HBase? Wichtiges Bottleneck ist I/O, was durch column-oriented storage und Kompression ausgeglichen werden kann.
   HBase bietet column families und Kompression.
   Welche Veränderungen ergeben sich durch Solid State Disks?
@@ -26,45 +20,7 @@ Themen:
   - copy first on failure or continue processing imadiately on replica?
   - Macht HadoopDB überhaupt neue Kopien, wenn ein Knoten stirbt?
 
-- Vorteil SQL: Beschreibt was, nicht wie. Optimierung wird der Software überlassen.
 - Genereller Unterschied SQL/NoSQL:
   SQL betreibt hohen Aufwand beim schreiben, um AdHoc Queries zu ermöglichen.
-- Fragen:
-  - Was passiert, wenn während der ReadTasks auch Updates/Inserts passieren, wie es in der Realität wäre?
-  - Selbst ein Unterschied im Faktor 10 in der Verarbeitungsgeschwindigkeit rechtfertigt in der Praxis nicht den Administrationsaufwand von HadoopDB.
-  DB Administratoren sind teuere, Hardware ist billig. PostgreSQL gehört noch zur Philosophie der billigen DB Administratoren und teuren Hardware.
 
-Gliederung
-==========
-
-
-  - necessity for failure resilience
-
-    Current parallel DBMS loose a lot of work in case of node failures. If the time necessary to repeat the lost work is greater then the average time between node failures, then queries will never complete.
-
-  - heterogenous clusters
-    causes:
-    - part failures result in degraded hardware performance
-    - disk fragmentation
-    - software configuration differences
-    - concurrent queries or background processes
-    -> addaptive query planning, not in advance
-
-  - Sparse vs. dense data
-
-  - Vergleich HBase/Cassandra mit Column Stores
-    http://dbmsmusings.blogspot.com/2010/03/distinguishing-two-major-types-of_29.html
-
-    - sparse (reference by row name)/dense(reference by position in column)
-    - optimization: read-write/read
-    - columns / column families
-    - column names in HBase/Cassandra are often also data, since the scheme is not predefined
-
-  - HBase 
-    http://twitter.com/#!/Hadapt/status/52357968141885441
-    28.3.2011 Storing data in our storage layer is 600 times faster than storing it in HBase for analysis. So we certainly don't use HBase!
-
-  - Storage waste:
-
-    load data into HDFS, copy in local file system, load into postgreSQL
 

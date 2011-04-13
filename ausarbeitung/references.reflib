@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
 <manage_target braces="true" utf8="true">references.bib</manage_target>
-<library_folder monitor="false"></library_folder>
+<library_folder monitor="true"></library_folder>
 <taglist>
 </taglist>
 <doclist>
@@ -311,7 +311,6 @@
     <bib_extra key="Isbn">978-3-642-10423-7</bib_extra>
     <bib_extra key="Numpages">15</bib_extra>
     <bib_extra key="publisher">Springer-Verlag</bib_extra>
-    <bib_extra key="Url">http://dx.doi.org/10.1007/978-3-642-10424-4_5</bib_extra>
   </doc>
 </doclist>
 </library>

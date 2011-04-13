@@ -133,14 +133,39 @@ HadoopDB aims to provide the following list of properties. It is argued that nei
 
 The paper suggests that current practice in analytical systems is to load data in a specialized database and to make calculations while an operator is waiting for the results. In MapReduce systems however calculations are directly done on the original data and could therefor run continuously during the normal operation of the system.
 The authors own practical experience suggests that the limitation factor for data analysis is normally the time and competence of the personal in charge of preparing and interpreting the analysis.
-\item Fault Tolerance: Abadi describes fault tolerance in the context of a read only analytical database. Hadoop however targets the requirement of concurrent read and write access with persistence guarantees and high availability.
+\item Fault Tolerance: Abadi describes fault tolerance in the context of a read only analytical database. Hadoop however targets the requirement of concurrent read and write access with persistence guarantees and high availability. Fault tolerance can stand in direct conflict to performance. In this cases parallel databases tend to trade of fault tolerance in favor of performance while Hadoop is doing the opposite, e.g. by doing frequent checkpoints during MapReduce executions.
 \item Ability to run in a heterogeneous environment: The system needs to make progress in the presence of individual node failures and its performance may not be bound by the slowest nodes.
 \item Flexible query interface: The system should support SQL to integrate with existing tools as well. Ideally it also supports user defined functions (UDF) and manages their parallel execution.
 \end{itemize}
-The list above list does not include energy efficiency as a desired property although it is one of the most important subjects in recent discussions about data centers.\footnote{see Googles Efficient Data Center Summit, 2009 \url{http://www.google.com/corporate/datacenter/summit.html} and Facebooks open compute project \url{http://opencompute.org}} It has also been argued, that standard performance benchmarks should be enhanced to measure the performance relative to the enerergie consumption.\cite{Fanara:2009:SEP:1692899.1692904}
+The above list does not include energy efficiency as a desired property although it is one of the most important subjects in recent discussions about data centers.\footnote{see Googles Efficient Data Center Summit, 2009 \url{http://www.google.com/corporate/datacenter/summit.html} and Facebooks open compute project \url{http://opencompute.org}} It has also been argued, that standard performance benchmarks should be enhanced to measure the performance relative to the energy consumption.\cite{Fanara:2009:SEP:1692899.1692904}
 
-TO-DO
 \subsection{Architecture}
+Hive is tool that provides a SQL interface to MapReduce. It translates SQL queries into apropriate combinations of map and reduce jobs and runs those over tabular data stored in HDFS. HadoopDB extends Hive in that HDFS is replaced by node local relational databases.
+
+\paragraph{Data Loader}
+HadoopDB comes with two executable java classes and a python script\footnote{\url{http://hadoopdb.sourceforge.net/guide/}} necessary to partition and load the data into HadoopDB. The data loading is a cumbersome process with several manual steps. Most of the steps must be executed in parallel on all nodes by some means of parallel ssh execution. This leaves lot of room for failures. It is also necessary to specify the number of nodes in advance. A later change in the number of nodes requires to start the data load process from scratch. It's also not possible to incrementally add data.
+
+The following list describes the data loader steps. At each step it is indicated how often the full data set is read (r) and written (w). It is assumed, that the data already exists in tabular format in HDFS and that HDFS is configured with a replication factor of 1. This is not typical and generally makes no sense, but otherwise the read and write numbers would be even higher.
+
+\begin{enumerate}
+\item Global Hasher: Partition the data set into as many parts as the nodes in the cluster. (2r, 2w + 1 network copy)\footnote{The result of the map phase is written to disk and from there picked up by the reduce phase.}
+\item Export the data from HDFS into each nodes local file system. (1r, 1w)
+\item Local Hasher: Partition the data into smaller chunks. (1r, 1w)
+\item Import into local databases. (1r, 1w + secondary indices writes)
+\end{enumerate}
+
+We can see, that before any practical work has been done, HadoopDB implies five full table scans and writes. In the same time at least 2.5 map and 2.5 reduce jobs could have completed. If we assume that the results of typical map and reduce jobs are usually much smaller then the input, even more work could have been done.
+
+Neither the HadoopDB paper nor the guide on sourceforge make it totally clear what the purpose of the Local Hasher is. It is suggested that a partitioning in chunks of 1GB is necessary to account for practical limitations of postgreSQL when dealing with larger files.\footnote{``We recommend chunks of 1GB, because typically they can be efficiently processed by a database server.''}
+
+\paragraph{SQL to MapReduce to SQL (SMS) Planner}
+The heart of HadoopDB is the SMS planner. Hive translates a SQL query into a DAG of operations to be performed by map and reduce jobs. A call to HadoopDBs SMS planner is patched into Hive just before the operations DAG gets sent to Hadoop MapReduce.(Figure~\ref{fig:hadoopdbarch}) The planner walks up the DAG and transforms ``all operators until the first repartitioning operator with a partitioning key different from the database's key'' into SQL queries for the underlying relational database. 
+
+For those SQL queries where HadoopDB can push parts of the query into the database one could expect a performance gain from secondary indexes and query optimization. For other SQL queries one should expect the same performance as with plain Hive.
+
+\paragraph{Auxiliary Components}
+HadoopDB includes code to connect to the local databases and a catalog that stores database connection parameters and metadata ``such as data sets contained in the cluster, replica locations, and data partitioning properties''. The catalog must also be generated manually from two input files which adds to the work necessary to setup the data.
+
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.7\textwidth]{images/hadoopdb-arch.png}
@@ -148,11 +173,50 @@ TO-DO
   \label{fig:hadoopdbarch}
 \end{figure}
 
+\section{Benchmarks}
+The HadoopDB paper uses the same benchmarks as used in Stonebrakers comparison paper. These are
+\begin{itemize}
+\item Grep Task: \verb+SELECT * FROM Data WHERE field LIKE '%XYZ%';+
+\item Selection Task: 
+
+\verb+ SELECT pageUrl, pageRank FROM Rankings WHERE pageRank > 10;+
+\item Aggregation Task
+  \begin{enumerate}
+  \item Smaller query:
+\begin{verbatim}
+SELECT SUBSTR(sourceIP, 1, 7), SUM(adRevenue) FROM UserVisits 
+GROUP BY SUBSTR(sourceIP, 1, 7);
+\end{verbatim}
+
+  \item Larger query:
+\begin{verbatim}
+SELECT sourceIP, SUM(adRevenue) FROM UserVisits 
+GROUP BY sourceIP;
+\end{verbatim}
+
+  \end{enumerate}
+  \item Join Task:
+\begin{verbatim}
+SELECT sourceIP, COUNT(pageRank), SUM(pageRank),
+SUM(adRevenue) FROM Rankings AS R, UserVisits AS UV
+WHERE R.pageURL = UV.destURL AND
+UV.visitDate BETWEEN '2000-01-15' AND '2000-01-22'
+GROUP BY UV.sourceIP;
+\end{verbatim}
+  \item
+\end{itemize}
+
+
+Im Selection Task ist HadoopDB langsamer als Hadoop, widerspruch zwischen Diagramm und Text!
+
+
+
+
 Lack of impact of HadoopDB:
   - Resonanz in Entwicklerkreisen:
 
     - Suche "HadoopDB" auf PostgreSQL Listenarchiv (8.4.2011): 4 Erwähnung seit einem Jahr, 15 total
-      http://search.postgresql.org/search?m=1
+      \url{http://search.postgresql.org/search?m=1}
 
     - Google Suche (7.4.): <10 unabhängige Erwähnungen, sonst nur Kopien der Presseerklärung und Präsentationen der Autoren
 
@@ -160,9 +224,44 @@ Lack of impact of HadoopDB:
 
 Commercialization as Hadapt
 
-\section{Hive}
-HadoopDB 
+\subsection{Drawbacks of relational schemes}
+  - Sparse vs. dense data
 
+  - Entity-attribute-value model als Reaktion auf unflexibles relationales Model
+
+  - Vergleich HBase/Cassandra mit Column Stores
+    \url{http://dbmsmusings.blogspot.com/2010/03/distinguishing-two-major-types-of_29.html}
+
+    - sparse (reference by row name)/dense(reference by position in column)
+    - optimization: read-write/read
+    - columns / column families
+    - column names in HBase/Cassandra are often also data, since the scheme is not predefined
+
+  - HBase 
+    \url{http://twitter.com/#!/Hadapt/status/52357968141885441}
+    28.3.2011 Storing data in our storage layer is 600 times faster than storing it in HBase for analysis. So we certainly don't use HBase!
+
+- Wie gut reagieren RDBMSs auf scheme evolution?
+
+\subsection{Practical evaluation}
+
+Zu kompliziert:
+\url{http://hadoopdb.sourceforge.net/guide} :
+"a careful analysis of data and expected queries results in a significant performance boost at the expense of a longer loading. Two important things to consider are data partitioning and DB tuning (e.g. creating indices). Again, details of those techniques are covered in textbooks. For some queries, hash-partitioning and clustered indices improve HadoopDB's performance 10 times"
+
+Two complicate systems to administrate: Hadoop+PostgreSQL
+
+  - Storage waste:
+    load data into HDFS, copy in local file system, load into postgreSQL
+
+- access could not be granted to everybody. MapReduce allows to run add hock queries without scheme adaption and indices.
+
+- Scheme / No scheme = Waterfal / Scrum, MR analyzes raw data
+
+
+\section{Hive}
+
+- Vorteil SQL: Beschreibt was, nicht wie. Optimierung wird der Software überlassen.
 \section{Pig, Cascading, Sawzall}
 
 \section{Conclusion}
