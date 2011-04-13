@@ -9,7 +9,7 @@
 
 \usepackage{setspace} % Anderthalbfacher Zeilenabstand ist Standard in den meisten Seminararbeiten. Das Paket setspace ermöglicht ein einfaches Umstellen von normalem, anderthalbfachen oder sogar doppeltem Zeilenabstand. 
 \usepackage[paper=a4paper,inner=25mm,outer=20mm,top=15mm,bottom=20mm]{geometry} %Das geometry Paket dient zur Einrichtung der Seiten. Hier werden die jeweiligen Seitenränder angegeben. Diese wWerte sollten durch die jeweiligen Vorgaben des Seminarleiters oder Instituts ersetzt werden.
-\setlength{\parindent}{3em} %Neue Abschnitte werden mit hängendem Einzug gesetzt, parindent definiert. um wie viel der Absat eingerückt wird. Die Einheit em ist abhängig vom verwendeten Zeichensatz und daher absoluten Werten in mm oder cm vorzuziehen. 
+\setlength{\parindent}{1.7em} %Neue Abschnitte werden mit hängendem Einzug gesetzt, parindent definiert. um wie viel der Absat eingerückt wird. Die Einheit em ist abhängig vom verwendeten Zeichensatz und daher absoluten Werten in mm oder cm vorzuziehen. 
 \setcounter{secnumdepth}{3} %Bis zu welcher Gliederungsebene nummeriert werden soll gibt dieser Befehl vor. In diesem Falle werden \section, \subsection und \subsubsection nummereiert.
 \setcounter{tocdepth}{3} %Bis zu welcher Ebene Einträge ins Inhaltsverzeichnis aufgenommen werden. In diesem Beispiel ebenfalls bis Ebene drei (\subsubsection). Ein durch \paragraph ausgewiesener Abschnitt wird demnach nicht im Inhaltsverzeichnis auftauchen. 
 
@@ -28,25 +28,32 @@
 
 \section{NoSQL and the end of an architectural era}
 In 2007 a paper with the provoking title ``The end of an architectural era:(it's time for a complete rewrite)''\cite{sto07} claimed that the time for traditional relational database management systems would be over. Current RDBMSs have their roots in nearly thirty years old legacy code lines. They are build on assumptions, requirements and hardware constraints that no longer hold true today and should therefor be replaced by a collection of specialized engines.
+
 The change in Hardware is the most obvious. Main memory (RAM) on servers, CPU speed, number of CPUs and storage size have all increased by several orders of magnitude while at the same time hardware price decreased. In former times it was feasible to pay high salaries for specialized staff to administrate and optimize hardware. Today it is a decent decision to buy more hardware and spare costly developer time.
+
 At the time systems like SQL Server, DB2 or Oracle were architected, they targeted the only then existing database market which back then was business data processing. Today several new markets exists:
+
 \begin{itemize}
 \item Text (search engines, translations)
 \item Data Warehouses
 \item Stream Processing (social networks, news sites, real time communication)
 \item Scientific and intelligence databases (semantic data)
 \end{itemize}
+
 For all this use cases, specialized systems can outperform RDBMSs by a factor of 10.\cite{conf/cidr/StonebrakerBCCGHHLRZ07}. Stonebrakers findings and conclusions correspond with the views of many proponents of the so called ``NoSQL'' movement. His text from 2007 has therefor been proposed as an introductory reading for an international nosqlsummer in 2010.\footnote{\url{http://nosqlsummer.org/papers} The author was the organizer of the nosqlsummer meetings at lake Constance.} 
+
 Although Stonebraker and his co authors (one of them is Daniel J. Abadi, the main author of the HadoopDB paper) make a strong point against RDBMSs and for alternative systems, the next section will discuss how they oppose MapReduce in favor of parallel databases and by doing so ignore their own arguments made against relational systems.
 
 \section{The MapReduce vs. parallel databases debate}
 In an online article from January 2008, published on the website of the database company Vertica Systems\footnote
 {According to Wikipedia Stonebraker is co-founder of Vertica Systems, which has recently (march 2011) been acquired by HP. Footnote 9 in \cite{journals/pvldb/AbouzeidBARS09} discloses that also Daniel Abadi has a small financial stake in the company.},
 Stonebraker heavily criticizes MapReduce.\cite{sto08stepback} The article has been commented (in comments on the same page or in blog posts\cite{Chu-Carrol08hammers}) as being inaccurate or missing the point. The main inaccuracy comes from judging MapReduce in areas which it has not been designed for especially judging it as a DBMS, which it isn't.
+
 Since 2008 MapReduce and its supporting tools have made a lot of progress. Therefor it makes sense to revisit some of the arguments and consider recent developments.
 
 \subsection{Understanding of the term MapReduce}
 As Stonebraker rightly points out, MapReduce is not novel. In its core it's just the concept of using a map and a reduce function and in this a basic concept of functional programming. MapReduce can work on different underlying data stores: the Google File System (GFS), Hadoop Distributed File System (HDFS), databases like HBase and Cassandra. These are all systems for large data sets. But MapReduce is also a main building in CouchDB which uses views and B-Trees and targets server installations as well as mobile devices.
+
 In the discussed papers the term MapReduce however is used to describe the combination of a scalable, fault tolerant file system (GFS or HDFS) together with a batch processing execution framework (Hadoop or Google MapReduce).
 This inaccurate term usage may contribute to some of the misunderstandings discussed below. This text will however adapt to this nomenclature for the sake of readability.
 
@@ -56,7 +63,9 @@ MapReduce has no support of schemes since it does not aim to be a database. Howe
 
 \paragraph{Lack of high level access languages}
 Pig and Hive\footnote{Pig: \url{http://pig.apache.org}, Hive: \url{http://hive.apache.org}} lists their first releases on their websites as being from late 2008 or early 2009. Stonebraker also mentions them in 2009\cite[p. 3, sec. 3.3 programming model]{Pavlo09}. Around the same time Cascading\footnote{\url{http://www.cascading.org/}} appeared. But still in 2009 he fails to recognize that MapReduce should not be judged as a RDBMS but as a programming framework which is versatile enough to be also a foundation for some kind of database.
+
 To make the list complete there are also Jagl from IBM and the not so active Cloudbase\footnote{Jagl: \url{http://code.google.com/p/jaql}, Cloudbase: \url{http://cloudbase.sourceforge.net}}. Unlike the systems mentioned so far Googles Sawzall\footnote{\url{http://code.google.com/p/szl}} while also being free software does not (yet) work with Hadoop.
+
 Since MapReduce is not a database but a platform it is even possible to implementations applications on top of it which would be impossible to model with SQL like machine learning. The Mahout project\footnote{\url{http://mahout.apache.org}} is exactly that.\footnote{some pointers taken from: \url{http://www.hpts.ws/session10/shekita.txt}}
 
 \paragraph{Missing features}
@@ -96,10 +105,12 @@ The validity of the given benchmarks is therefor highly questionable. A realisti
 
 \paragraph{Problem Space}
 One of the benchmarks, the ``Selection Task'' works on input that already combines a url with its page rank. This may server as an indicator for the complete misunderstanding of the different problem space of MapReduce opposed to that of RDBMSs. The original MapReduce paper explicitly names the ``Reverse Web-Link Graph'' as an example task for MapReduce. The output of this task is the input to calculate page rank. This algorithm is one of the model use cases for MapReduce.
+
 The benchmark however assumes the page rank as a given input data for a task that is indeed a proper use case for a RDBMS and not for MapReduce. MapReduce users usually do not deny the usefulness of RDBMSs in their appropriate problem space. Facebook for example has been reported to use Oracle and MySQL to analyze data that has been prepared by Hadoop. (Figure~\ref{fig:facebookdatawarehouse})
+
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/rdms_as_frontend}
+  \includegraphics[width=0.7\textwidth]{images/rdms_as_frontend.jpg}
   \caption{Data warehouse architecture at Facebook\cite[p. 508]{White201010}}
   \label{fig:facebookdatawarehouse}
 \end{figure}
@@ -107,8 +118,26 @@ The benchmark however assumes the page rank as a given input data for a task tha
 There are more details to discuss in Stonebrakers benchmarks but this is left to a separate work. Other points are explored in the benchmarks of HadoopDB.
 
 \section{HadoopDB}
-Previous sections discussed major shortcomings in the works of Stonebraker and Abadi in the understanding of MapReduce and its areas of application. However the HadoopDB paper and project is motivated to address those assumed shortcomings which have already been identified as invalid.
-This section describes HadoopDB and argues that it would be an irrelevant project without any valid application area and practical usability.
+
+\subsection{Motivation}
+
+HadoopDB is a project to address the assumed shortcomings of MapReduce in analytical applications by using many single node RDBMSs as storage and local processing layer. However previous sections already concluded that MapReduce has different application areas compared to relational systems and that the assumed shortcomings of MapReduce are not valid but rather misunderstandings.
+
+Since HadoopDB is based on such questionable ground it may be very well possible, that the project does not really address any real need and provides no practical usability. The current section discusses exactly that.
+
+\paragraph{Desired Properties}
+HadoopDB aims to provide the following list of properties. It is argued that neither MapReduce nor parallel databases succeed in these areas.
+
+\begin{itemize}
+\item Performance: It is claimed, that performance differences could ``make a big difference in the amount, quality, and depth of analysis a system can do''. Also performance could significantly reduce the cost of an analysis if fewer hardware ressources were used. However Stonebraker and Abadi concluded already in 2007 that the primary factor for costs has shifted from hardware to personal.\cite[2.5 No Knobs]{sto07} It should also be considered that the costs for licenses of proprietary database systems often outrun hardware costs by orders of magnitude. Finally it is not at all certain, that in practice performance differences are a limitation factor for the range of possible computations.
+
+The paper suggests that current practice in analytical systems is to load data in a specialized database and to make calculations while an operator is waiting for the results. In MapReduce systems however calculations are directly done on the original data and could therefor run continuously during the normal operation of the system.
+The authors own practical experience suggests that the limitation factor for data analysis is normally the time and competence of the personal in charge of preparing and interpreting the analysis.
+\item Fault Tolerance: Abadi describes fault tolerance in the context of a read only analytical database. Hadoop however targets the requirement of concurrent read and write access with persistence guarantees and high availability.
+\item Ability to run in a heterogeneous environment: The system needs to make progress in the presence of individual node failures and its performance may not be bound by the slowest nodes.
+\item Flexible query interface: The system should support SQL to integrate with existing tools as well. Ideally it also supports user defined functions (UDF) and manages their parallel execution.
+\end{itemize}
+The list above list does not include energy efficiency as a desired property although it is one of the most important subjects in recent discussions about data centers.\footnote{see Googles Efficient Data Center Summit, 2009 \url{http://www.google.com/corporate/datacenter/summit.html} and Facebooks open compute project \url{http://opencompute.org}} It has also been argued, that standard performance benchmarks should be enhanced to measure the performance relative to the enerergie consumption.\cite{Fanara:2009:SEP:1692899.1692904}
 
 TO-DO
 \subsection{Architecture}
