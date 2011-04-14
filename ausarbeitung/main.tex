@@ -203,8 +203,15 @@ WHERE R.pageURL = UV.destURL AND
 UV.visitDate BETWEEN '2000-01-15' AND '2000-01-22'
 GROUP BY UV.sourceIP;
 \end{verbatim}
-  \item
+An additional reduce job calculates the average pageRank and total adRevenue for each sourceIP. The SQL query for the relational databases directly calculate the average in the above select, store the result in a temporary table and use a second select to retrieve the row with the highest total revenue.
+  \item UDF task: Calculate the inlink count for a dataset of (page url, page html).
 \end{itemize}
+In most tasks HadoopDB performes in the same range as Hadoop in comparission to the parallel database systems. Hadoop is considerably faster then all other systems in the UDF task, which is also a very typical use case of MapReduce. Only in the join task HadoopDB is faster by an order of magnitude.
+It is however not likely, that Hadoop would ever encounter input data in such a strange format as presented in the benchmark. The benchmark assumes for this task two tables.
+The first one resembles the access log of a web server with the fields sourceIP\footnote{Normally the full URL of the referrer website is stored since retrieving the source ip would require a reverse DNS lookup.}, destURL, visitDate, adRevenue, userAgent, countryCode, languageCode, searchWord and duration. In reality such a table is not likely to be ever encountered. If it would be the access log of a web server then some of the fields would not be available: adRevenue is surely nothing a web server is aware of. The meaning of searchWord is not clear and duration could be the time it took the web server to deliver the page or the duration of the user visiting the web site in which case it would be the result of a calculation over the web server log. Most importantly a web server log is written continuously as users visit the site and thus indexed by the visitDate, not the sourceIP. It would require a MapReduce job to transform a typical web server log into a table with sourceIP as the primary key.
+When on the other hand one can conclude that the given table is the result of a MapReduce job, one could ask, why the same MapReduce job that already scanned the web server log did not prepare the data better for the necessary join task. It is possible for one map job to prepare data for different purposes.
+
+
 
 
 Im Selection Task ist HadoopDB langsamer als Hadoop, widerspruch zwischen Diagramm und Text!
