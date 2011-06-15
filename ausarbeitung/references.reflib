@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
 <manage_target braces="true" utf8="true">references.bib</manage_target>
-<library_folder monitor="true"></library_folder>
+<library_folder monitor="false"></library_folder>
 <taglist>
 </taglist>
 <doclist>
@@ -47,7 +47,7 @@
     <bib_extra key="Url">http://dx.doi.org/10.1007/978-3-642-13818-8</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/hadoopdb-demo.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/hadoopdb-demo.pdf</filename>
     <relative_filename>references/hadoopdb-demo.pdf</relative_filename>
     <key>conf/sigmod/AbouziedBHAS10</key>
     <notes></notes>
@@ -70,7 +70,7 @@
     <bib_extra key="Url">http://doi.acm.org/10.1145/1807167.1807294</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/benchmarks-sigmod09.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/benchmarks-sigmod09.pdf</filename>
     <relative_filename>references/benchmarks-sigmod09.pdf</relative_filename>
     <key>Pavlo09</key>
     <notes></notes>
@@ -88,7 +88,7 @@
     <bib_extra key="Publisher">ACM</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/end_of_an_architectural_era.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/end_of_an_architectural_era.pdf</filename>
     <relative_filename>references/end_of_an_architectural_era.pdf</relative_filename>
     <key>sto07</key>
     <notes></notes>
@@ -111,7 +111,7 @@
     <bib_extra key="Uri">http://www.vldb.org/conf/2007/papers/industrial/p1150-stonebraker.pdf</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/MapReduce%20%20A%20major%20step%20backwards%20%20%20The%20Database%20Column.html</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/MapReduce%20%20A%20major%20step%20backwards%20%20%20The%20Database%20Column.html</filename>
     <relative_filename>references/MapReduce%20%20A%20major%20step%20backwards%20%20%20The%20Database%20Column.html</relative_filename>
     <key>sto08stepback</key>
     <notes></notes>
@@ -130,7 +130,7 @@
     <bib_extra key="url">http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/cidr07p20.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/cidr07p20.pdf</filename>
     <relative_filename>references/cidr07p20.pdf</relative_filename>
     <key>conf/cidr/StonebrakerBCCGHHLRZ07</key>
     <notes></notes>
@@ -150,7 +150,7 @@
     <bib_extra key="Url">http://www.cidrdb.org/cidr2007/papers/cidr07p20.pdf</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/Databases%20are%20hammers%3B%20MapReduce%20is%20a%20screwdriver.%20%20%20Good%20Math,%20Bad%20Math.html</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/Databases%20are%20hammers%3B%20MapReduce%20is%20a%20screwdriver.%20%20%20Good%20Math,%20Bad%20Math.html</filename>
     <relative_filename>references/Databases%20are%20hammers%3B%20MapReduce%20is%20a%20screwdriver.%20%20%20Good%20Math,%20Bad%20Math.html</relative_filename>
     <key>Chu-Carrol08hammers</key>
     <notes></notes>
@@ -221,7 +221,7 @@
     <bib_extra key="Url">http://doi.acm.org/10.1145/1247480.1247602</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/mapreduce-osdi04.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/mapreduce-osdi04.pdf</filename>
     <relative_filename>references/mapreduce-osdi04.pdf</relative_filename>
     <key>Dean:2008:MSD:1327452.1327492</key>
     <notes></notes>
@@ -244,7 +244,7 @@
     <bib_extra key="Url">http://doi.acm.org/10.1145/1327452.1327492</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/bigtable-osdi06.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/bigtable-osdi06.pdf</filename>
     <relative_filename>references/bigtable-osdi06.pdf</relative_filename>
     <key>Chang:2006:BDS:1267308.1267323</key>
     <notes></notes>
@@ -267,7 +267,7 @@
     <bib_extra key="Url">http://portal.acm.org/citation.cfm?id=1267308.1267323</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/Hadoop.The.Definitive.Guide.2nd.Edition.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/Hadoop.The.Definitive.Guide.2nd.Edition.pdf</filename>
     <relative_filename>references/Hadoop.The.Definitive.Guide.2nd.Edition.pdf</relative_filename>
     <key>White201010</key>
     <notes></notes>
@@ -290,7 +290,7 @@
     <bib_extra key="Url">http://amazon.com/o/ASIN/1449389732/</bib_extra>
   </doc>
   <doc>
-    <filename>file:///home/ymc-toko/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/State_of_Energy_and_Performance_Benchmarking_for_Enterprise_Servers_Final.pdf</filename>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/State_of_Energy_and_Performance_Benchmarking_for_Enterprise_Servers_Final.pdf</filename>
     <relative_filename>references/State_of_Energy_and_Performance_Benchmarking_for_Enterprise_Servers_Final.pdf</relative_filename>
     <key>Fanara:2009:SEP:1692899.1692904</key>
     <notes></notes>
@@ -311,6 +311,61 @@
     <bib_extra key="Isbn">978-3-642-10423-7</bib_extra>
     <bib_extra key="Numpages">15</bib_extra>
     <bib_extra key="publisher">Springer-Verlag</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/split-execution-hadoopdb.pdf</filename>
+    <relative_filename>references/split-execution-hadoopdb.pdf</relative_filename>
+    <key>split-executio</key>
+    <notes></notes>
+    <bib_type>article</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Efficient Processing of Data Warehousing Queries in a Split Execution 
+Environment</bib_title>
+    <bib_authors>Bajda-Pawlikowski, Kamil  and Abadi, Daniel J. and Silberschatz, Avi and Paulson, Erik</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages></bib_pages>
+    <bib_year>2011</bib_year>
+  </doc>
+  <doc>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/hive-icde2010.pdf</filename>
+    <relative_filename>references/hive-icde2010.pdf</relative_filename>
+    <key>hive-icde2010</key>
+    <notes></notes>
+    <bib_type>inproceedings</bib_type>
+    <bib_doi>10.1109/ICDE.2010.5447738  </bib_doi>
+    <bib_title>Hive - a petabyte scale data warehouse using Hadoop</bib_title>
+    <bib_authors>Thusoo, Ashish and Sarma, Joydeep Sen and Jain, Namit and Shao, Zheng and Chakka, Prasad and 0002, Ning Zhang and Anthony, Suresh and Liu, Hao and Murthy, Raghotham</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>996-1005</bib_pages>
+    <bib_year>2010</bib_year>
+    <bib_extra key="Bibsource">DBLP, http://dblp.uni-trier.de</bib_extra>
+    <bib_extra key="booktitle">ICDE</bib_extra>
+    <bib_extra key="editor">Li, Feifei and Moro, Mirella M. and Ghandeharizadeh, Shahram and Haritsa, Jayant R. and Weikum, Gerhard and Carey, Michael J. and Casati, Fabio and Chang, Edward Y. and Manolescu, Ioana and Mehrotra, Sharad and Dayal, Umeshwar and Tsotras, Vassilis J.</bib_extra>
+    <bib_extra key="Ee">http://dx.doi.org/10.1109/ICDE.2010.5447738</bib_extra>
+    <bib_extra key="Isbn">978-1-4244-5444-0</bib_extra>
+    <bib_extra key="month">03</bib_extra>
+    <bib_extra key="publisher">IEEE</bib_extra>
+    <bib_extra key="Series">Proceedings of the 26th International Conference on Data Engineering, ICDE 2010, March 1-6, 2010, Long Beach, California, USA</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/literatur/T5b.pdf</filename>
+    <relative_filename>T5b.pdf</relative_filename>
+    <key>Thusoo_hive-a</key>
+    <notes></notes>
+    <bib_type>inproceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Hive- A Warehousing Solution Over a Map-Reduce Framework</bib_title>
+    <bib_authors>Thusoo, Ashish and Sarma, Joydeep Sen and Jain, Namit and Shao, Zheng and Chakka, Prasad and Anthony, Suresh and Liu, Hao and Wyckoff, Pete and Murthy, Raghotham</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1626–1629</bib_pages>
+    <bib_year>2009</bib_year>
+    <bib_extra key="booktitle">Proceedings of the VLDB Endowment 2, Nr. 2</bib_extra>
   </doc>
 </doclist>
 </library>

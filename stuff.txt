@@ -1,11 +1,29 @@
+hadapt paper 2011:
+
+Each node in the cluster has a single 2.40 GHz Intel Core2 Duo processor running 64-bit Red Hat Enterprise Linux 5 (kernel version 2.6.18) with 4GB RAM and two 250GB SATA-I hard disks. According to hdparm, the hard disks deliver 74MB/sec for buﬀered reads. All nodes are on the same rack, connected via 1Gbps network to a Cisco Catalyst 3750E-48TD switch.
+
+The entire partitioning process took 11h4min. Referential hash-partitioning was the most expensive part (6h42min).
+
+
+
+
+
+http://www.dataspora.com/2011/04/pigs-bees-and-elephants-a-comparison-of-eight-mapreduce-languages/
+http://metamarketsgroup.com/blog/druid-part-i-real-time-analytics-at-a-billion-rows-per-second/
+http://www.bloom-lang.net/
+http://www.googlestack.com/50226711/common_mapreduce_misconceptions.php
+http://cacm.acm.org/magazines/2011/6/108651-10-rules-for-scalable-performance-in-simple-operation-datastores/fulltext
+
 Blog des HadoopDB Forschers: http://dbmsmusings.blogspot.com/
+Daniel Abadi http://cs-www.cs.yale.edu/homes/dna/
+HadoopDB Quickstart: http://hadoopdb.sourceforge.net/guide/quick_start_guide.html#SECTION00022000000000000000
 HadoopDB: http://db.cs.yale.edu/hadoopdb/hadoopdb.html
 Install HadoopDB on Ubuntu: http://posulliv.github.com/2010/05/10/hadoopdb-mysql.html
 http://www.dbms2.com/2011/03/23/hadapt-commercialized-hadoopdb/
-
-
+http://insidehpc.com/2011/03/24/slidecast-hadapts-adaptive-query-execution-speeds-big-data-in-the-cloud/
+http://www.prweb.com/releases/2010/10/prweb4609474.htm
+http://dbmsmusings.blogspot.com/2010/03/distinguishing-two-major-types-of_29.html
 Themen:
-
 
 - MR works on measured raw data while DBMSs require well crafted prepared input data. There may not be that much well formed data.
 - Use MR libraries that extract predefined data instead of predefined schemes.

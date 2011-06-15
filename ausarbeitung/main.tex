@@ -25,16 +25,17 @@
   
 \end{abstract}
 \tableofcontents{}
+\newpage{}
 
 \section{NoSQL and the end of an architectural era}
-In 2007 a paper with the provoking title ``The end of an architectural era:(it's time for a complete rewrite)''\cite{sto07} claimed that the time for traditional relational database management systems would be over. Current RDBMSs have their roots in nearly thirty years old legacy code lines. They are build on assumptions, requirements and hardware constraints that no longer hold true today and should therefor be replaced by a collection of specialized engines.
+In 2007 a paper with the provoking title ``The end of an architectural era:(it's time for a complete rewrite)''\cite{sto07} claimed that the time for traditional relational database management systems would be over. Current RDBMSs have their roots in over thirty years old legacy code lines. They are build on assumptions, requirements and hardware constraints that no longer hold true today and should therefor be replaced by a variety of specialized engines.
 
-The change in Hardware is the most obvious. Main memory (RAM) on servers, CPU speed, number of CPUs and storage size have all increased by several orders of magnitude while at the same time hardware price decreased. In former times it was feasible to pay high salaries for specialized staff to administrate and optimize hardware. Today it is a decent decision to buy more hardware and spare costly developer time.
+The change in Hardware is obvious. Main memory (RAM) on servers, CPU speed, number of CPUs and storage size have all increased by several orders of magnitude while at the same time hardware price decreased. In former times it was feasible to pay high salaries for specialized staff to administrate and optimize hardware. Today it is a decent decision to buy more hardware and spare costly developer time.
 
 At the time systems like SQL Server, DB2 or Oracle were architected, they targeted the only then existing database market which back then was business data processing. Today several new markets exists:
 
 \begin{itemize}
-\item Text (search engines, translations)
+\item Text (search engines, translations, groupware)
 \item Data Warehouses
 \item Stream Processing (social networks, news sites, real time communication)
 \item Scientific and intelligence databases (semantic data)
@@ -42,7 +43,7 @@ At the time systems like SQL Server, DB2 or Oracle were architected, they target
 
 For all this use cases, specialized systems can outperform RDBMSs by a factor of 10.\cite{conf/cidr/StonebrakerBCCGHHLRZ07}. Stonebrakers findings and conclusions correspond with the views of many proponents of the so called ``NoSQL'' movement. His text from 2007 has therefor been proposed as an introductory reading for an international nosqlsummer in 2010.\footnote{\url{http://nosqlsummer.org/papers} The author was the organizer of the nosqlsummer meetings at lake Constance.} 
 
-Although Stonebraker and his co authors (one of them is Daniel J. Abadi, the main author of the HadoopDB paper) make a strong point against RDBMSs and for alternative systems, the next section will discuss how they oppose MapReduce in favor of parallel databases and by doing so ignore their own arguments made against relational systems.
+Although Stonebraker and his co authors (one of them is Daniel J. Abadi, the main author of the HadoopDB paper) make a strong points against RDBMSs and for alternative systems, the next section will discuss how they oppose MapReduce in favor of parallel databases and by doing so ignore their own arguments made against relational systems.
 
 \section{The MapReduce vs. parallel databases debate}
 In an online article from January 2008, published on the website of the database company Vertica Systems\footnote
@@ -52,7 +53,7 @@ Stonebraker heavily criticizes MapReduce.\cite{sto08stepback} The article has be
 Since 2008 MapReduce and its supporting tools have made a lot of progress. Therefor it makes sense to revisit some of the arguments and consider recent developments.
 
 \subsection{Understanding of the term MapReduce}
-As Stonebraker rightly points out, MapReduce is not novel. In its core it's just the concept of using a map and a reduce function and in this a basic concept of functional programming. MapReduce can work on different underlying data stores: the Google File System (GFS), Hadoop Distributed File System (HDFS), databases like HBase and Cassandra. These are all systems for large data sets. But MapReduce is also a main building in CouchDB which uses views and B-Trees and targets server installations as well as mobile devices.
+As Stonebraker rightly points out, MapReduce is not novel. In its core it's just the concept of using a map and a reduce function and in this a basic concept of functional programming. MapReduce can work on different underlying data stores: the Google File System (GFS), Hadoop Distributed File System (HDFS), databases like HBase, Cassandra, Riak, MongoDB and others. These are all systems for large data sets. But MapReduce is also a main building in CouchDB which uses views and B-Trees and targets server installations as well as mobile devices.
 
 In the discussed papers the term MapReduce however is used to describe the combination of a scalable, fault tolerant file system (GFS or HDFS) together with a batch processing execution framework (Hadoop or Google MapReduce).
 This inaccurate term usage may contribute to some of the misunderstandings discussed below. This text will however adapt to this nomenclature for the sake of readability.
@@ -60,13 +61,14 @@ This inaccurate term usage may contribute to some of the misunderstandings discu
 \subsection{Rebuttal of MapReduce criticism}
 \paragraph{Lack of schemes}
 MapReduce has no support of schemes since it does not aim to be a database. However the object serialization projects avro, protocol buffers and thrift provide facilities to define schemes in one central place or together with the data and use them from most popular programming languages.\footnote{avro: \url{http://avro.apache.org/}, protocol buffers: \url{http://code.google.com/p/protobuf}, thrift: \url{http://thrift.apache.org}}
+Furthermore the HCatalog project\footnote{\url{http://developer.yahoo.com/blogs/hadoop/posts/2011/04/hcatalog-tables-and-metadata-for-hadoop}} has recently been started by the Apache projects Hive and Pig to provide an independent and reusable schema store for data stored in HDFS.
 
 \paragraph{Lack of high level access languages}
 Pig and Hive\footnote{Pig: \url{http://pig.apache.org}, Hive: \url{http://hive.apache.org}} lists their first releases on their websites as being from late 2008 or early 2009. Stonebraker also mentions them in 2009\cite[p. 3, sec. 3.3 programming model]{Pavlo09}. Around the same time Cascading\footnote{\url{http://www.cascading.org/}} appeared. But still in 2009 he fails to recognize that MapReduce should not be judged as a RDBMS but as a programming framework which is versatile enough to be also a foundation for some kind of database.
 
 To make the list complete there are also Jagl from IBM and the not so active Cloudbase\footnote{Jagl: \url{http://code.google.com/p/jaql}, Cloudbase: \url{http://cloudbase.sourceforge.net}}. Unlike the systems mentioned so far Googles Sawzall\footnote{\url{http://code.google.com/p/szl}} while also being free software does not (yet) work with Hadoop.
 
-Since MapReduce is not a database but a platform it is even possible to implementations applications on top of it which would be impossible to model with SQL like machine learning. The Mahout project\footnote{\url{http://mahout.apache.org}} is exactly that.\footnote{some pointers taken from: \url{http://www.hpts.ws/session10/shekita.txt}}
+Since MapReduce is not a database but a platform it is even possible to implement applications on top of it which would be impossible to model with SQL like machine learning. The Mahout project\footnote{\url{http://mahout.apache.org}} is exactly that.\footnote{some pointers taken from: \url{http://www.hpts.ws/session10/shekita.txt}}
 
 \paragraph{Missing features}
 While it may not be fair to compare the tool set of decades of relational database development with those of the young MapReduce world, there is still already quite something to mention for the categories questioned:
@@ -76,35 +78,34 @@ While it may not be fair to compare the tool set of decades of relational databa
 \item Indexing: The Belgian CMS company Outerthought is pioneering to build its newest CMS on top of HBase and therefor also Hadoop. For its content repository it evaluated different scalable indexing solutions to provide secondary indexes into HBase.\footnote{\url{http://www.lilyproject.org/lily/about/technology.html}} Outerthought has been included by Gartner in "Cool Vendors in Content Management 2010" list.\footnote{\url{http://outerthought.org/blog/373-ot.html}}
 \item Updates: MapReduce or better said the Google File System respectively HDFS have been developed for big files that are written once and never changed. On top of that Googles BigTable or Apache HBase provide databases for random access and updates to small data items.
 \item Transactions: When Googles BigTable database was implemented, transactions were left out initially. Later on it was observed, that there was actually no real need to support them, because most applications require only row level isolation.\cite[p. 12]{Chang:2006:BDS:1267308.1267323} The developers of the web service streamy.com give a description how they started development with a normalized scheme on a RDBMS and had to denormalize there scheme step by step to scale the service. In the end they gave up on their RDBMS altogether and used HBase instead.\cite[p. 431-435]{White201010}
-\item Integrity constraints: As with transactions one can argue that most use cases for MapReduce don't have the need for integrity constraints. Data that is handled by MapReduce is often collected from unreliable or unstructured sources like web pages, log files or sensors. It is desirable to also save corrupted data, like invalid HTML or out of scale measured data. This data can after wards be simply ignored by MapReduce jobs but is still available for further analysis. A search engine could for example reduce the ranking of domains with many invalid HTML pages or in a sensor network one could identify sensors which often produce erroneous values. So in the world of MapReduce integrity is handled at read time, not at write time. Different MapReduce jobs may have different opinions about which data they consider worth of further examination.
+\item Integrity constraints: As with transactions one can argue that most use cases for MapReduce don't have the need for integrity constraints. Data that is handled by MapReduce is often collected from unreliable or unstructured sources like web pages, log files or sensors. It is desirable to also save corrupted data, like invalid HTML or out of scale measured data. This data can afterward be simply ignored by MapReduce jobs but is still available for further analysis. A search engine could for example reduce the ranking of domains with many invalid HTML pages or in a sensor network one could identify sensors which often produce erroneous values. So in the world of MapReduce integrity is handled at read time, not at write time. Different MapReduce jobs may have different opinions about which data they consider worth of further examination.
 \item Referential integrity: See the argument on transactions. When the scheme is denormalized there is no need for referential integrity. Furthermore with data at scale one may need to give up on perfect data. Web links may point to nonexistent pages, Users may have deleted their accounts, changed their name or email address.
-\item Views: I'm not aware of anything similar in MapReduce related technology nor have I ever read a complaint about its absence. But as we've seen above tools on top of MapReduce gets developed when needs for them occur.
+\item Views: I'm not aware of anything similar in MapReduce related technology nor have I ever read a complaint about its absence. But as we've seen above, tools on top of MapReduce get developed when needs for them occur.
 \end{itemize}
-As with the lack of features Stonebraker misses integration with DBMS tools. At least for Business Intelligence this may not be the case anymore since Pentaho announced Hadoop support in may 2010.\footnote{\url{http://www.pentaho.com/news/releases/20100519_pentaho_harnesses_apache_hadoop_to_deliver_big_data_analytics.php}}
+Stonebraker also criticizes an absence of integration with DBMS tools. At least for Business Intelligence this may not be the case anymore since Pentaho announced Hadoop support in may 2010.\footnote{\url{http://www.pentaho.com/news/releases/20100519_pentaho_harnesses_apache_hadoop_to_deliver_big_data_analytics.php}}
 
 \section{Discussion of MapReduce vs. parallel databases benchmarks}
-The previous section discussed the misconception about MapReduce being a database. In line with this misconception Stonebraker, Abadi et al. moved on to directly compare performance between MapReduce and two RDBMSs.\cite{Pavlo09} This section discusses some of the flaws of this work.
-The benchmarks were made on a cluster of at maximum 100 machines. This decision is justified by the ``superior efficiency of modern DBMSs'' that would not require more hardware to work on petabyte scale. This argument will be revisited in this section. Additionally the necessity for such large data sets is generally questioned:
+The previous section discussed the misconception about MapReduce being a database. In line with this misconception, Stonebraker, Abadi et al. moved on to directly compare performance between MapReduce and two RDBMSs.\cite{Pavlo09} This section discusses some of the flaws of this work.
+The benchmarks were made on a cluster of at maximum 100 machines. This decision is justified by the ``superior efficiency of modern DBMSs'' that would not require more hardware to work on petabyte scale. This argument will be revisited in this section. 
+Stonebraker also questions the necessity for such large data sets at all:
 \begin{quote}
   Since few data sets in the world even approach a petabyte in size, it is not at all clear how many MR users really need 1.000 nodes.
 \end{quote}
 This proposition sounds a lot like the famous (mis)quotes ``I think there is a world market for maybe five computers'' and ``640K ought to be enough for anybody''. While it may not be desirable from an energy efficiency or data privacy point of view to have many petabyte clusters, it only needs a little imagination to come up with many valid use cases. Millions of smart phones with cameras produce an immense amount of pictures and videos. Modern cars have sensors and computers build in whose data could (or is?) used to improve the next generation of cars. Science analyzes large data sets in genetics or high energy physics. The Global Biodiversity Information Facility is currently evaluating Hadoop.
 
 \paragraph{Fault Tolerance}
-The probability of one node failure in a cluster is a linear function of the number of cluster nodes which in turn depends on the data size:
-\begin{equation*}
-  p_{failure cluster} \sim p_{failure node} \cdot n_{nodes} \sim p_{failure node} \cdot datasize
-\end{equation*}
-In most cases the algorithms are at least $O(n log n)$. So with growing data size one can expect single node failures during the execution of a computation. A system that restarts the whole computation on a single node failure, as typical in RDBMSs, may never be able to complete on large enough data sizes.
-By limiting the benchmark to a cluster of 100 nodes this problem is practically avoided. Abadi discusses and addresses the problem in the HadoopDB work.\cite{journals/pvldb/AbouzeidBARS09}.
+The probability, that at least one cluster node fails during a computation may be negligible for less then 100 nodes. With growing data size the cluster needs to grow. The probability of a single node failure during a fixed time span and the duration of any meaningful algorithm grow faster then linear until it's not possible anymore to finish calculations without a single node failing.
+
+A system that restarts the whole computation on a single node failure, as typical in RDBMSs, may never be able to complete on large enough data sizes.
+By limiting the benchmark to a cluster of 100 nodes this problem is practically avoided. Abadi discusses the problem in the HadoopDB work.\cite{journals/pvldb/AbouzeidBARS09}. Still there's no automated failure recovery build into HadoopDB.
 
 \paragraph{Data Loading}
-The discussed benchmarks all create a set up in which data is prepared and loaded into a data analytics cluster just for the purpose of the analysis. It is assumed that the data is imported from some other data store that is responsible for reliable long term storage and backup.
+The discussed benchmarks all create a setup in which data is prepared and loaded into a data analytics cluster just for the purpose of the analysis. It is assumed that the data is imported from some other data store that is responsible for reliable long term storage and backup.
 This however is not the typical use case of GFS or HDFS. These file systems are used to collect the raw incoming data from crawlers, sensors, log files or user actions. Instead of moving this data to a separate analytic cluster, MapReduce works directly on the original data, perhaps storing the computed data to a separate data store.
-The validity of the given benchmarks is therefor highly questionable. A realistic benchmark would need to consider the necessity for reliable storage and parallel writes. A separate ``data loading phase'' however does not exist.
+The validity of the given benchmarks is therefor highly questionable. A realistic benchmark would need to consider the necessity for reliable storage and parallel writes. A separate ``data loading phase'' however may not be practical in real world scenarios.
 
 \paragraph{Problem Space}
-One of the benchmarks, the ``Selection Task'' works on input that already combines a url with its page rank. This may server as an indicator for the complete misunderstanding of the different problem space of MapReduce opposed to that of RDBMSs. The original MapReduce paper explicitly names the ``Reverse Web-Link Graph'' as an example task for MapReduce. The output of this task is the input to calculate page rank. This algorithm is one of the model use cases for MapReduce.
+One of the benchmarks, the ``Selection Task'' works on input that already combines a url with its page rank. This may serve as an indicator for the complete misunderstanding of the different problem space of MapReduce opposed to that of RDBMSs. The original MapReduce paper explicitly names the ``Reverse Web-Link Graph'' as an example task for MapReduce. The output of this task is the input to calculate page rank. This algorithm is one of the model use cases for MapReduce.
 
 The benchmark however assumes the page rank as a given input data for a task that is indeed a proper use case for a RDBMS and not for MapReduce. MapReduce users usually do not deny the usefulness of RDBMSs in their appropriate problem space. Facebook for example has been reported to use Oracle and MySQL to analyze data that has been prepared by Hadoop. (Figure~\ref{fig:facebookdatawarehouse})
 
@@ -115,13 +116,13 @@ The benchmark however assumes the page rank as a given input data for a task tha
   \label{fig:facebookdatawarehouse}
 \end{figure}
 
-There are more details to discuss in Stonebrakers benchmarks but this is left to a separate work. Other points are explored in the benchmarks of HadoopDB.
+There are more details to discuss in Stonebrakers benchmarks but this is left to a separate work. Other discussion points are explored in the below sections about HadoopDB.
 
 \section{HadoopDB}
 
 \subsection{Motivation}
 
-HadoopDB is a project to address the assumed shortcomings of MapReduce in analytical applications by using many single node RDBMSs as storage and local processing layer. However previous sections already concluded that MapReduce has different application areas compared to relational systems and that the assumed shortcomings of MapReduce are not valid but rather misunderstandings.
+HadoopDB is a project to address the assumed shortcomings of MapReduce in analytical applications by using many single node RDBMSs as storage and local processing layer. However previous sections already concluded that MapReduce has different application areas compared to relational systems and that the assumed shortcomings of MapReduce may not be valid but rather misunderstandings.
 
 Since HadoopDB is based on such questionable ground it may be very well possible, that the project does not really address any real need and provides no practical usability. The current section discusses exactly that.
 
@@ -131,19 +132,33 @@ HadoopDB aims to provide the following list of properties. It is argued that nei
 \begin{itemize}
 \item Performance: It is claimed, that performance differences could ``make a big difference in the amount, quality, and depth of analysis a system can do''. Also performance could significantly reduce the cost of an analysis if fewer hardware ressources were used. However Stonebraker and Abadi concluded already in 2007 that the primary factor for costs has shifted from hardware to personal.\cite[2.5 No Knobs]{sto07} It should also be considered that the costs for licenses of proprietary database systems often outrun hardware costs by orders of magnitude. Finally it is not at all certain, that in practice performance differences are a limitation factor for the range of possible computations.
 
-The paper suggests that current practice in analytical systems is to load data in a specialized database and to make calculations while an operator is waiting for the results. In MapReduce systems however calculations are directly done on the original data and could therefor run continuously during the normal operation of the system.
-The authors own practical experience suggests that the limitation factor for data analysis is normally the time and competence of the personal in charge of preparing and interpreting the analysis.
-\item Fault Tolerance: Abadi describes fault tolerance in the context of a read only analytical database. Hadoop however targets the requirement of concurrent read and write access with persistence guarantees and high availability. Fault tolerance can stand in direct conflict to performance. In this cases parallel databases tend to trade of fault tolerance in favor of performance while Hadoop is doing the opposite, e.g. by doing frequent checkpoints during MapReduce executions.
+The paper suggests that current practice in analytical systems is to load data in a specialized database and to make calculations while an operator is waiting for the results. In MapReduce systems however calculations are directly done on the original data and could therefor run continuously during the normal operation of the system. The performance of calculations may therefor not be a practical problem at all.
+
+As a side note it may also be suggested that the limitation factor for data analysis could be the time and competence of the personal in charge of preparing and interpreting the analysis.
+
+\item Fault Tolerance: Abadi describes fault tolerance in the context of a read only analytical database. Hadoop however targets the requirement of concurrent read and write access with persistence guarantees and high availability. Fault tolerance normally stands in direct conflict to performance. In this cases parallel databases tend to trade of fault tolerance in favor of performance while Hadoop is doing the opposite, e.g. by doing frequent checkpoints during MapReduce executions.
+
+The fault tolerance provided by HadoopDB is not self healing as in HDFS. HDFS automatically creates new replicas of lost blocks in case of node failures to reestablish the promised replication level as fast as possible. HadoopDB however will not automatically copy blocks but loose data if both replicas of a data block fail.
+
 \item Ability to run in a heterogeneous environment: The system needs to make progress in the presence of individual node failures and its performance may not be bound by the slowest nodes.
-\item Flexible query interface: The system should support SQL to integrate with existing tools as well. Ideally it also supports user defined functions (UDF) and manages their parallel execution.
+
+\item Flexible query interface: The system should support SQL to integrate with existing tools. Ideally it also supports user defined functions (UDF) and manages their parallel execution.
+
 \end{itemize}
-The above list does not include energy efficiency as a desired property although it is one of the most important subjects in recent discussions about data centers.\footnote{see Googles Efficient Data Center Summit, 2009 \url{http://www.google.com/corporate/datacenter/summit.html} and Facebooks open compute project \url{http://opencompute.org}} It has also been argued, that standard performance benchmarks should be enhanced to measure the performance relative to the energy consumption.\cite{Fanara:2009:SEP:1692899.1692904}
+The above list does not include energy efficiency as a desired property although it is one of the most important subjects in recent discussions about data centers.\footnote{see Googles Efficient Data Center Summit, 2009 \url{http://www.google.com/corporate/datacenter/summit.html} and Facebooks open compute project \url{http://opencompute.org}} It has also been argued, that standard performance benchmarks should be enhanced to measure the performance relative to energy consumption.\cite{Fanara:2009:SEP:1692899.1692904}
 
 \subsection{Architecture}
-Hive is tool that provides a SQL interface to MapReduce. It translates SQL queries into apropriate combinations of map and reduce jobs and runs those over tabular data stored in HDFS. HadoopDB extends Hive in that HDFS is replaced by node local relational databases.
+Hive is a tool that provides a SQL interface to MapReduce. It translates SQL queries into apropriate combinations of map and reduce jobs and runs those over tabular data stored in HDFS. HadoopDB extends Hive in that HDFS is replaced by node local relational databases.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/hadoopdb-arch.png}
+  \caption{The Architecture of HadoopDB\cite{journals/pvldb/AbouzeidBARS09}}
+  \label{fig:hadoopdbarch}
+\end{figure}
 
 \paragraph{Data Loader}
-HadoopDB comes with two executable java classes and a python script\footnote{\url{http://hadoopdb.sourceforge.net/guide/}} necessary to partition and load the data into HadoopDB. The data loading is a cumbersome process with several manual steps. Most of the steps must be executed in parallel on all nodes by some means of parallel ssh execution. This leaves lot of room for failures. It is also necessary to specify the number of nodes in advance. A later change in the number of nodes requires to start the data load process from scratch. It's also not possible to incrementally add data.
+HadoopDB comes with two executable java classes and a python script\footnote{\url{http://hadoopdb.sourceforge.net/guide/}} necessary to partition and load the data into HadoopDB. The data loading is a cumbersome process with several manual steps. Most of the steps must be executed in parallel on all nodes by some means of parallel ssh execution. This leaves a lot of room for failures. It is also necessary to specify the number of nodes in advance. A later change in the number of nodes requires to start the data load process from scratch. It is also not possible to incrementally add data.
 
 The following list describes the data loader steps. At each step it is indicated how often the full data set is read (r) and written (w). It is assumed, that the data already exists in tabular format in HDFS and that HDFS is configured with a replication factor of 1. This is not typical and generally makes no sense, but otherwise the read and write numbers would be even higher.
 
@@ -161,19 +176,12 @@ Neither the HadoopDB paper nor the guide on sourceforge make it totally clear wh
 \paragraph{SQL to MapReduce to SQL (SMS) Planner}
 The heart of HadoopDB is the SMS planner. Hive translates a SQL query into a DAG of operations to be performed by map and reduce jobs. A call to HadoopDBs SMS planner is patched into Hive just before the operations DAG gets sent to Hadoop MapReduce.(Figure~\ref{fig:hadoopdbarch}) The planner walks up the DAG and transforms ``all operators until the first repartitioning operator with a partitioning key different from the database's key'' into SQL queries for the underlying relational database. 
 
-For those SQL queries where HadoopDB can push parts of the query into the database one could expect a performance gain from secondary indexes and query optimization. For other SQL queries one should expect the same performance as with plain Hive.
+For those SQL queries where HadoopDB can push parts of the query into the database one could expect a performance gain from secondary indices and query optimization. For other SQL queries one should expect the same performance as with plain Hive.
 
 \paragraph{Auxiliary Components}
 HadoopDB includes code to connect to the local databases and a catalog that stores database connection parameters and metadata ``such as data sets contained in the cluster, replica locations, and data partitioning properties''. The catalog must also be generated manually from two input files which adds to the work necessary to setup the data.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.7\textwidth]{images/hadoopdb-arch.png}
-  \caption{The Architecture of HadoopDB\cite{journals/pvldb/AbouzeidBARS09}}
-  \label{fig:hadoopdbarch}
-\end{figure}
-
-\section{Benchmarks}
+\subsection{Benchmarks}
 The HadoopDB paper uses the same benchmarks as used in Stonebrakers comparison paper. These are
 \begin{itemize}
 \item Grep Task: \verb+SELECT * FROM Data WHERE field LIKE '%XYZ%';+
@@ -203,78 +211,68 @@ WHERE R.pageURL = UV.destURL AND
 UV.visitDate BETWEEN '2000-01-15' AND '2000-01-22'
 GROUP BY UV.sourceIP;
 \end{verbatim}
-An additional reduce job calculates the average pageRank and total adRevenue for each sourceIP. The SQL query for the relational databases directly calculate the average in the above select, store the result in a temporary table and use a second select to retrieve the row with the highest total revenue.
+An additional reduce job calculates the average pageRank and total adRevenue for each sourceIP. The SQL query for the relational databases directly calculates the average in the above select, stores the result in a temporary table and use a second select to retrieve the row with the highest total revenue.
   \item UDF task: Calculate the inlink count for a dataset of (page url, page html).
 \end{itemize}
-In most tasks HadoopDB performes in the same range as Hadoop in comparission to the parallel database systems. Hadoop is considerably faster then all other systems in the UDF task, which is also a very typical use case of MapReduce. Only in the join task HadoopDB is faster by an order of magnitude.
-It is however not likely, that Hadoop would ever encounter input data in such a strange format as presented in the benchmark. The benchmark assumes for this task two tables.
-The first one resembles the access log of a web server with the fields sourceIP\footnote{Normally the full URL of the referrer website is stored since retrieving the source ip would require a reverse DNS lookup.}, destURL, visitDate, adRevenue, userAgent, countryCode, languageCode, searchWord and duration. In reality such a table is not likely to be ever encountered. If it would be the access log of a web server then some of the fields would not be available: adRevenue is surely nothing a web server is aware of. The meaning of searchWord is not clear and duration could be the time it took the web server to deliver the page or the duration of the user visiting the web site in which case it would be the result of a calculation over the web server log. Most importantly a web server log is written continuously as users visit the site and thus indexed by the visitDate, not the sourceIP. It would require a MapReduce job to transform a typical web server log into a table with sourceIP as the primary key.
+In most tasks HadoopDB performes in the same range as Hadoop in comparission to the parallel database systems. Hadoop is considerably faster then all other systems in the UDF task, which is also a very typical use case of MapReduce.
+
+Only in the join task HadoopDB is faster by an order of magnitude. It is however not likely, that Hadoop would ever encounter input data in such a strange format as presented in the benchmark. The benchmark pretends two tables for this task.
+
+The first one resembles the access log of a web server with the fields sourceIP, destURL, visitDate, adRevenue, userAgent, countryCode, languageCode, searchWord and duration. In reality such a table is not likely to be ever encountered. If it would be the access log of a web server then some of the fields would not be available: adRevenue is surely nothing a web server is aware of. The meaning of searchWord is not clear and duration could be the time it took the web server to deliver the page or the duration of the user visiting the web site in which case it would be the result of a calculation over the web server log. Most importantly a web server log is written continuously as users visit the site and thus indexed by the visitDate, not the sourceIP. It would require a MapReduce job to transform a typical web server log into a table with sourceIP as the primary key.
+
 When on the other hand one can conclude that the given table is the result of a MapReduce job, one could ask, why the same MapReduce job that already scanned the web server log did not prepare the data better for the necessary join task. It is possible for one map job to prepare data for different purposes.
 
-
-
-
-Im Selection Task ist HadoopDB langsamer als Hadoop, widerspruch zwischen Diagramm und Text!
-
-
-
-
-Lack of impact of HadoopDB:
-  - Resonanz in Entwicklerkreisen:
-
-    - Suche "HadoopDB" auf PostgreSQL Listenarchiv (8.4.2011): 4 Erwähnung seit einem Jahr, 15 total
-      \url{http://search.postgresql.org/search?m=1}
-
-    - Google Suche (7.4.): <10 unabhängige Erwähnungen, sonst nur Kopien der Presseerklärung und Präsentationen der Autoren
-
-    - 22 Commits auf Sourceforge SVN (7.4.2011)
-
-Commercialization as Hadapt
-
-\subsection{Drawbacks of relational schemes}
-  - Sparse vs. dense data
-
-  - Entity-attribute-value model als Reaktion auf unflexibles relationales Model
-
-  - Vergleich HBase/Cassandra mit Column Stores
-    \url{http://dbmsmusings.blogspot.com/2010/03/distinguishing-two-major-types-of_29.html}
-
-    - sparse (reference by row name)/dense(reference by position in column)
-    - optimization: read-write/read
-    - columns / column families
-    - column names in HBase/Cassandra are often also data, since the scheme is not predefined
-
-  - HBase 
-    \url{http://twitter.com/#!/Hadapt/status/52357968141885441}
-    28.3.2011 Storing data in our storage layer is 600 times faster than storing it in HBase for analysis. So we certainly don't use HBase!
-
-- Wie gut reagieren RDBMSs auf scheme evolution?
+The selection task diagram shows two different bars for HadoopDB. Without optimization, HadoopDB performed equally slow as Hadoop. Only by optimizing the data partitioning for this specific benchmark could HadoopDB outperform Hadoop by a factor of 2 to 4.
 
 \subsection{Practical evaluation}
 
-Zu kompliziert:
-\url{http://hadoopdb.sourceforge.net/guide} :
-"a careful analysis of data and expected queries results in a significant performance boost at the expense of a longer loading. Two important things to consider are data partitioning and DB tuning (e.g. creating indices). Again, details of those techniques are covered in textbooks. For some queries, hash-partitioning and clustered indices improve HadoopDB's performance 10 times"
+An important indicator for the evaluation of computer technology is its impact on the internet. From this perspective, HadoopDB seems to have failed. Google reports\footnote{as of April 7th} less then ten independent mentions of HadoopDB not counting the HadoopDB authors own publications.
 
-Two complicate systems to administrate: Hadoop+PostgreSQL
+Since HadoopDB uses PostgreSQL and provides a solution to cluster this DBMS, one should expect some interest from the PostgreSQL community. There are however only a total of 15 mails in the projects list archive mentioning HadoopDB from which only 4 are from last year.\footnote{as of April 8th \url{http://search.postgresql.org/search?m=1}}
 
-  - Storage waste:
-    load data into HDFS, copy in local file system, load into postgreSQL
+The public subversion repository of HadoopDB on SourceForge has only 22 revisions.\footnote{as of June 14th \url{http://hadoopdb.svn.sourceforge.net/viewvc/hadoopdb}}
 
-- access could not be granted to everybody. MapReduce allows to run add hock queries without scheme adaption and indices.
+Although Hadoop is one of the most discussed award winning free software projects right now, HadoopDB did not manage to profit from this and raise any significant interest at all outside of academic circles. This may be one indicator for the correctness of critiques presented in this paper.
 
-- Scheme / No scheme = Waterfal / Scrum, MR analyzes raw data
+An additional critique from a practical perspective may be the combination of two highly complicate systems, Hadoop and PostgreSQL, that both require advanced skills from the administrator. It is hard enough to find personal that can administrate one of these systems. It may be practically impossible to find personal competent in both. Both systems come with their own complexities that add up for little or no benefit.
+
+As already mentioned, Stonebraker already concluded that new databases must be easy to use because hardware is cheaper then personal. The HadoopDB guide however expects sophisticated manual work:\footnote{\url{http://hadoopdb.sourceforge.net/guide}}
+\begin{quote}
+"a careful analysis of data and expected queries results in a significant performance boost at the expense of a longer loading. Two important things to consider are data partitioning and DB tuning (e.g. creating indices). Again, details of those techniques are covered in textbooks. For some queries, hash-partitioning and clustered indices improve HadoopDB's performance 10 times"  
+\end{quote}
 
 
 \section{Hive}
 
-- Vorteil SQL: Beschreibt was, nicht wie. Optimierung wird der Software überlassen.
-\section{Pig, Cascading, Sawzall}
+Hive has been developed by facebook as a petabyte scale warehouse on top of Hadoop.\cite{Thusoo_hive-a} A typical use case for hive is to store and analyze incrementally (daily) inserted log data. It provides user interfaces and APIs that allow the submission of queries in a SQL like language called HiveQL. The application then parses the queries to a directed-acyclic graph (DAG) of Map Reduce jobs and executes them using Hadoop.
 
-\section{Conclusion}
+Data in Hive is stored in tables, which can be partitioned by multiple levels of attributes. Inside a table or a partition data can be further split in so called buckets. The target bucket is choosen by a hash function over a column modulo the desired number of buckets.\footnote{\url{http://wiki.apache.org/hadoop/Hive/LanguageManual/DDL/BucketedTables}} Tables and partitions are represented inside the Hadoop file system as regular directories while buckets are files either in the table directory if there are no partitions or in the last partition directory.
 
+The following is a path of a bucket in the table ``daily\_status'' with partitions on the columns ``ds'' and ``ctry''. The hive workspace is in the ``wh'' directory:
 
+\begin{displaymath}
+  /wh/\underbrace{daily\_status}_{\text{table name}}/\underbrace{ds=20090101/ctry=US}_{\text{nested partitions}}/\underbrace{0001}_{\text{bucket}}
+\end{displaymath}
 
+Buckets are useful to prototype and test queries on a sample of the full data. Hive provides a SAMPLE clause that lets the user specify the number of buckets that should be used for the query. Although no reference has been found for this thesis, buckets may also be useful to distribute the write and read load to multiple HDFS data nodes.
+
+Hive can not modify already stored data. This was a design decision to avoid complexity overhead. Thus there are no UPDATE or DELETE statements in HiveQL.\cite{hive-icde2010} Regular INSERTs can only write to new tables or new partitions inside a table. Otherwise a INSERT OVERWRITE must be used that will overwrite already existing data. A typical use case adds data to hive once a day and starts a new partition for the current date. Thus there is no practical limitation.
+
+Besides primitive scalar types, hive also provides nestable collections like arrays and maps. Additional types can be programmed by the user.
+
+One component important for the understanding of Hive is the Hive-Metastore. It contains table schemes and should in the future also contain data distribution statistics. The former is needed for data exploration and query parsing. The latter could be used for query optimization.
+
+For extensibility hive provides the ability for user defined (aggregation) functions. One example provided is a Python function used to extract memes from status updates.
+
+A noteworthy optimization is the ability to use a SELECT statement as input for multiple INSERT statements. This allows to minimize the number of table scans.
+
+\begin{verbatim}
+FROM (SELECT ...) subq1
+INSERT TABLE a SELECT subq1.xy, subq1.xz
+INSERT TABLE b SELECT subq1.ab, subq1.xy
+\end{verbatim}
+
+\newpage{}
 % http://liinwww.ira.uka.de/bibliography/index.html
 % http://de.wikipedia.org/wiki/BibTeX#Bibliographiedatenbanken
 \bibliography{references}{}
@@ -282,4 +280,4 @@ Two complicate systems to administrate: Hadoop+PostgreSQL
 \end{document}
 
 % LocalWords:  RDBMSs HadoopDB CPUs Stonebrakers nosqlsummer Stonebraker Abadi
-% LocalWords:  Vertica Jagl Cloudbase Gartner streamy et al
+% LocalWords:  Vertica Jagl Cloudbase Gartner streamy et al indices
