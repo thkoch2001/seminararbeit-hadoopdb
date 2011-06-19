@@ -1,0 +1,27 @@
+http://dna.fernuni-hagen.de/Lehre-offen/Seminare/1912-SS11/LitListespl.html
+Sem1912ss11:H1g1uH5l1u
+
+Simone.Jandt@FernUni-Hagen.de
+
+1   19   Parallele Datenbanken
+2   20   Parallele Anfrageauswertung in Volcano
+3   10   MapReduce und Hadoop
+4   11   Parallele Datenbanken vs. MapReduce
+5   12   HadoopDB
+6   21   Dryad
+7   22   DryadLINQ
+8    1   PigLatin
+9   18   SCOPE
+10  17   Osprey
+11  14   Map-Reduce-Merge
+12  15   Optimierung von Joins
+13  13   Spatial Join
+14  16   MapReduce für Multicore Rechner
+15   3   Strom- bzw. Onlineverarbeitung mit MapReduce
+16   6   Ahnlichkeitssuche auf Mengen
+17   2   Clustern von dynamischen Datenmengen
+18   9   Mustererkennung in Netzwerken
+19   8   Effiziente Graphanalyse
+20   4   Spezielle Anwendungen
+21   5   Performance in gemischten Umgebungen
+22   7   Sicherheit verteilter Datenbanken

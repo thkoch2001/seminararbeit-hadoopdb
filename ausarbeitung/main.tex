@@ -16,14 +16,13 @@
 
 \begin{document}
 \title{HadoopDB}
-\subtitle{a major step towards a dead end}
-\author{Thomas Koch}
+\subtitle{a major step towards a dead end\\
+Thema 5\\Seminar 01912\\ Sommersemester 2011}
+\author{Referent: Thomas Koch}
 \date{\today}
 \maketitle{}
 
-\begin{abstract}
-  
-\end{abstract}
+\newpage{}
 \tableofcontents{}
 \newpage{}
 
@@ -244,7 +243,7 @@ As already mentioned, Stonebraker already concluded that new databases must be e
 
 \section{Hive}
 
-Hive has been developed by facebook as a petabyte scale warehouse on top of Hadoop.\cite{Thusoo_hive-a} A typical use case for hive is to store and analyze incrementally (daily) inserted log data. It provides user interfaces and APIs that allow the submission of queries in a SQL like language called HiveQL. The application then parses the queries to a directed-acyclic graph (DAG) of Map Reduce jobs and executes them using Hadoop.
+Hive has been developed by facebook as a petabyte scale data warehouse on top of Hadoop.\cite{Thusoo_hive-a} A typical use case for hive is to store and analyze incrementally (daily) inserted log data. It provides user interfaces and APIs that allow the submission of queries in a SQL like language called HiveQL. The application then parses the queries to a directed-acyclic graph (DAG) of Map Reduce jobs and executes them using Hadoop.
 
 Data in Hive is stored in tables, which can be partitioned by multiple levels of attributes. Inside a table or a partition data can be further split in so called buckets. The target bucket is choosen by a hash function over a column modulo the desired number of buckets.\footnote{\url{http://wiki.apache.org/hadoop/Hive/LanguageManual/DDL/BucketedTables}} Tables and partitions are represented inside the Hadoop file system as regular directories while buckets are files either in the table directory if there are no partitions or in the last partition directory.
 
