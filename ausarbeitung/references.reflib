@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
 <manage_target braces="true" utf8="true">references.bib</manage_target>
-<library_folder monitor="false"></library_folder>
+<library_folder monitor="true"></library_folder>
 <taglist>
 </taglist>
 <doclist>
@@ -366,6 +366,48 @@ Environment</bib_title>
     <bib_pages>1626–1629</bib_pages>
     <bib_year>2009</bib_year>
     <bib_extra key="booktitle">Proceedings of the VLDB Endowment 2, Nr. 2</bib_extra>
+  </doc>
+  <doc>
+    <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/YahooHadoopTerasort.pdf</filename>
+    <relative_filename>references/YahooHadoopTerasort.pdf</relative_filename>
+    <key>TerabyteSort</key>
+    <notes></notes>
+    <bib_type>article</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Terabyte Sort on Apache Hadoop</bib_title>
+    <bib_authors>Yahoo!, Owen O’Malley</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages></bib_pages>
+    <bib_year>2008</bib_year>
+    <bib_extra key="Abstract">Dieser Artikel beschreibt eine Studie, inder ein TB großer Datensatz mit über 90 Rechnern (im Cluster) sortiert wurde.</bib_extra>
+    <bib_extra key="Biburl">http://www.bibsonomy.org/bibtex/2fddc0a4dfcca448986850b675994a399/m_aster</bib_extra>
+    <bib_extra key="Month">Mai 2008</bib_extra>
+    <bib_extra key="Url">http://www.hpl.hp.com/hosted/sortbenchmark/YahooHadoop.pdf</bib_extra>
+  </doc>
+  <doc>
+    <filename></filename>
+    <relative_filename></relative_filename>
+    <key>Peng:2010:LIP:1924943.1924961</key>
+    <notes></notes>
+    <bib_type>InProceedings</bib_type>
+    <bib_doi></bib_doi>
+    <bib_title>Large-scale incremental processing using distributed transactions and notifications</bib_title>
+    <bib_authors>Peng, Daniel and Dabek, Frank</bib_authors>
+    <bib_journal></bib_journal>
+    <bib_volume></bib_volume>
+    <bib_number></bib_number>
+    <bib_pages>1-15</bib_pages>
+    <bib_year>2010</bib_year>
+    <bib_extra key="Acmid">1924961</bib_extra>
+    <bib_extra key="Address">Berkeley, CA, USA</bib_extra>
+    <bib_extra key="BookTitle">Proceedings of the 9th USENIX conference on Operating systems design and implementation</bib_extra>
+    <bib_extra key="Location">Vancouver, BC, Canada</bib_extra>
+    <bib_extra key="Numpages">15</bib_extra>
+    <bib_extra key="Publisher">USENIX Association</bib_extra>
+    <bib_extra key="Series">OSDI’10</bib_extra>
+    <bib_extra key="Url">http://portal.acm.org/citation.cfm?id=1924943.1924961</bib_extra>
   </doc>
 </doclist>
 </library>
