@@ -25,49 +25,6 @@
     \tableofcontents{}
   \end{frame}
 
-\section{Ende einer Ära}
-\begin{frame}{Zeiten ändern sich \ldots}
-  \begin{itemize}
-    \item Hardware: Speicher, Geschwindigkeit
-    \item Kosten Mensch/Maschine
-    \item Parallelität
-    \item Anwendungsbereiche
-  \end{itemize}
-  aus: The End of an Architectural Era (It’s Time for a Complete Rewrite) von 
-Stonebraker, Michael; Abadi, Daniel J. et al.
-\end{frame}
-
-\begin{frame}{MapReduce gegen parallele Datenbanken}
-  MapReduce: A major step backwards (Stonebraker)
-  \begin{itemize}
-    \item MapReduce ist nicht neu (und nicht gleich Hadoop)
-    \item keine Schemas
-    \item keine höhere Abfragesprache
-    \item fehlende Features: Import, sekundäre Indizes, Updates, Transaktionen, Integrität, Views
-  \end{itemize}
-\end{frame}
-
-\section{Benchmarks}
-\begin{frame}{}
-  maximal 100 Server
-  \begin{quote}
-     ``Since few data sets in the world even approach a petabyte in size, it is not at all clear how many MR users really need 1.000 nodes.'' (Stonebraker)
-  \end{quote}
-  \begin{quote}<2>
-     ``I think there is a world market for maybe five computers''
-   
-     ``640K ought to be enough for anybody''
-  \end{quote}
-\end{frame}
-
-\begin{frame}{Kritik der Benchmarks}
-  \begin{itemize}
-    \item keine (echte) Fehlertoleranz
-    \item Datenladephase
-    \item Problemarten
-  \end{itemize}
-\end{frame}
-
 \section{HadoopDB}
 
 \begin{frame}{Anforderungen}
@@ -78,6 +35,16 @@ Stonebraker, Michael; Abadi, Daniel J. et al.
     \item Flexible / Erweiterbare Abfrageschnittstelle
   \end{itemize}
   (Energieeffizienz?)
+\end{frame}
+
+\begin{frame}
+  \begin{tabular}{r c c}
+     & Parallele DBs & MapReduce \\
+     Performanz & ++ & ? \\
+     Fehlertoleranz & -- & ++ \\
+     Heterogene Server & -- & ++ \\
+     Abfrageschnittstelle & ++ (?) & + \\
+  \end{tabular}
 \end{frame}
 
 \begin{frame}{Architektur}
@@ -135,43 +102,121 @@ falls per YEAR(saleDate) partitioniert wurde:
 \end{frame}
 
 \begin{frame}[fragile]{Grep Task}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
 \begin{verbatim}
-SELECT * FROM Data WHERE field LIKE '%XYZ%';
+SELECT * FROM Data
+ WHERE
+field LIKE '%XYZ%';
+\end{verbatim} 
+Compression?
+    \end{column}
+    \begin{column}{0.7\textwidth}
+      \includegraphics[width=\textwidth]{../ausarbeitung/images/diagram_grep_task.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Schemas der analytischen Tasks}
+  \begin{multicols}{2}
+\begin{verbatim}
+CREATE TABLE Documents
+( url VARCHAR(100) 
+      PRIMARY KEY,
+  contents TEXT 
+);
+
+CREATE TABLE Rankings 
+( pageURL VARCHAR(100) 
+          PRIMARY KEY,
+  pageRank INT,
+  avgDuration INT 
+);
+\end{verbatim}    
+
+\begin{verbatim}
+CREATE TABLE UserVisits
+( sourceIP VARCHAR(16),
+  destURL VARCHAR(100),
+  visitDate DATE,
+  adRevenue FLOAT,
+  userAgent VARCHAR(64),
+  countryCode VARCHAR(3),
+  languageCode VARCHAR(6),
+  searchWord VARCHAR(32),
+  duration INT 
+);
 \end{verbatim}
+  \end{multicols}
 \end{frame}
 
 \begin{frame}[fragile]{Selection Task}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
 \begin{verbatim}
-SELECT pageUrl, pageRank FROM Rankings WHERE pageRank > 10;
-\end{verbatim}
+SELECT pageUrl,
+pageRank 
+FROM Rankings
+WHERE pageRank > 10;
+\end{verbatim} 
+    \end{column}
+    \begin{column}{0.7\textwidth}
+      \includegraphics[width=\textwidth]{../ausarbeitung/images/diagram_selection_task.png}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Aggregation Task}
- \begin{enumerate}
-  \item Smaller query:
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
 \begin{verbatim}
-SELECT SUBSTR(sourceIP, 1, 7), SUM(adRevenue) 
+SELECT sourceIP,
+SUM(adRevenue)
 FROM UserVisits 
-GROUP BY SUBSTR(sourceIP, 1, 7);
-\end{verbatim}
-
-  \item Larger query:
-\begin{verbatim}
-SELECT sourceIP, SUM(adRevenue) FROM UserVisits 
 GROUP BY sourceIP;
-\end{verbatim}
-
-  \end{enumerate}
+\end{verbatim} 
+    \end{column}
+    \begin{column}{0.7\textwidth}
+      \includegraphics[width=\textwidth]{../ausarbeitung/images/diagram_aggregation_task.png}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Join Task}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
 \begin{verbatim}
-SELECT sourceIP, COUNT(pageRank), SUM(pageRank),
-SUM(adRevenue) FROM Rankings AS R, UserVisits AS UV
-WHERE R.pageURL = UV.destURL AND
-UV.visitDate BETWEEN '2000-01-15' AND '2000-01-22'
+SELECT sourceIP, COUNT(pageRank),
+SUM(pageRank), SUM(adRevenue)
+FROM Rankings AS R,
+     UserVisits AS UV
+WHERE
+R.pageURL = UV.destURL AND
+UV.visitDate BETWEEN
+  '2000-01-15' AND '2000-01-22'
 GROUP BY UV.sourceIP;
-\end{verbatim}
+\end{verbatim} 
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[width=\textwidth]{../ausarbeitung/images/diagram_join_task.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Linkgraph-Invertier Task}
+  HTML parsen, Links extrahieren, Inlinks für Seiten zählen.
+  
+  Musterbeispiel für MapReduce!
+\end{frame}
+
+\begin{frame}{Diskussion}
+  \begin{itemize}
+  \item unrealistische Benchmarks
+  \item sehr kleine Anzahl Server
+  \item Fehlbedienung von Hadoop?
+  \item keine richte Fault-Tolerance
+  \item separate Read-Only Datenbank
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Praktische Evaluation - Feedback}
@@ -211,12 +256,34 @@ GROUP BY UV.sourceIP;
 \end{displaymath}
 \end{frame}
 
+\begin{frame}{Architektur}
+  \begin{center}
+    \includegraphics[height=\textheight]{../ausarbeitung/images/hive-architecture.png}    
+  \end{center}
+\end{frame}
+
 \begin{frame}{Hive-Metastore}
   \begin{itemize}
   \item Schema: browse, query parsing
   \item (geplant) Statistiken: Optimierung
   \end{itemize}
   Demnächst: HCatalog
+\end{frame}
+
+\begin{frame}{Hive-Compiler}
+  \begin{enumerate}
+\item Query String $\rightarrow$ Parsebaum
+\item $\rightarrow$ interne Queryrepresentation +
+  \begin{itemize}
+  \item Verifikation gegen Metastore
+  \item SELECT * expandieren
+  \item Typcheck bzw. conversion
+  \end{itemize}
+\item $\rightarrow$ logischer Operatorbaum
+\item Optimierer
+\item $\rightarrow$ MapReduce jobs
+\end{enumerate}
+  
 \end{frame}
 
 \begin{frame}[fragile]{Vergleich mit SQL}

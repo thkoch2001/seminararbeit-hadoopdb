@@ -124,10 +124,9 @@
     <bib_number></bib_number>
     <bib_pages></bib_pages>
     <bib_year>2008</bib_year>
-    <bib_extra key="howpublished">\url{http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/}</bib_extra>
+    <bib_extra key="howpublished">\url{http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards}</bib_extra>
     <bib_extra key="month">01</bib_extra>
     <bib_extra key="note">accessed 11-April-2011</bib_extra>
-    <bib_extra key="url">http://databasecolumn.vertica.com/database-innovation/mapreduce-a-major-step-backwards/</bib_extra>
   </doc>
   <doc>
     <filename>file:///home/thkoch/Desktop/studium/informatik/1912_mapreduce_und_datenbanken/ausarbeitung/references/cidr07p20.pdf</filename>
